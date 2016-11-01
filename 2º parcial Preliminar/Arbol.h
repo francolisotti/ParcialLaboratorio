@@ -1,8 +1,6 @@
 #ifndef ARBOL_H_INCLUDED
 #define ARBOL_H_INCLUDED
 
-
-
 typedef struct
 {
     persona p;
@@ -17,4 +15,5 @@ void mostrarArbol (nodoArbol * arbol, int orden);
 nodoArbol * nodoMasDerecho(nodoArbol * arbol);
 nodoArbol * nodoMasIzquierdo(nodoArbol * arbol);
 nodoArbol * borrarNodoArbol (nodoArbol * arbol, char nombre []);
+
 #endif // ARBOL_H_INCLUDED

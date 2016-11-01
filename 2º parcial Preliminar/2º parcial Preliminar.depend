@@ -50,3 +50,20 @@
 	"string.h"
 	"persona.h"
 
+1478038515 source:e:\users\franco\desktop\parciallaboratorio\2º parcial preliminar\main.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"Persona.h"
+	"Arbol.h"
+	"Lista.h"
+
+1478038623 e:\users\franco\desktop\parciallaboratorio\2º parcial preliminar\persona.h
+
+1478038515 e:\users\franco\desktop\parciallaboratorio\2º parcial preliminar\arbol.h
+
+1478038198 e:\users\franco\desktop\parciallaboratorio\2º parcial preliminar\lista.h
+	"string.h"
+	<stdio.h>
+	<stdlib.h>
+

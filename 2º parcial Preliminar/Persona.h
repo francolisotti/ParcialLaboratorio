@@ -9,7 +9,7 @@ typedef struct
     int tiempoProcesado; // es el tiempo que ya fue procesado en la línea de caja
     int tipo_cliente; // prioridad (1: embarazada, 2: jubilado y 3: normal)
     int tipo_pago; // 1 efectivo, 2 crédito o débito, 3 todos
-} persona;
+}persona;
 
 persona nuevo_Persona();
 persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,int tipo_Pago);

@@ -1,4 +1,4 @@
-#include "TDA Lista Doble.h"
+#include "Lista.h"
 
 nodo * inicLista ()
 {
