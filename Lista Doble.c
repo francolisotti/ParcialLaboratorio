@@ -164,3 +164,34 @@ nodo * borrarNodo(nodo * lista, nodo * buscado)
     return lista;
 }
 
+void inicFila()
+{
+    return NULL;
+}
+Fila * agregar (Fila * filita, nodo * nuevo)
+{
+    nodo * aux=filita->ultimo;
+
+    nuevo->anterior=aux;
+    aux->siguiente=nuevo;
+    filita->ultimo=nuevo;
+
+    return filita;
+}
+Fila * quitar (Fila * filita)
+{
+    nodo * aux=filita->primero;
+
+    filita->primero=aux->siguiente;
+    nodo * aux2=filita->primero;
+}
+void mostrar(Fila * filita)
+{
+    mostrarLista(filita->primero);
+}
+filaVacia(Fila * filita)
+{
+    int rta=NULL;
+
+    if (fila)
+}

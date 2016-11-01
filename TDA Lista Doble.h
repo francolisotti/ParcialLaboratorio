@@ -12,6 +12,12 @@ typedef struct
     struct nodo * anterior;
 } nodo;
 
+typedef struct
+{
+    struct nodo * primero;
+    struct nodo * ultimo;
+} Fila;
+
 nodo * inicLista ();
 nodo * crearNodoLista (persona cliente);
 nodo * agregarAlPrincipio (nodo * lista, nodo * nuevo);
