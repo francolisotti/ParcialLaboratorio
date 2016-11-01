@@ -32,8 +32,12 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Arbol.h" />
+		<Unit filename="Lista.h" />
 		<Unit filename="Persona.h" />
 		<Unit filename="TDA Arbol.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDA Lista.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="TDA persona.c">
