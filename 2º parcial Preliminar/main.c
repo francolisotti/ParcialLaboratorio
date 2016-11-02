@@ -3,6 +3,7 @@
 #include "string.h"
 #include "Persona.h"
 #include "Arbol.h"
+#include "Lista.h"
 
 void archivarPersona (char nombre[], persona nuevo)
 {
