@@ -22,13 +22,15 @@ void mostrarArchivo (char nombre[])
     FILE * archi;
     archi=fopen(nombre, "rb");
     persona aux;
-
+    int i=0;
     if (archi!=NULL)
     {
         while (fread(&aux,sizeof(persona),1,archi)>0)
         {
             mostrarPersona(aux);
+            i++;
         }
+        printf("Elementos mostrados: %d",i);
     }
     else
     {
@@ -43,12 +45,7 @@ int main()
 {
     nodo * lista=inicLista();
     char nombre[]={"cliente.bin"};
-
-    cargarPersona(nombre);
-
-    persona a[];
-    LeerArchi(nombre,a)
-    lista=crearNodoLista()
+    mostrarArchivo(nombre);
 
     return 0;
 }
