@@ -35,6 +35,7 @@ void mostrarArbol (nodoArbol * arbol, int orden);
 nodoArbol * nodoMasDerecho(nodoArbol * arbol);
 nodoArbol * nodoMasIzquierdo(nodoArbol * arbol);
 nodoArbol * borrarNodoArbol (nodoArbol * arbol, char nombre []);
+nodoArbol * ArchiToArbol (char nombre[],nodoArbol * arbol);
 
 ///TDA Lista Doble
 

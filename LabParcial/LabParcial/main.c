@@ -30,7 +30,7 @@ void mostrarArchivo (char nombre[])
             mostrarPersona(aux);
             i++;
         }
-        printf("Elementos mostrados: %d",i);
+        printf("\nElementos mostrados: %d\n",i);
     }
     else
     {
@@ -39,13 +39,28 @@ void mostrarArchivo (char nombre[])
     fclose(archi);
 }
 
-
+int selectOrden (int orden)
+{
+    printf("Decida el orden en que se va a mostrar el arbol\nSiendo 1 preorden,2 inorden y 3 postorden: ");
+    scanf("%d\n",orden);
+    while ((orden > 3) && (orden <1))
+    {
+        printf("Ingrese nuevamente del 1 al 3 por favor: ");
+        scanf("%d\n",&orden);
+    }
+    return orden;
+}
 
 int main()
 {
     nodo * lista=inicLista();
+    nodoArbol * arbol=inicArbol();
     char nombre[]={"cliente.bin"};
+    int orden=0;
     mostrarArchivo(nombre);
-
+    ArchiToArbol(nombre,arbol);
+    getch();
+    /*orden= selectOrden(orden)*/; //Arreglar o poner menu switch
+    mostrarArbol(arbol,1);
     return 0;
 }

@@ -67,12 +67,12 @@ void cargarPersona (char nombreDelArchivo[])
 
 void mostrarPersona(persona aux)
 {
-    printf("\nNombre y Apellido: %s", aux.nombreApellido);
-    printf("\nCantidad de articulos: %d", aux.cantArticulos);
-    printf("\nTiempo de espera: %d", aux.tiempoDeEspera);
-    printf("\nTiempo de procesado: %d", aux.tiempoProcesado);
+    printf("\n                                             Nombre y Apellido: %s", aux.nombreApellido);
+    printf("\n                                          Cantidad de articulos: %d", aux.cantArticulos);
+    printf("\n                                                Tiempo de espera: %d", aux.tiempoDeEspera);
+    printf("\n                                              Tiempo de procesado: %d", aux.tiempoProcesado);
     printf("\nTipo de cliente (prioridad 1: embarazada, 2: jubilado y 3: normal): %d", aux.tipo_cliente);
-    printf("\nTipo pago (1 efectivo, 2 crédito o débito, 3 todos): %d", aux.tipo_pago);
+    printf("\n                Tipo pago (1 efectivo, 2 crédito o débito, 3 todos): %d\n", aux.tipo_pago);
 
 }
 
@@ -175,13 +175,14 @@ void mostrarArbol (nodoArbol * arbol, int orden)
 {
     if(arbol)
     {
-        if(orden=1)
+        printf("adasd");
+        if(orden==1)
         {
             preorder(arbol);
-        }else if (orden=2)
+        }else if (orden==2)
         {
             inorder(arbol);
-        }else if (orden=3)
+        }else if (orden==3)
         {
             postorder(arbol);
         }
@@ -247,6 +248,28 @@ nodoArbol * borrarNodoArbol (nodoArbol * arbol, char nombre [])
             }
         }
     }
+    return arbol;
+}
+nodoArbol * ArchiToArbol (char nombre[],nodoArbol * arbol)
+{
+    persona aux;
+    FILE * archi=fopen(nombre,"rb");
+    if (archi==NULL)
+    {
+        printf("No se encontro el archivo\n");
+    }else
+    {
+
+        while (!feof(archi))
+        {
+            fread(&aux,sizeof(persona),1,archi);
+            if (!feof(archi))
+            {
+                arbol=insertarNodoArbol(arbol,aux);
+            }
+        }
+    }
+    fclose(archi);
     return arbol;
 }
 
