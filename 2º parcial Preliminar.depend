@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1478014759 source:c:\users\alumno\desktop\2º parcial preliminar\tda persona.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"persona.h"
+
+1478013779 c:\users\alumno\desktop\2º parcial preliminar\persona.h
+
+1478014947 source:c:\users\alumno\desktop\2º parcial preliminar\main.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"persona.h"
+	"Arbol.h"
+
+1478014992 c:\users\alumno\desktop\2º parcial preliminar\arbol.h
+
+1478011348 source:c:\users\sureda\desktop\tp 2 programacion\2º parcial preliminar\2º parcial preliminar\main.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"persona.h"
+	"Arbol.h"
+
+1478010180 c:\users\sureda\desktop\tp 2 programacion\2º parcial preliminar\2º parcial preliminar\persona.h
+
+1478011394 c:\users\sureda\desktop\tp 2 programacion\2º parcial preliminar\2º parcial preliminar\arbol.h
+
+1478011160 source:c:\users\sureda\desktop\tp 2 programacion\2º parcial preliminar\2º parcial preliminar\tda persona.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"persona.h"
+
+1478011348 source:c:\users\sureda\desktop\tp 2 programacion\2º parcial preliminar\main.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"persona.h"
+	"Arbol.h"
+
+1478010180 c:\users\sureda\desktop\tp 2 programacion\2º parcial preliminar\persona.h
+
+1478011394 c:\users\sureda\desktop\tp 2 programacion\2º parcial preliminar\arbol.h
+
+1478011160 source:c:\users\sureda\desktop\tp 2 programacion\2º parcial preliminar\tda persona.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"persona.h"
+
+1478038515 source:e:\users\franco\desktop\parciallaboratorio\2º parcial preliminar\main.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"Persona.h"
+	"Arbol.h"
+	"Lista.h"
+
+1478038623 e:\users\franco\desktop\parciallaboratorio\2º parcial preliminar\persona.h
+
+1478038515 e:\users\franco\desktop\parciallaboratorio\2º parcial preliminar\arbol.h
+
+1478038198 e:\users\franco\desktop\parciallaboratorio\2º parcial preliminar\lista.h
+	"string.h"
+	<stdio.h>
+	<stdlib.h>
+

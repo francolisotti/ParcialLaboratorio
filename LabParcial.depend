@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1478101334 source:c:\users\alumno\desktop\labparcial\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"Header.h"
+
+1478101348 c:\users\alumno\desktop\labparcial\header.h
+	"string.h"
+
+1478127942 source:e:\users\franco\desktop\parciallaboratorio\labparcial\labparcial\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"Header.h"
+
+1478127942 e:\users\franco\desktop\parciallaboratorio\labparcial\labparcial\header.h
+	"string.h"
+
+1478358378 source:e:\users\franco\desktop\parciallaboratorio\labparcial\labparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Header.h"
+
+1478539207 source:c:\users\user\desktop\parciallaboratorio-master\labparcial\labparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Header.h"
+
+1478537037 c:\users\user\desktop\parciallaboratorio-master\labparcial\labparcial\header.h
+	"string.h"
+
+1478539382 source:c:\users\user\desktop\parciallaboratorio-master\labparcial\labparcial\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"Header.h"
+
