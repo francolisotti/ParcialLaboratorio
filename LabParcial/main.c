@@ -6,13 +6,15 @@ int main()
 {
     nodo * lista=inicLista();
     nodoArbol * arbol=inicArbol();
-    char nombre[]={"caja.bin"};
+    char archi_caja[]={"caja.bin"};
    /* int orden=0;
     mostrarArchivo(nombre);
     ArchiToArbol(nombre,arbol);
     getch();
     orden= selectOrden(orden); Arreglar o poner menu switch
     mostrarArbol(arbol,1);*/
-    mostrarArchivoCaja(nombre);
+    caja cajita[12];
+    pasarDeArchiAcaja(archi_caja,cajita);
+
     return 0;
 }

@@ -631,6 +631,23 @@ void mostrarCaja(caja cajita)
         printf("la caja no existe\n");
 }
 
+void pasarDeArchiAcaja (char archiCajas[], caja cajita[])
+{
+    FILE * archi=fopen(archiCajas, "rb");
+    int i=0;
+    if (archi!=NULL)
+    {
+        while(fread(&cajita[i],sizeof(caja),1,archi)>0)
+        {
+            i++;
+        }
+    }
+    fclose(archi);
+
+}
+
+
+/*
 pasarArbolACaja (nodoArbol * arbol, caja cajita[])
 {
     int tipopago=arbolp.tipo_pago;
@@ -649,14 +666,6 @@ agregarClientePreorden(nodoArbol * arbol, caja cajita[])
         agregarClientePreorden(arbol->der,cajita);
 }
 
-
-
-
-
-
-
-
-
 caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
 {
     int recorrido;
@@ -667,7 +676,7 @@ caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
         printf("ERROR, algoritmo no existente, ingrese nuevamente, (1 preorden,2 inorden y 3 postorden): ");
         scanf("%d", &recorrido);
     }
-   /* if (recorrido==1)
+    if (recorrido==1)
     {
 
     }
@@ -678,10 +687,10 @@ caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
     else
     {
 
-    }*/
+    }
     return cajita;
 }
-
+*/
 
 
 

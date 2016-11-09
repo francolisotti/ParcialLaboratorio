@@ -87,6 +87,7 @@ void mostrarCaja (caja cajita);
 caja agregarClienteACaja (caja cajita, nodoArbol * raiz);
 caja agregarClienteACajaEnTiempoDeterminado ();
 caja atenderClientes (caja cajita);
+void pasarDeArchiAcaja (char archiCajas[], caja cajita[]);
 
 
 
