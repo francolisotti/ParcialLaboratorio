@@ -18,6 +18,7 @@ persona nuevo_Persona();
 persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,int tipo_Pago);
 void cargarPersona (char nombreDelArchivo[]);
 void mostrarPersona(persona aux);
+void archivarPersona (char nombre[], persona nuevo);
 
 ///TDA Arbol
 
@@ -74,19 +75,21 @@ typedef struct
 {
     int nro_de_caja;
     char nombreCajero[40];
-    int tipo_pago;  //1 efectivo, 2 credito o debito, 3 todos
+    int tipo_pago;  ///1 efectivo, 2 credito o debito, 3 todos
     int abiertaOcerrada;
-    char algoritmoPlanificacion[30]; //debe informar que tipo de alg. de planificaicon utiliza la caja
+    char algoritmoPlanificacion[30]; ///debe informar que tipo de alg. de planificaicon utiliza la caja
     Fila filita;
 }caja;
 
-agregarCaja ();
-abrirOcerrarCaja (caja cajita);
-buscarCaja (caja cajita, int buscada);
-mostrarCaja (caja cajita);
-agregarClienteACaja (caja cajita, nodo * lista);
-agregarClienteACajaEnTiempoDeterminado ();
-atenderClientes (caja cajita);
+caja abrirOcerrarCaja (caja cajita);
+caja buscarCaja (caja A[], int buscada);
+void mostrarCaja (caja cajita);
+caja agregarClienteACaja (caja cajita, nodoArbol * raiz);
+caja agregarClienteACajaEnTiempoDeterminado ();
+caja atenderClientes (caja cajita);
+
+
+
 
 
 

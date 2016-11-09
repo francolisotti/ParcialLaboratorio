@@ -1,8 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Header.h"
+/// Archivos
+
+
+void mostrarArchivo (char nombre[])
+{
+    FILE * archi;
+    archi=fopen(nombre, "rb");
+    persona aux;
+    int i=0;
+    if (archi!=NULL)
+    {
+        while (fread(&aux,sizeof(persona),1,archi)>0)
+        {
+            mostrarPersona(aux);
+            i++;
+        }
+        printf("\nElementos mostrados: %d\n",i);
+    }
+    else
+    {
+        printf("\nEl archivo no esta cargado");
+    }
+    fclose(archi);
+}
+
+
+
+void mostrarArchivoCaja (char nombre[])
+{
+    FILE * archi;
+    archi=fopen(nombre, "rb");
+    caja aux;
+    int i=0;
+    if (archi!=NULL)
+    {
+        while (fread(&aux,sizeof(caja),1,archi)>0)
+        {
+            mostrarCaja(aux);
+            i++;
+        }
+        printf("\nElementos mostrados: %d\n",i);
+    }
+    else
+    {
+        printf("\nEl archivo no esta cargado");
+    }
+    fclose(archi);
+}
 
 ///TDA Persona
+
 
 persona nuevo_Persona()
 {
@@ -42,7 +91,7 @@ persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,
     return aux;
 }
 
-void cargarPersona (char nombreDelArchivo[])
+/*void cargarPersona (char nombreDelArchivo[])
 {
     char nombreApellido[40];
     int cantArticulos,tipo_Cliente,tipo_Pago;
@@ -63,20 +112,32 @@ void cargarPersona (char nombreDelArchivo[])
         fflush(stdin);
         scanf("%c", &control);
     }
-}
+}*/
 
 void mostrarPersona(persona aux)
 {
-    printf("\n                                             Nombre y Apellido: %s", aux.nombreApellido);
-    printf("\n                                          Cantidad de articulos: %d", aux.cantArticulos);
-    printf("\n                                                Tiempo de espera: %d", aux.tiempoDeEspera);
-    printf("\n                                              Tiempo de procesado: %d", aux.tiempoProcesado);
+    printf("\n                                                 Nombre y Apellido: %s", aux.nombreApellido);
+    printf("\n                                             Cantidad de articulos: %d", aux.cantArticulos);
+    printf("\n                                                  Tiempo de espera: %d", aux.tiempoDeEspera);
+    printf("\n                                               Tiempo de procesado: %d", aux.tiempoProcesado);
     printf("\nTipo de cliente (prioridad 1: embarazada, 2: jubilado y 3: normal): %d", aux.tipo_cliente);
-    printf("\n                Tipo pago (1 efectivo, 2 crédito o débito, 3 todos): %d\n", aux.tipo_pago);
+    printf("\n               Tipo pago (1 efectivo, 2 crédito o débito, 3 todos): %d\n", aux.tipo_pago);
 
 }
 
 ///TDA Arbol
+
+int selectOrden (int orden)
+{
+    printf("Decida el orden en que se va a mostrar el arbol\nSiendo 1 preorden,2 inorden y 3 postorden: ");
+    scanf("%d\n",orden);
+    while ((orden > 3) && (orden <1))
+    {
+        printf("Ingrese nuevamente del 1 al 3 por favor: ");
+        scanf("%d\n",&orden);
+    }
+    return orden;
+}
 
 nodoArbol * inicArbol ()
 {
@@ -179,10 +240,12 @@ void mostrarArbol (nodoArbol * arbol, int orden)
         if(orden==1)
         {
             preorder(arbol);
-        }else if (orden==2)
+        }
+        else if (orden==2)
         {
             inorder(arbol);
-        }else if (orden==3)
+        }
+        else if (orden==3)
         {
             postorder(arbol);
         }
@@ -219,7 +282,7 @@ nodoArbol * nodoMasIzquierdo(nodoArbol * arbol)
 
 nodoArbol * borrarNodoArbol (nodoArbol * arbol, char nombre [])
 {
-        if(arbol)
+    if(arbol)
     {
         if(strcmp(nombre,arbol->p.nombreApellido)>0)
         {
@@ -257,7 +320,8 @@ nodoArbol * ArchiToArbol (char nombre[],nodoArbol * arbol)
     if (archi==NULL)
     {
         printf("No se encontro el archivo\n");
-    }else
+    }
+    else
     {
 
         while (!feof(archi))
@@ -439,6 +503,8 @@ nodo * borrarNodo(nodo * lista, nodo * buscado)
     return lista;
 }
 
+///TDA arreglo fila
+
 void inicFila(Fila * filita)
 {
     filita->primero=inicLista();
@@ -495,3 +561,147 @@ int filaVacia(Fila * filita)
     }
     return rta;
 }
+/// TDA caja
+caja abrirOcerrarCaja (caja cajita)
+{
+    if (cajita.abiertaOcerrada= 1)
+    {
+        cajita.abiertaOcerrada= 0;
+    }
+    else
+    {
+        cajita.abiertaOcerrada= 1;
+    }
+    return cajita;
+}
+
+caja buscarCaja(caja A[], int buscada)
+{
+    int i=0;
+    if((A[i].nro_de_caja!=buscada) && (buscada<=12))
+    {
+        while (A[i].nro_de_caja!=buscada)
+        {
+            i++;
+        }
+    }
+    return A[i];
+}
+
+void mostrarCaja(caja cajita)
+{
+    if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
+    {
+        puts("------------------------------------------\n");
+        if(cajita.abiertaOcerrada=1)
+        {
+            printf("La caja esta abierta\n");
+        }
+        else
+        {
+            printf("La caja esta cerrada\n");
+        }
+        printf("Su algortmo de planificacion es: %s\n",cajita.algoritmoPlanificacion);
+        printf("Su cajero es: %s\n",cajita.nombreCajero);
+        printf("Esta es la caja numero: %d\n",cajita.nro_de_caja);
+        if (cajita.tipo_pago=1)
+        {
+            printf("Su metodo de pago es solo efectivo\n");
+        }
+        else if (cajita.tipo_pago=2)
+        {
+            printf("Su metodo de pago es debito/tarjeta\n");
+        }
+        else
+        {
+            printf("Se acepta todo metodo de pago en esta caja\n");
+        }
+        char control= 's';
+        puts("------------------------------------------\n");
+        printf("Desea mostrar la fila?\n");
+        fflush(stdin);
+        scanf("%c",&control);
+        if(control == 's')
+        {
+            mostrar(&cajita.filita);
+        }
+        puts("------------------------------------------\n");
+    }
+    else
+        printf("la caja no existe\n");
+}
+
+pasarArbolACaja (nodoArbol * arbol, caja cajita[])
+{
+    int tipopago=arbolp.tipo_pago;
+    if (tipopago==1)
+    {
+        cajita[].filita.ultimo.cliente=arbol.p;
+    }
+}
+
+agregarClientePreorden(nodoArbol * arbol, caja cajita[])
+{
+    if(arbol!=NULL)
+    {
+        pasarArbolCaja
+        agregarClientePreorden(arbol->izq,cajita);
+        agregarClientePreorden(arbol->der,cajita);
+}
+
+
+
+
+
+
+
+
+
+caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
+{
+    int recorrido;
+    printf("\nElija el algoritmo de recorrido (Siendo 1 preorden,2 inorden y 3 postorden): ");
+    scanf("%d", &recorrido);
+    while (recorrido>3 && recorrido<1)
+    {
+        printf("ERROR, algoritmo no existente, ingrese nuevamente, (1 preorden,2 inorden y 3 postorden): ");
+        scanf("%d", &recorrido);
+    }
+   /* if (recorrido==1)
+    {
+
+    }
+    else if (recorrido==2)
+    {
+
+    }
+    else
+    {
+
+    }*/
+    return cajita;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
