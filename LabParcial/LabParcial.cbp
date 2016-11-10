@@ -31,10 +31,26 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Funciones.c">
+		<Unit filename="Arbol.h" />
+		<Unit filename="Caja.h" />
+		<Unit filename="Fila.h" />
+		<Unit filename="Lista.h" />
+		<Unit filename="Persona.h" />
+		<Unit filename="TDA Arbol.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Header.h" />
+		<Unit filename="TDA Caja.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDA Fila.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDA Lista.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDA Persona.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

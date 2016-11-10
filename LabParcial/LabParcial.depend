@@ -54,3 +54,54 @@
 	<stdlib.h>
 	"Header.h"
 
+1478789722 source:c:\users\alumno\desktop\parciallaboratorio-master\labparcial\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"Header.h"
+
+1478787188 c:\users\alumno\desktop\parciallaboratorio-master\labparcial\header.h
+	"string.h"
+
+1478789523 source:c:\users\alumno\desktop\parciallaboratorio-master\labparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Header.h"
+
+1478789523 source:c:\users\alumno\desktop\labparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Header.h"
+
+1478791994 source:c:\users\alumno\desktop\labparcial\tda arbol.c
+	<stdio.h>
+	<stdlib.h>
+	"Arbol.h"
+
+1478791048 c:\users\alumno\desktop\labparcial\arbol.h
+	"Persona.h"
+
+1478791949 c:\users\alumno\desktop\labparcial\persona.h
+	<string.h>
+
+1478792216 source:c:\users\alumno\desktop\labparcial\tda fila.c
+	<stdio.h>
+	<stdlib.h>
+	"Fila.h"
+
+1478792121 c:\users\alumno\desktop\labparcial\fila.h
+	"Lista.h"
+	"Persona.h"
+
+1478792128 c:\users\alumno\desktop\labparcial\lista.h
+	"Persona.h"
+
+1478792216 source:c:\users\alumno\desktop\labparcial\tda lista.c
+	<stdio.h>
+	<stdlib.h>
+	"Lista.h"
+
+1478792216 source:c:\users\alumno\desktop\labparcial\tda persona.c
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+
