@@ -43,7 +43,7 @@ persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,
     return aux;
 }
 
-void cargarPersona (char nombreDelArchivo[])
+/*void cargarPersona (char nombreDelArchivo[])
 {
     char nombreApellido[40];
     int cantArticulos,tipo_Cliente,tipo_Pago;
@@ -64,10 +64,31 @@ void cargarPersona (char nombreDelArchivo[])
         fflush(stdin);
         scanf("%c", &control);
     }
+}*/
+
+void mostrarArchiPersona (char archi_persona)
+{
+    FILE * archi=fopen(archi_persona, "rb");
+    persona aux;
+    if (archi!=NULL)
+    {
+        while (fread(&aux,sizeof(persona),1,archi)>0)
+        {
+            mostrarPersona(aux);
+        }
+    }
+    else
+    {
+        printf("\nERROR archivo no encontrado");
+    }
+    fclose(archi);
+
 }
+
 
 void mostrarPersona(persona aux)
 {
+
     printf("\n    Nombre y Apellido: %s", aux.nombreApellido);
     printf("\nCantidad de articulos: %d", aux.cantArticulos);
     printf("\n     Tiempo de espera: %d", aux.tiempoDeEspera);
@@ -96,6 +117,6 @@ void mostrarPersona(persona aux)
     {
         printf("\n           Tipo pago : Todos los metodos");
     }
-
+    puts("\n------------------------------------------");
 }
 

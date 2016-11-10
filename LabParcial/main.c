@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Header.h"
+#include "Persona.h"
+#include "Arbol.h"
+#include "Lista.h"
+#include "Caja.h"
+#include "Fila.h"
+
 
 int main()
 {
@@ -9,14 +14,23 @@ int main()
     char archi_persona[]={"cliente.bin"};
     char archi_caja[]={"caja.bin"};
     int orden=0;
-    //mostrarArchivo(archi_persona);
+    //mostrarArchiPersona(archi_persona);
+    //getch();
     arbol=ArchiToArbol(archi_persona,arbol);
     getch();
     orden= selectOrden();
-    //printf("orden %d",orden);
     mostrarArbol(arbol,orden);
-    //caja cajita[12];
-    //pasarDeArchiAcaja(archi_caja,cajita);
+    getch();
+    caja cajita[12];
+    pasarDeArchiAcaja(archi_caja,cajita);
+    int i=0;
+    caja cajiton;
+    while (i<12)
+    {
+        cajiton=cajita[i];
+        mostrarCaja(cajiton);
+        i++;
+    }
 
     return 0;
 }

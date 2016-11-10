@@ -85,7 +85,6 @@ void pasarDeArchiAcaja (char archiCajas[], caja cajita[])
         }
     }
     fclose(archi);
-
 }
 
 
@@ -120,9 +119,7 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita)
     }
 }
 
-
-
-caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
+/*caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
 {
     int recorrido;
     printf("\nElija el algoritmo de recorrido: ");
@@ -146,4 +143,4 @@ caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
     }
     return cajita;
 }
-
+*/
