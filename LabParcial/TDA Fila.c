@@ -9,7 +9,7 @@ void inicFila(Fila * filita)
     filita->primero=inicLista();
     filita->ultimo=inicLista();
 }
-void agregar (Fila * filita, persona a)
+void agregar (Fila * filita,persona a)
 {
     nodo * nuevo=crearNodoLista(a);
 
@@ -23,6 +23,7 @@ void agregar (Fila * filita, persona a)
     }
     filita->ultimo=nuevo;
 }
+
 char quitar (Fila * filita)
 {
     char resp[40];

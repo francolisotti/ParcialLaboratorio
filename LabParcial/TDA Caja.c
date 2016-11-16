@@ -32,19 +32,13 @@ caja buscarCaja(caja A[], int buscada)
 
 int contarClientesCaja (Fila * filita)
 {
-printf("contarClientesCaja \n");
-    nodo * aux=filita->primero;
+    nodo * auxiliar=filita->primero;
     int cont=0;
-    if (aux)
+    while (auxiliar!=NULL)
     {
-        while (aux!=NULL)
-        {
-            printf("%d",aux->cliente.cantArticulos);
-            aux=aux->siguiente;
-            cont++;
-        }
+        auxiliar=auxiliar->siguiente;
+        cont++;
     }
-     printf("contarClientesCaja %d\n",cont);
     return cont;
 }
 
@@ -109,20 +103,38 @@ void pasarDeArchiAcaja (char archiCajas[], caja cajita[])
     }
     fclose(archi);
 }
+
+int Subarreglo (caja cajita[], caja aux[12], int tipopago)
+{
+    int i=0,u=0;
+    while (i<12)
+    {
+        if ((cajita[i].tipo_pago==tipopago) || (cajita[i].tipo_pago==3))
+        {
+            aux[u]=cajita[i];
+            u++;
+        }
+        i++;
+
+    }
+
+    return u;
+}
+
 void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
 {
     caja aux[12];
     int cantsub=0;
     int i=0;
     int cantclientes=0;
-    int menor;
-    int posmenor;
+    int menor=0;
+    int posmenor=0;
     int tipopago=0;
 
     if(arbol!=NULL)
     {
         tipopago=arbol->p.tipo_pago;
-        cantsub=Subarreglo(cajita,aux,tipopago);
+        cantsub=Subarreglo(&(cajita),aux,tipopago);
         menor=contarClientesCaja(&(aux[i]).filita);
         posmenor=i;
         i++;
@@ -136,11 +148,15 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             }
             i++;
         }
-
+        printf("1");
+        agregar(&aux[posmenor].filita,arbol->p);
+        agregarClientePreorden(arbol->izq,cajita);
+        printf("32");
+        agregarClientePreorden(arbol->der,cajita);
+        pasarAuxACaja(aux,cajita);
     }
-    agregar(&aux[posmenor].filita,arbol->p);
-    agregarClientePreorden(arbol->izq,cajita);
-    agregarClientePreorden(arbol->der,cajita);
+
+
 }
 
 
@@ -160,7 +176,7 @@ void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
     {
         agregarClienteInorden(arbol->izq,cajita);
         tipopago=arbol->p.tipo_pago;
-        cantsub=Subarreglo(cajita,aux,tipopago);
+        cantsub=Subarreglo(&(cajita),aux,tipopago);
         menor=contarClientesCaja(&(aux[i]).filita);
         posmenor=i;
         while (i<cantsub)
@@ -175,6 +191,8 @@ void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
         }
         agregar(&aux[posmenor].filita,arbol->p);
         agregarClienteInorden(arbol->der,cajita);
+        pasarAuxACaja(aux,(&cajita));
+
     }
 }
 
@@ -193,7 +211,7 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
         agregarClientePostorden(arbol->izq,cajita);
         agregarClientePostorden(arbol->der,cajita);
         tipopago=arbol->p.tipo_pago;
-        cantsub=Subarreglo(cajita,aux,tipopago);
+        cantsub=Subarreglo(&(cajita),aux,tipopago);
         menor=contarClientesCaja(&(aux[i]).filita);
         posmenor=i;
         i++;
@@ -208,7 +226,7 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
             i++;
         }
         agregar(&aux[posmenor].filita,arbol->p);
-        pasarAuxACaja(aux,cajita);
+        pasarAuxACaja(aux,(&cajita));
     }
 }
 
@@ -239,21 +257,6 @@ caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
     return(*cajita);
 }
 
-int Subarreglo (caja cajita[], caja aux[12], int tipopago)
-{
-    int i=0,u=0;
-    while (i<12)
-    {
-        if ((cajita[i].tipo_pago==tipopago || cajita[i].tipo_pago==3) && (cajita[i].abiertaOcerrada==1))
-        {
-            aux[u]=cajita[i];
-            u++;
-        }
-        i++;
-    }
-    return u;
-}
-
 void pasarAuxACaja (caja aux, caja cajita[])
 {
     int i=0,flag=0;
@@ -266,6 +269,7 @@ void pasarAuxACaja (caja aux, caja cajita[])
             persona pers=auxP->cliente;
             agregar(&(cajita[i]).filita,pers);
             flag=1;
+            printf("atumami");
         }
         i++;
     }
