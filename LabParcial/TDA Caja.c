@@ -174,7 +174,7 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
     if(arbol!=NULL)
     {
         tipopago=arbol->p.tipo_pago;
-        cantsub=Subarreglo(&(cajita),aux,tipopago);
+        cantsub=Subarreglo(&(cajita),&(aux),tipopago);
         menor=contarClientesCaja(&(aux[i]).filita);
         posmenor=i;
         i++;
@@ -188,8 +188,8 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             }
             i++;
         }
-        printf("1");
-        agregar(&aux[posmenor].filita,arbol->p);
+        agregar(&(aux[posmenor]).filita,arbol->p);
+        printf("teta");
         agregarClientePreorden(arbol->izq,cajita);
         printf("32");
         agregarClientePreorden(arbol->der,cajita);
@@ -309,7 +309,6 @@ void pasarAuxACaja (caja aux, caja cajita[])
             persona pers=auxP->cliente;
             agregar(&(cajita[i]).filita,pers);
             flag=1;
-            printf("atumami");
         }
         i++;
     }
