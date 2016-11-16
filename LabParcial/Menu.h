@@ -10,6 +10,7 @@
 #include "Caja.h"
 #include "Fila.h"
 
-char nombreArchivoPersona ();
+char nombreArchivoPersona (char nombre[]);
+char nombreArchivoCaja (char nombre[]);
 
 #endif // MENU_H_INCLUDED
