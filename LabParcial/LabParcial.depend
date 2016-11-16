@@ -41,7 +41,7 @@
 1478704655 c:\users\alumno\desktop\parciallaboratorio-master\labparcial\labparcial\header.h
 	"string.h"
 
-1479331134 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\main.c
+1479333034 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Persona.h"
@@ -248,9 +248,10 @@
 	<stdlib.h>
 	"Caja.h"
 
-1479331164 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda menu.c
-	"Menu.h"
+1479333172 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda menu.c
 	"string.h"
+	<stdio.h>
+	<stdlib.h>
 
 1479331134 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\menu.h
 	"string.h"

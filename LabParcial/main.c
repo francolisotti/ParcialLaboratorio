@@ -11,8 +11,12 @@ int main()
 {
     nodo * lista=inicLista();
     nodoArbol * arbol=inicArbol();
-    char archi_persona[]= {"cliente.bin"};
-    char archi_caja[]= {"caja.bin"};
+    char archi_persona[12];
+    nombreArchivoPersona(archi_persona);
+    char archi_caja[12];
+    nombreArchivoCaja(archi_caja);
+    printf("\npersona: %s", archi_persona);
+    printf("\caja: %s", archi_caja);
     int orden=0;
     arbol=ArchiToArbol(archi_persona,arbol);
     orden= selectOrden();
