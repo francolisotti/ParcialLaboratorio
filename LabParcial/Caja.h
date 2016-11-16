@@ -16,7 +16,7 @@ typedef struct
 caja abrirOcerrarCaja (caja cajita);
 caja buscarCaja (caja A[], int buscada);
 void mostrarCaja (caja cajita);
-//caja agregarClienteACaja (caja cajita, nodoArbol * raiz);
+caja agregarClienteACaja (caja cajita[], nodoArbol * raiz);
 caja agregarClienteACajaEnTiempoDeterminado ();
 caja atenderClientes (caja cajita);
 void pasarDeArchiAcaja (char archiCajas[], caja cajita[]);

@@ -14,23 +14,19 @@ int main()
     char archi_persona[]={"cliente.bin"};
     char archi_caja[]={"caja.bin"};
     int orden=0;
-    //mostrarArchiPersona(archi_persona);
-    //getch();
     arbol=ArchiToArbol(archi_persona,arbol);
-    getch();
     orden= selectOrden();
-    mostrarArbol(arbol,orden);
-    getch();
+    //mostrarArbol(arbol,orden);
     caja cajita[12];
     pasarDeArchiAcaja(archi_caja,cajita);
     int i=0;
-    caja cajiton;
+    agregarClienteACaja(cajita,arbol);
     while (i<12)
     {
-        cajiton=cajita[i];
-        mostrarCaja(cajiton);
+        mostrarCaja(cajita[i]);
         i++;
     }
+
 
     return 0;
 }

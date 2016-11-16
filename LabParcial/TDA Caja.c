@@ -30,96 +30,191 @@ caja buscarCaja(caja A[], int buscada)
     return A[i];
 }
 
+int contarClientesCaja (Fila * filita)
+{
+printf("contarClientesCaja \n");
+    nodo * aux=filita->primero;
+    int cont=0;
+    if (aux)
+    {
+        while (aux!=NULL)
+        {
+            printf("%d",aux->cliente.cantArticulos);
+            aux=aux->siguiente;
+            cont++;
+        }
+    }
+     printf("contarClientesCaja %d\n",cont);
+    return cont;
+}
+
 void mostrarCaja(caja cajita)
 {
     if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
     {
-        puts("------------------------------------------\n");
-        if(cajita.abiertaOcerrada=1)
+        puts("------------------------------------------");
+        if(cajita.abiertaOcerrada==1)
         {
-            printf("La caja esta abierta\n");
+            printf("Caja abierta");
         }
         else
         {
-            printf("La caja esta cerrada\n");
+            printf("Caja cerrada");
         }
-        printf("Su algortmo de planificacion es: %s\n",cajita.algoritmoPlanificacion);
-        printf("Su cajero es: %s\n",cajita.nombreCajero);
-        printf("Esta es la caja numero: %d\n",cajita.nro_de_caja);
-        if (cajita.tipo_pago=1)
+        printf("\nSalgortmo de planificacion: %s",cajita.algoritmoPlanificacion);
+        printf("\nCajero: %s",cajita.nombreCajero);
+        printf("\nCaja numero: %d",cajita.nro_de_caja);
+        if (cajita.tipo_pago==1)
         {
-            printf("Su metodo de pago es solo efectivo\n");
+            printf("\nPago: Efectivo");
         }
-        else if (cajita.tipo_pago=2)
+        else if (cajita.tipo_pago==2)
         {
-            printf("Su metodo de pago es debito/tarjeta\n");
+            printf("\nPago: debito/credito");
         }
         else
         {
-            printf("Se acepta todo metodo de pago en esta caja\n");
+            printf("\nPago: todos");
         }
         char control= 's';
-        puts("------------------------------------------\n");
-        printf("Desea mostrar la fila?\n");
+        puts("\n------------------------------------------");
+        printf("\nDesea mostrar la fila? s/n: ");
         fflush(stdin);
         scanf("%c",&control);
         if(control == 's')
         {
             mostrar(&cajita.filita);
         }
-        puts("------------------------------------------\n");
+        puts("\n------------------------------------------");
     }
     else
-        printf("la caja no existe\n");
+        printf("\nla caja no existe");
 }
+
+
+
 
 void pasarDeArchiAcaja (char archiCajas[], caja cajita[])
 {
-    FILE * archi=fopen(archiCajas, "rb");
+    FILE * archi=fopen(archiCajas,"rb");
     int i=0;
+    caja aux;
     if (archi!=NULL)
     {
-        while(fread(&cajita[i],sizeof(caja),1,archi)>0)
+        while (fread(&aux,sizeof(caja),1,archi)>0)
         {
+            cajita[i]=aux;
             i++;
         }
     }
     fclose(archi);
 }
-
-
-void agregarClientePreorden(nodoArbol * arbol, caja cajita)
+void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
 {
+    caja aux[12];
+    int cantsub=0;
+    int i=0;
+    int cantclientes=0;
+    int menor;
+    int posmenor;
+    int tipopago=0;
+
     if(arbol!=NULL)
     {
+        tipopago=arbol->p.tipo_pago;
+        cantsub=Subarreglo(cajita,aux,tipopago);
+        menor=contarClientesCaja(&(aux[i]).filita);
+        posmenor=i;
+        i++;
+        while (i<cantsub)
+        {
+            cantclientes=contarClientesCaja(&(aux[i]).filita);
+            if (cantclientes<menor)
+            {
+                menor=cantclientes;
+                posmenor=i;
+            }
+            i++;
+        }
 
-        agregar(&cajita.filita,arbol->p);
-        agregarClientePreorden(arbol->izq,cajita);
-        agregarClientePreorden(arbol->der,cajita);
     }
+    agregar(&aux[posmenor].filita,arbol->p);
+    agregarClientePreorden(arbol->izq,cajita);
+    agregarClientePreorden(arbol->der,cajita);
 }
 
-void agregarClienteInorden(nodoArbol * arbol, caja cajita)
+
+
+void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
 {
+    caja aux[12];
+    int cantsub=0;
+    int i=0;
+    int cantclientes=0;
+    int menor;
+    int posmenor;
+    int tipopago=0;
+
+
     if(arbol!=NULL)
     {
         agregarClienteInorden(arbol->izq,cajita);
-        agregar(&cajita.filita,arbol->p);
+        tipopago=arbol->p.tipo_pago;
+        cantsub=Subarreglo(cajita,aux,tipopago);
+        menor=contarClientesCaja(&(aux[i]).filita);
+        posmenor=i;
+        while (i<cantsub)
+        {
+            cantclientes=contarClientesCaja(&(aux[i]).filita);
+            if (cantclientes<menor)
+            {
+                menor=cantclientes;
+                posmenor=i;
+            }
+            i++;
+        }
+        agregar(&aux[posmenor].filita,arbol->p);
         agregarClienteInorden(arbol->der,cajita);
     }
 }
 
-void agregarClientePostorden(nodoArbol * arbol, caja cajita)
+void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
 {
+    caja aux[12];
+    int cantsub=0;
+    int i=0;
+    int cantclientes=0;
+    int menor;
+    int posmenor;
+    int tipopago=0;
+
     if(arbol!=NULL)
     {
         agregarClientePostorden(arbol->izq,cajita);
         agregarClientePostorden(arbol->der,cajita);
-        agregar(&cajita.filita,arbol->p);
+        tipopago=arbol->p.tipo_pago;
+        cantsub=Subarreglo(cajita,aux,tipopago);
+        menor=contarClientesCaja(&(aux[i]).filita);
+        posmenor=i;
+        i++;
+        while (i<cantsub)
+        {
+            cantclientes=contarClientesCaja(&(aux[i]).filita);
+            if (cantclientes<menor)
+            {
+                menor=cantclientes;
+                posmenor=i;
+            }
+            i++;
+        }
+        agregar(&aux[posmenor].filita,arbol->p);
+        pasarAuxACaja(aux,cajita);
     }
 }
 
-/*caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
+
+
+caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
 {
     int recorrido;
     printf("\nElija el algoritmo de recorrido: ");
@@ -131,16 +226,47 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita)
     }
     if (recorrido==1)
     {
-        agregarClientePreorden(raiz,cajita[]);
+        agregarClientePreorden(raiz,cajita);
     }
     else if (recorrido==2)
     {
-        agregarClienteInorden(raiz,cajita[]);
+        agregarClienteInorden(raiz,cajita);
     }
     else
     {
-        agregarClientePostorden(raiz,cajita[]);
+        agregarClientePostorden(raiz,cajita);
     }
-    return cajita;
+    return(*cajita);
 }
-*/
+
+int Subarreglo (caja cajita[], caja aux[12], int tipopago)
+{
+    int i=0,u=0;
+    while (i<12)
+    {
+        if ((cajita[i].tipo_pago==tipopago || cajita[i].tipo_pago==3) && (cajita[i].abiertaOcerrada==1))
+        {
+            aux[u]=cajita[i];
+            u++;
+        }
+        i++;
+    }
+    return u;
+}
+
+void pasarAuxACaja (caja aux, caja cajita[])
+{
+    int i=0,flag=0;
+    while (i<12 && flag==0)
+    {
+        if (strcmp(aux.nombreCajero,cajita[i].nombreCajero)==0)
+        {
+            Fila filota=aux.filita;
+            nodo * auxP=filota.primero;
+            persona pers=auxP->cliente;
+            agregar(&(cajita[i]).filita,pers);
+            flag=1;
+        }
+        i++;
+    }
+}

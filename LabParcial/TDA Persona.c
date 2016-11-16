@@ -42,31 +42,8 @@ persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,
 
     return aux;
 }
-
-/*void cargarPersona (char nombreDelArchivo[])
-{
-    char nombreApellido[40];
-    int cantArticulos,tipo_Cliente,tipo_Pago;
-
-    persona aux;
-
-    char control;
-    printf("\nDesea cargar los datos de una persona? s/n: ");
-    fflush(stdin);
-    scanf("%c", &control);
-    while (control=='s')
-    {
-        aux=nuevo_Persona();
-        archivarPersona(nombreDelArchivo,aux);
-
-
-        printf("\nDesea continuar? s/n: ");
-        fflush(stdin);
-        scanf("%c", &control);
-    }
-}*/
-
-void mostrarArchiPersona (char archi_persona)
+/*FILE*/
+void mostrarArchiPersona (char archi_persona[])
 {
     FILE * archi=fopen(archi_persona, "rb");
     persona aux;
@@ -99,7 +76,7 @@ void mostrarPersona(persona aux)
     }
     else if (aux.tipo_cliente==2)
     {
-        printf("\n      Tipo de cliente: juvilado");
+        printf("\n      Tipo de cliente: jubilado");
     }
     else
     {

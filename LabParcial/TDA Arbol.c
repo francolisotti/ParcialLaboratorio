@@ -27,7 +27,7 @@ nodoArbol * crearNodoArbol(persona p)
     strcpy(aux->p.nombreApellido,p.nombreApellido);
     aux->p.tipo_cliente=p.tipo_cliente;
     aux->p.tipo_pago=p.tipo_pago;
-    aux->p.cantArticulos=NULL;
+    aux->p.cantArticulos=p.cantArticulos;
     aux->p.tiempoDeEspera=NULL;
     aux->p.tiempoProcesado=NULL;
 
