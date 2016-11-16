@@ -3,18 +3,58 @@
 #include "Caja.h"
 
 
-
-caja abrirOcerrarCaja (caja cajita)
+void abrir_cajas_(caja cajita[])
 {
-    if (cajita.abiertaOcerrada= 1)
+    char opcion, opcion2;
+    int i=0;
+    printf("\nDesea abrir todas las cajas? s/n: ");
+    fflush(stdin);
+    scanf("%c", &opcion);
+    while (opcion !='s' || opcion!='n')
     {
-        cajita.abiertaOcerrada= 0;
+        printf("\nERROR:");
+        printf("\nIngrese s(sí) o n(no): ");
+        fflush(stdin);
+        scanf("%c", &opcion);
+    }
+    if (opcion=='s')
+    {
+        for (i=0;i<12;i++)
+        {
+            cajita[i].abiertaOcerrada=1;
+        }
     }
     else
     {
-        cajita.abiertaOcerrada= 1;
+        printf("\nDesea abrir alguna caja s/n: ");
+        fflush(stdin);
+        scanf("%c", &opcion);
+        while (opcion !='s' || opcion!='n')
+        {
+            printf("\nERROR:");
+            printf("\nIngrese s(sí) o n(no): ");
+            fflush(stdin);
+            scanf("%c", &opcion);
+        }
+        for (i=0;i<12;i++)
+        {
+            mostrarCaja(cajita[i]);
+            printf("\nDesea abrir esta caja: s/n");
+            fflush(stdin);
+            scanf("%c", opcion2);
+            while (opcion !='s' || opcion!='n')
+            {
+                printf("\nERROR:");
+                printf("\nIngrese s(sí) o n(no): ");
+                fflush(stdin);
+                scanf("%c", &opcion2);
+            }
+            if (opcion2=='s')
+            {
+                cajita[i].abiertaOcerrada=1;
+            }
+        }
     }
-    return cajita;
 }
 
 caja buscarCaja(caja A[], int buscada)

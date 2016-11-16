@@ -13,7 +13,7 @@ typedef struct
     Fila filita;
 }caja;
 
-caja abrirOcerrarCaja (caja cajita);
+void abrir_cajas_(caja cajita[]);
 caja buscarCaja (caja A[], int buscada);
 void mostrarCaja (caja cajita);
 caja agregarClienteACaja (caja cajita[], nodoArbol * raiz);
