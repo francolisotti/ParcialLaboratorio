@@ -19,7 +19,7 @@ int main()
     printf("\caja: %s", archi_caja);
     int orden=0;
     arbol=ArchiToArbol(archi_persona,arbol);
-    orden= selectOrden();
+    //orden= selectOrden();
     //mostrarArbol(arbol,orden);
     caja cajita[12];
     pasarDeArchiAcaja(archi_caja,cajita);
