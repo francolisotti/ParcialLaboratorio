@@ -35,6 +35,7 @@
 		<Unit filename="Caja.h" />
 		<Unit filename="Fila.h" />
 		<Unit filename="Lista.h" />
+		<Unit filename="Menu.h" />
 		<Unit filename="Persona.h" />
 		<Unit filename="TDA Arbol.c">
 			<Option compilerVar="CC" />
@@ -46,6 +47,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="TDA Lista.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TDA Menu.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="TDA Persona.c">

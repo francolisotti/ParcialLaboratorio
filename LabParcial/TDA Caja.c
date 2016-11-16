@@ -19,7 +19,7 @@ void abrir_cajas_(caja cajita[])
     }
     if (opcion=='s')
     {
-        for (i=0;i<12;i++)
+        for (i=0; i<12; i++)
         {
             cajita[i].abiertaOcerrada=1;
         }
@@ -36,7 +36,7 @@ void abrir_cajas_(caja cajita[])
             fflush(stdin);
             scanf("%c", &opcion);
         }
-        for (i=0;i<12;i++)
+        for (i=0; i<12; i++)
         {
             mostrarCaja(cajita[i]);
             printf("\nDesea abrir esta caja: s/n");
@@ -149,7 +149,7 @@ int Subarreglo (caja cajita[], caja aux[12], int tipopago)
     int i=0,u=0;
     while (i<12)
     {
-        if ((cajita[i].tipo_pago==tipopago) || (cajita[i].tipo_pago==3))
+        if (((cajita[i].tipo_pago==tipopago) || (cajita[i].tipo_pago==3)) && cajita[i].abiertaOcerrada==1)
         {
             aux[u]=cajita[i];
             u++;
@@ -170,11 +170,11 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
     int menor=0;
     int posmenor=0;
     int tipopago=0;
-
     if(arbol!=NULL)
     {
         tipopago=arbol->p.tipo_pago;
-        cantsub=Subarreglo(&(cajita),aux,tipopago);
+        cantsub=Subarreglo(&(cajita),&(aux),tipopago);
+        printf("El problema esta en la primera vez que se llama a si misma");
         menor=contarClientesCaja(&(aux[i]).filita);
         posmenor=i;
         i++;
@@ -188,10 +188,8 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             }
             i++;
         }
-        printf("1");
         agregar(&aux[posmenor].filita,arbol->p);
-        agregarClientePreorden(arbol->izq,cajita);
-        printf("32");
+        agregarClientePreorden(arbol->izq,&cajita);
         agregarClientePreorden(arbol->der,cajita);
         pasarAuxACaja(aux,cajita);
     }
@@ -232,6 +230,7 @@ void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
         agregar(&aux[posmenor].filita,arbol->p);
         agregarClienteInorden(arbol->der,cajita);
         pasarAuxACaja(aux,(&cajita));
+        printf("ACAESTAELPROBLEMA");
 
     }
 }
@@ -267,6 +266,7 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
         }
         agregar(&aux[posmenor].filita,arbol->p);
         pasarAuxACaja(aux,(&cajita));
+        printf("ACAESTAELPROBLEMA");
     }
 }
 
@@ -304,12 +304,8 @@ void pasarAuxACaja (caja aux, caja cajita[])
     {
         if (strcmp(aux.nombreCajero,cajita[i].nombreCajero)==0)
         {
-            Fila filota=aux.filita;
-            nodo * auxP=filota.primero;
-            persona pers=auxP->cliente;
-            agregar(&(cajita[i]).filita,pers);
+            cajita[i]=aux;
             flag=1;
-            printf("atumami");
         }
         i++;
     }
