@@ -189,7 +189,7 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             i++;
         }
         agregar(&(aux[posmenor]).filita,arbol->p);
-        printf("teta");
+        printf("32");
         agregarClientePreorden(arbol->izq,cajita);
         printf("32");
         agregarClientePreorden(arbol->der,cajita);
