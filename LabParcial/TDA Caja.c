@@ -23,7 +23,11 @@ void abrir_cajas_(caja cajita[])
         for (i=0; i<12; i++)
         {
             cajita[i].abiertaOcerrada=1;
+<<<<<<< HEAD
 //            cajita[i].filita=inicFila(cajita[i].filita);
+=======
+            //cajita[i].filita=inicFila(cajita[i].filita);
+>>>>>>> origin/master
         }
     }
 
@@ -65,6 +69,19 @@ void abrir_cajas_(caja cajita[])
     }
 }
 
+caja abrirOcerrarCaja (caja cajita)
+{
+    if (cajita.abiertaOcerrada= 1)
+    {
+        cajita.abiertaOcerrada= 0;
+    }
+    else
+    {
+        cajita.abiertaOcerrada= 1;
+    }
+    return cajita;
+}
+
 caja buscarCaja(caja A[], int buscada)
 {
     int i=0;
@@ -80,16 +97,19 @@ caja buscarCaja(caja A[], int buscada)
 
 int contarClientesCaja (Fila * filita)
 {
-    nodo * auxiliar=filita->primero;
-
+printf("contarClientesCaja \n");
+    nodo * aux=filita->primero;
     int cont=0;
-    while (auxiliar!=NULL)
+    if (aux)
     {
-        printf("\n---1---");
-        auxiliar=auxiliar->siguiente;
-        printf("\n---2---");
-        cont++;
+        while (aux!=NULL)
+        {
+            printf("%d",aux->cliente.cantArticulos);
+            aux=aux->siguiente;
+            cont++;
+        }
     }
+     printf("contarClientesCaja %d\n",cont);
     return cont;
 }
 
@@ -106,7 +126,7 @@ void mostrarCaja(caja cajita)
         {
             printf("Caja cerrada");
         }
-        printf("\nAlgoritmo de planificacion: %s",cajita.algoritmoPlanificacion);
+        printf("\nSalgortmo de planificacion: %s",cajita.algoritmoPlanificacion);
         printf("\nCajero: %s",cajita.nombreCajero);
         printf("\nCaja numero: %d",cajita.nro_de_caja);
         if (cajita.tipo_pago==1)
@@ -121,9 +141,14 @@ void mostrarCaja(caja cajita)
         {
             printf("\nPago: todos");
         }
-        char control;
-        if (cajita.abiertaOcerrada==1)
+        char control= 's';
+        puts("\n------------------------------------------");
+        printf("\nDesea mostrar la fila? s/n: ");
+        fflush(stdin);
+        scanf("%c",&control);
+        if(control == 's')
         {
+<<<<<<< HEAD
             puts("\n------------------------------------------");
             printf("\nDesea mostrar la fila? s/n: ");
             fflush(stdin);
@@ -136,6 +161,12 @@ void mostrarCaja(caja cajita)
         }
 
    /* }
+=======
+            mostrar(&cajita.filita);
+        }
+        puts("\n------------------------------------------");
+    }
+>>>>>>> origin/master
     else
         printf("\nla caja no existe");*/
 }
@@ -158,7 +189,6 @@ void pasarDeArchiAcaja (char archiCajas[], caja cajita[])
     }
     fclose(archi);
 }
-
 int Subarreglo (caja cajita[], caja aux[12], int tipopago)
 {
     int i=0,u=0;
@@ -191,6 +221,9 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
     if(arbol!=NULL)
     {
         tipopago=arbol->p.tipo_pago;
+        cantsub=Subarreglo(&(cajita),&(aux),tipopago);
+        printf("El problema esta en la primera vez que se llama a si misma");
+
         cantsub=Subarreglo(cajita,aux,tipopago);
         printf("\n---%s---",aux[0].algoritmoPlanificacion);
         menor=contarClientesCaja(&(aux[i]).filita);
@@ -208,6 +241,14 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             }
             i++;
         }
+
+        agregar(&aux[posmenor].filita,arbol->p);
+        agregarClientePreorden(arbol->izq,&cajita);
+        agregar(&(aux[posmenor]).filita,arbol->p);
+        printf("teta");
+        agregarClientePreorden(arbol->izq,cajita);
+        printf("32");
+        agregarClientePreorden(arbol->der,cajita);
         agregar(&aux[posmenor].filita,arbol->p);
         agregarClientePreorden(arbol->izq,&cajita);
         agregarClientePreorden(arbol->der,&cajita);

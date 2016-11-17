@@ -6,6 +6,7 @@
 #include "Caja.h"
 #include "Fila.h"
 
+
 int main()
 {
     nodo * lista=inicLista();
@@ -20,6 +21,7 @@ int main()
     caja cajon;
     int i=0;
     pasarDeArchiAcaja(archi_caja,cajita);
+<<<<<<< HEAD
     for (i=0;i<12;i++)
     {
         cajon=cajita[i];
@@ -30,11 +32,16 @@ int main()
 //    int i=0;
 
     /*while (i<12)
+=======
+    int i=0;
+    //agregarClienteACaja(cajita,arbol);
+    while (i<12)
+>>>>>>> origin/master
     {
         mostrarCaja(cajita[i]);
         i++;
-    }*/
-agregarClienteACaja(cajita,arbol);
+    }
+
 
     return 0;
 }

@@ -47,8 +47,10 @@ nodo * agregarAlFinal (nodo * lista, nodo * nuevo)
         seg=buscarUltimo(lista);
         seg->siguiente=nuevo;
         nuevo->anterior=seg;
+
+
+        return lista;
     }
-    return lista;
 }
 
 nodo * agregarEnOrdenTipoCliente(nodo * lista, nodo * nuevo)
