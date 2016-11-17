@@ -11,6 +11,7 @@ void abrir_cajas_(caja cajita[])
     printf("\nDesea abrir todas las cajas? s/n: ");
     fflush(stdin);
     scanf("%c",&opcion);
+<<<<<<< HEAD
     /* while (opcion != 's' || opcion!= 'n')
      {
          printf("\nERROR:");
@@ -18,6 +19,15 @@ void abrir_cajas_(caja cajita[])
          fflush(stdin);
          scanf("%c", &opcion);
      }*/
+=======
+    while ((opcion != 's') || (opcion!= 'n'))
+    {
+        printf("\nERROR:");
+        printf("\nIngrese s(si) o n(no): ");
+        fflush(stdin);
+        scanf("%c", &opcion);
+    }
+>>>>>>> origin/master
     if (opcion=='s')
     {
         for (i=0; i<12; i++)

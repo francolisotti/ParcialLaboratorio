@@ -22,6 +22,7 @@ int main()
     int i=0;
     pasarDeArchiAcaja(archi_caja,cajita);
 <<<<<<< HEAD
+<<<<<<< HEAD
     for (i=0;i<12;i++)
     {
         cajon=cajita[i];
@@ -33,6 +34,9 @@ int main()
 
     /*while (i<12)
 =======
+=======
+    abrir_cajas_(cajita);
+>>>>>>> origin/master
     int i=0;
     //agregarClienteACaja(cajita,arbol);
     while (i<12)
