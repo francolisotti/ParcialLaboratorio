@@ -23,7 +23,7 @@ void abrir_cajas_(caja cajita[])
         for (i=0; i<12; i++)
         {
             cajita[i].abiertaOcerrada=1;
-            cajita[i].filita=inicFila(cajita[i].filita);
+            //cajita[i].filita=inicFila(cajita[i].filita);
         }
     }
 
@@ -91,8 +91,8 @@ int contarClientesCaja (Fila * filita)
 
 void mostrarCaja(caja cajita)
 {
-    if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
-    {
+    //if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
+    //{
         puts("------------------------------------------");
         if(cajita.abiertaOcerrada==1)
         {
@@ -131,9 +131,9 @@ void mostrarCaja(caja cajita)
             puts("\n------------------------------------------");
         }
 
-    }
-    else
-        printf("\nla caja no existe");
+    //}
+    //else
+       // printf("\nla caja no existe");
 }
 
 
@@ -187,13 +187,11 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
     if(arbol!=NULL)
     {
         tipopago=arbol->p.tipo_pago;
-<<<<<<< HEAD
         cantsub=Subarreglo(&(cajita),&(aux),tipopago);
         printf("El problema esta en la primera vez que se llama a si misma");
-=======
+
         cantsub=Subarreglo(cajita,aux,tipopago);
         printf("\n---%s---",aux[0].algoritmoPlanificacion);
->>>>>>> origin/master
         menor=contarClientesCaja(&(aux[i]).filita);
         printf("\n---%s---",aux[0].algoritmoPlanificacion);
 
@@ -209,7 +207,6 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             }
             i++;
         }
-<<<<<<< HEAD
 
         agregar(&aux[posmenor].filita,arbol->p);
         agregarClientePreorden(arbol->izq,&cajita);
@@ -218,12 +215,10 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
         agregarClientePreorden(arbol->izq,cajita);
         printf("32");
         agregarClientePreorden(arbol->der,cajita);
-=======
         agregar(&aux[posmenor].filita,arbol->p);
         agregarClientePreorden(arbol->izq,&cajita);
         agregarClientePreorden(arbol->der,&cajita);
 
->>>>>>> origin/master
         pasarAuxACaja(aux,cajita);
     }
 

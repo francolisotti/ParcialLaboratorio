@@ -18,15 +18,14 @@ int main()
     //mostrarArbol(arbol,orden);
     caja cajita[12];
     pasarDeArchiAcaja(archi_caja,cajita);
-    abrir_cajas_(cajita);
+    //abrir_cajas_(cajita);
     int i=0;
-
-    /*while (i<12)
+    while (i<12)
     {
         mostrarCaja(cajita[i]);
         i++;
-    }*/
-agregarClienteACaja(cajita,arbol);
+    }
+    //agregarClienteACaja(cajita,arbol);
 
     return 0;
 }
