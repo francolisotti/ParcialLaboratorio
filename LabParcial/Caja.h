@@ -2,6 +2,8 @@
 #define CAJA_H_INCLUDED
 #include "Arbol.h"
 #include "Fila.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct
 {
@@ -10,7 +12,7 @@ typedef struct
     int tipo_pago;  ///1 efectivo, 2 credito o debito, 3 todos
     int abiertaOcerrada;
     char algoritmoPlanificacion[30]; ///debe informar que tipo de alg. de planificaicon utiliza la caja
-    Fila filita;
+    Fila * filita;
 }caja;
 
 void abrir_cajas_(caja cajita[]);
