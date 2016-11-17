@@ -174,10 +174,7 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
     {
         tipopago=arbol->p.tipo_pago;
         cantsub=Subarreglo(&(cajita),&(aux),tipopago);
-<<<<<<< HEAD
         printf("El problema esta en la primera vez que se llama a si misma");
-=======
->>>>>>> origin/master
         menor=contarClientesCaja(&(aux[i]).filita);
         posmenor=i;
         i++;
@@ -191,15 +188,13 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             }
             i++;
         }
-<<<<<<< HEAD
+
         agregar(&aux[posmenor].filita,arbol->p);
         agregarClientePreorden(arbol->izq,&cajita);
-=======
         agregar(&(aux[posmenor]).filita,arbol->p);
         printf("teta");
         agregarClientePreorden(arbol->izq,cajita);
         printf("32");
->>>>>>> origin/master
         agregarClientePreorden(arbol->der,cajita);
         pasarAuxACaja(aux,cajita);
     }
