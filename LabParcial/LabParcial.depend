@@ -41,7 +41,7 @@
 1478704655 c:\users\alumno\desktop\parciallaboratorio-master\labparcial\labparcial\header.h
 	"string.h"
 
-1479333578 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\main.c
+1479391558 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Persona.h"
@@ -113,44 +113,48 @@
 	<stdlib.h>
 	"Persona.h"
 
-1479216380 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda arbol.c
+1479317512 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda arbol.c
 	<stdio.h>
 	<stdlib.h>
 	"Arbol.h"
 
-1478798864 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\arbol.h
+1479394544 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\arbol.h
 	"Persona.h"
+	<stdio.h>
+	<stdlib.h>
 
-1478798864 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\persona.h
+1479317512 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\persona.h
 	<string.h>
 
-1479333578 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda fila.c
+1479394490 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda fila.c
 	<stdio.h>
 	<stdlib.h>
 	"Fila.h"
 
-1478798864 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\fila.h
+1479394490 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\fila.h
 	"Lista.h"
 	"Persona.h"
 
-1478798864 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\lista.h
+1479317512 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\lista.h
 	"Persona.h"
 
-1479219308 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda lista.c
+1479389312 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda lista.c
 	<stdio.h>
 	<stdlib.h>
 	"Lista.h"
 
-1479332412 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\caja.h
+1479394810 c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\caja.h
 	"Arbol.h"
 	"Fila.h"
+	<stdio.h>
+	<stdlib.h>
 
-1479332411 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda caja.c
+1479419588 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda caja.c
 	<stdio.h>
 	<stdlib.h>
 	"Caja.h"
 
-1479219308 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda persona.c
+1479317512 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda persona.c
 	<stdio.h>
 	<stdlib.h>
 	"Persona.h"
@@ -263,8 +267,10 @@
 	"Caja.h"
 	"Fila.h"
 
-1479333574 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda menu.c
-	"Menu.h"
+1479317512 source:c:\users\sureda\desktop\tp 2 programacion\github\parciallaboratorio\labparcial\tda menu.c
+	"string.h"
+	<stdio.h>
+	<stdlib.h>
 
 1479331134 gin/master
 	"string.h"

@@ -17,9 +17,17 @@ int main()
     //orden= selectOrden();
     //mostrarArbol(arbol,orden);
     caja cajita[12];
-    pasarDeArchiAcaja(archi_caja,cajita);
-    abrir_cajas_(cajita);
+    caja cajon;
     int i=0;
+    pasarDeArchiAcaja(archi_caja,cajita);
+    for (i=0;i<12;i++)
+    {
+        cajon=cajita[i];
+        mostrarCaja(cajon);
+    }
+
+    abrir_cajas_(cajita);
+//    int i=0;
 
     /*while (i<12)
     {
