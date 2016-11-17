@@ -11,19 +11,19 @@ void abrir_cajas_(caja cajita[])
     printf("\nDesea abrir todas las cajas? s/n: ");
     fflush(stdin);
     scanf("%c",&opcion);
-    while ((opcion != 's') || (opcion!= 'n'))
+    /*while ((opcion != 's') || (opcion!= 'n'))
     {
         printf("\nERROR:");
         printf("\nIngrese s(si) o n(no): ");
         fflush(stdin);
         scanf("%c", &opcion);
-    }
+    }*/
     if (opcion=='s')
     {
         for (i=0; i<12; i++)
         {
             cajita[i].abiertaOcerrada=1;
-            //cajita[i].filita=inicFila(cajita[i].filita);
+            cajita[i].filita=inicFila(cajita[i].filita);
         }
     }
 
@@ -221,15 +221,7 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
 
         agregar(&aux[posmenor].filita,arbol->p);
         agregarClientePreorden(arbol->izq,&cajita);
-        agregar(&(aux[posmenor]).filita,arbol->p);
-        printf("teta");
-        agregarClientePreorden(arbol->izq,cajita);
-        printf("32");
-        agregarClientePreorden(arbol->der,cajita);
-        agregar(&aux[posmenor].filita,arbol->p);
-        agregarClientePreorden(arbol->izq,&cajita);
         agregarClientePreorden(arbol->der,&cajita);
-
         pasarAuxACaja(aux,cajita);
     }
 
