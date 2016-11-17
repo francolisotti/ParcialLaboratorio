@@ -11,7 +11,7 @@ typedef struct
 } Fila;
 
 
-void  inicFila(Fila * filita);
+void inicFila(Fila * filita);
 void agregar (Fila * filita, persona a);
 char quitar (Fila * filita);
 void mostrar(Fila * filita);

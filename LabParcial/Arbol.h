@@ -1,8 +1,6 @@
 #ifndef ARBOL_H_INCLUDED
 #define ARBOL_H_INCLUDED
 #include "Persona.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 typedef struct
 {
