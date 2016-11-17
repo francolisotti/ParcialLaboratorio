@@ -11,19 +11,45 @@ void abrir_cajas_(caja cajita[])
     printf("\nDesea abrir todas las cajas? s/n: ");
     fflush(stdin);
     scanf("%c",&opcion);
+<<<<<<< HEAD
     /*while ((opcion != 's') || (opcion!= 'n'))
+=======
+<<<<<<< HEAD
+    /* while (opcion != 's' || opcion!= 'n')
+     {
+         printf("\nERROR:");
+         printf("\nIngrese s(si) o n(no): ");
+         fflush(stdin);
+         scanf("%c", &opcion);
+     }*/
+=======
+    while ((opcion != 's') || (opcion!= 'n'))
+>>>>>>> origin/master
     {
         printf("\nERROR:");
         printf("\nIngrese s(si) o n(no): ");
         fflush(stdin);
         scanf("%c", &opcion);
+<<<<<<< HEAD
     }*/
+=======
+    }
+>>>>>>> origin/master
+>>>>>>> origin/master
     if (opcion=='s')
     {
         for (i=0; i<12; i++)
         {
             cajita[i].abiertaOcerrada=1;
+<<<<<<< HEAD
             cajita[i].filita=inicFila(cajita[i].filita);
+=======
+<<<<<<< HEAD
+//            cajita[i].filita=inicFila(cajita[i].filita);
+=======
+            //cajita[i].filita=inicFila(cajita[i].filita);
+>>>>>>> origin/master
+>>>>>>> origin/master
         }
     }
 
@@ -39,25 +65,29 @@ void abrir_cajas_(caja cajita[])
             fflush(stdin);
             scanf("%c", &opcion);
         }*/
-        for (i=0; i<12; i++)
+        if (opcion=='s')
         {
-            mostrarCaja(cajita[i]);
-            printf("\nDesea abrir esta caja: s/n: ");
-            fflush(stdin);
-            scanf("%c",&opcion2);
-            /*while (opcion2 !='s' || opcion2!='n')
+            for (i=0; i<12; i++)
             {
-                printf("\nERROR:");
-                printf("\nIngrese s(sí) o n(no): ");
+                mostrarCaja(cajita[i]);
+                printf("\nDesea abrir esta caja: s/n: ");
                 fflush(stdin);
-                scanf("%c", &opcion2);
-            }*/
-            if (opcion2=='s')
-            {
-                cajita[i].abiertaOcerrada=1;
-                //cajita[i].filita=inicFila(cajita[i].filita);
+                scanf("%c",&opcion2);
+                /*while (opcion2 !='s' || opcion2!='n')
+                {
+                    printf("\nERROR:");
+                    printf("\nIngrese s(sí) o n(no): ");
+                    fflush(stdin);
+                    scanf("%c", &opcion2);
+                }*/
+                if (opcion2=='s')
+                {
+                    cajita[i].abiertaOcerrada=1;
+                    //cajita[i].filita=inicFila(cajita[i].filita);
+                }
             }
         }
+
     }
 }
 
@@ -107,8 +137,8 @@ printf("contarClientesCaja \n");
 
 void mostrarCaja(caja cajita)
 {
-    if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
-    {
+   /* if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
+    {*/
         puts("------------------------------------------");
         if(cajita.abiertaOcerrada==1)
         {
@@ -140,12 +170,27 @@ void mostrarCaja(caja cajita)
         scanf("%c",&control);
         if(control == 's')
         {
+<<<<<<< HEAD
+            puts("\n------------------------------------------");
+            printf("\nDesea mostrar la fila? s/n: ");
+            fflush(stdin);
+            scanf("%c",&control);
+            if(control == 's' )
+            {
+                mostrar(&cajita.filita);
+            }
+            puts("\n------------------------------------------");
+        }
+
+   /* }
+=======
             mostrar(&cajita.filita);
         }
         puts("\n------------------------------------------");
     }
+>>>>>>> origin/master
     else
-        printf("\nla caja no existe");
+        printf("\nla caja no existe");*/
 }
 
 
