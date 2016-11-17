@@ -6,31 +6,27 @@
 #include "Caja.h"
 #include "Fila.h"
 
-
 int main()
 {
     nodo * lista=inicLista();
     nodoArbol * arbol=inicArbol();
-    char archi_persona[12];
-    nombreArchivoPersona(archi_persona);
-    char archi_caja[12];
-    nombreArchivoCaja(archi_caja);
-    printf("\npersona: %s", archi_persona);
-    printf("\caja: %s", archi_caja);
+    char archi_persona[]={"cliente.bin"};
+    char archi_caja[]={"caja.bin"};
     int orden=0;
     arbol=ArchiToArbol(archi_persona,arbol);
     //orden= selectOrden();
     //mostrarArbol(arbol,orden);
     caja cajita[12];
     pasarDeArchiAcaja(archi_caja,cajita);
+    abrir_cajas_(cajita);
     int i=0;
-    agregarClienteACaja(cajita,arbol);
-    while (i<12)
+
+    /*while (i<12)
     {
         mostrarCaja(cajita[i]);
         i++;
-    }
-
+    }*/
+agregarClienteACaja(cajita,arbol);
 
     return 0;
 }

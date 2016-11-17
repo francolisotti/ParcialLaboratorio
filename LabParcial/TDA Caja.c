@@ -5,53 +5,57 @@
 
 void abrir_cajas_(caja cajita[])
 {
-    char opcion, opcion2;
+    char opcion;
+    char opcion2;
     int i=0;
     printf("\nDesea abrir todas las cajas? s/n: ");
     fflush(stdin);
-    scanf("%c", &opcion);
-    while (opcion !='s' || opcion!='n')
+    scanf("%c",&opcion);
+    /*while (opcion != 's' || opcion!= 'n')
     {
         printf("\nERROR:");
-        printf("\nIngrese s(sí) o n(no): ");
+        printf("\nIngrese s(si) o n(no): ");
         fflush(stdin);
         scanf("%c", &opcion);
-    }
+    }*/
     if (opcion=='s')
     {
-        for (i=0;i<12;i++)
+        for (i=0; i<12; i++)
         {
             cajita[i].abiertaOcerrada=1;
+            cajita[i].filita=inicFila(cajita[i].filita);
         }
     }
+
     else
     {
         printf("\nDesea abrir alguna caja s/n: ");
         fflush(stdin);
         scanf("%c", &opcion);
-        while (opcion !='s' || opcion!='n')
+        /*while (opcion !='s' || opcion!='n')
         {
             printf("\nERROR:");
             printf("\nIngrese s(sí) o n(no): ");
             fflush(stdin);
             scanf("%c", &opcion);
-        }
-        for (i=0;i<12;i++)
+        }*/
+        for (i=0; i<12; i++)
         {
             mostrarCaja(cajita[i]);
-            printf("\nDesea abrir esta caja: s/n");
+            printf("\nDesea abrir esta caja: s/n: ");
             fflush(stdin);
-            scanf("%c", opcion2);
-            while (opcion !='s' || opcion!='n')
+            scanf("%c",&opcion2);
+            /*while (opcion2 !='s' || opcion2!='n')
             {
                 printf("\nERROR:");
                 printf("\nIngrese s(sí) o n(no): ");
                 fflush(stdin);
                 scanf("%c", &opcion2);
-            }
+            }*/
             if (opcion2=='s')
             {
                 cajita[i].abiertaOcerrada=1;
+                //cajita[i].filita=inicFila(cajita[i].filita);
             }
         }
     }
@@ -73,10 +77,13 @@ caja buscarCaja(caja A[], int buscada)
 int contarClientesCaja (Fila * filita)
 {
     nodo * auxiliar=filita->primero;
+
     int cont=0;
     while (auxiliar!=NULL)
     {
+        printf("\n---1---");
         auxiliar=auxiliar->siguiente;
+        printf("\n---2---");
         cont++;
     }
     return cont;
@@ -95,7 +102,7 @@ void mostrarCaja(caja cajita)
         {
             printf("Caja cerrada");
         }
-        printf("\nSalgortmo de planificacion: %s",cajita.algoritmoPlanificacion);
+        printf("\nAlgoritmo de planificacion: %s",cajita.algoritmoPlanificacion);
         printf("\nCajero: %s",cajita.nombreCajero);
         printf("\nCaja numero: %d",cajita.nro_de_caja);
         if (cajita.tipo_pago==1)
@@ -110,16 +117,20 @@ void mostrarCaja(caja cajita)
         {
             printf("\nPago: todos");
         }
-        char control= 's';
-        puts("\n------------------------------------------");
-        printf("\nDesea mostrar la fila? s/n: ");
-        fflush(stdin);
-        scanf("%c",&control);
-        if(control == 's')
+        char control;
+        if (cajita.abiertaOcerrada==1)
         {
-            mostrar(&cajita.filita);
+            puts("\n------------------------------------------");
+            printf("\nDesea mostrar la fila? s/n: ");
+            fflush(stdin);
+            scanf("%c",&control);
+            if(control == 's' )
+            {
+                    mostrar(&cajita.filita);
+            }
+            puts("\n------------------------------------------");
         }
-        puts("\n------------------------------------------");
+
     }
     else
         printf("\nla caja no existe");
@@ -149,9 +160,12 @@ int Subarreglo (caja cajita[], caja aux[12], int tipopago)
     int i=0,u=0;
     while (i<12)
     {
-        if ((cajita[i].tipo_pago==tipopago) || (cajita[i].tipo_pago==3))
+        if ((cajita[i].tipo_pago==tipopago) || (cajita[i].tipo_pago==3))//&& cajita[i].abiertaOcerrada==1)
         {
             aux[u]=cajita[i];
+            /*strcpy(aux[u].nombreCajero,cajita[i].nombreCajero);
+            aux[u].tipo_pago=cajita[i].tipo_pago;
+            strcpy(aux[u].algoritmoPlanificacion,cajita[i].algoritmoPlanificacion);*/
             u++;
         }
         i++;
@@ -170,12 +184,14 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
     int menor=0;
     int posmenor=0;
     int tipopago=0;
-
     if(arbol!=NULL)
     {
         tipopago=arbol->p.tipo_pago;
-        cantsub=Subarreglo(&(cajita),&(aux),tipopago);
+        cantsub=Subarreglo(cajita,aux,tipopago);
+        printf("\n---%s---",aux[0].algoritmoPlanificacion);
         menor=contarClientesCaja(&(aux[i]).filita);
+        printf("\n---%s---",aux[0].algoritmoPlanificacion);
+
         posmenor=i;
         i++;
         while (i<cantsub)
@@ -188,11 +204,10 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             }
             i++;
         }
-        agregar(&(aux[posmenor]).filita,arbol->p);
-        printf("32");
-        agregarClientePreorden(arbol->izq,cajita);
-        printf("32");
-        agregarClientePreorden(arbol->der,cajita);
+        agregar(&aux[posmenor].filita,arbol->p);
+        agregarClientePreorden(arbol->izq,&cajita);
+        agregarClientePreorden(arbol->der,&cajita);
+
         pasarAuxACaja(aux,cajita);
     }
 
@@ -232,6 +247,7 @@ void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
         agregar(&aux[posmenor].filita,arbol->p);
         agregarClienteInorden(arbol->der,cajita);
         pasarAuxACaja(aux,(&cajita));
+        printf("ACAESTAELPROBLEMA");
 
     }
 }
@@ -267,6 +283,7 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
         }
         agregar(&aux[posmenor].filita,arbol->p);
         pasarAuxACaja(aux,(&cajita));
+        printf("ACAESTAELPROBLEMA");
     }
 }
 
@@ -300,15 +317,20 @@ caja agregarClienteACaja (caja cajita[], nodoArbol * raiz)
 void pasarAuxACaja (caja aux, caja cajita[])
 {
     int i=0,flag=0;
+    printf("principiooo");
     while (i<12 && flag==0)
     {
+        printf("while \n");
+        //aux tiene basura
         if (strcmp(aux.nombreCajero,cajita[i].nombreCajero)==0)
         {
-            Fila filota=aux.filita;
-            nodo * auxP=filota.primero;
-            persona pers=auxP->cliente;
-            agregar(&(cajita[i]).filita,pers);
+            printf("hola ");
+            cajita[i]=aux;
             flag=1;
+        }
+        else
+        {
+            printf("chau");
         }
         i++;
     }
