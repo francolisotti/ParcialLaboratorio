@@ -5,51 +5,26 @@
 
 void abrir_cajas_(caja cajita[])
 {
-    char opcion;
-    char opcion2;
+    char opcion='s';
+    char opcion2='s';
     int i=0;
     printf("\nDesea abrir todas las cajas? s/n: ");
     fflush(stdin);
     scanf("%c",&opcion);
-<<<<<<< HEAD
-    /*while ((opcion != 's') || (opcion!= 'n'))
-=======
-<<<<<<< HEAD
-    /* while (opcion != 's' || opcion!= 'n')
-     {
+
+    /*while (opcion != 's' || opcion!= 'n')
+    {
          printf("\nERROR:");
          printf("\nIngrese s(si) o n(no): ");
          fflush(stdin);
          scanf("%c", &opcion);
-     }*/
-=======
-    while ((opcion != 's') || (opcion!= 'n'))
->>>>>>> origin/master
-    {
-        printf("\nERROR:");
-        printf("\nIngrese s(si) o n(no): ");
-        fflush(stdin);
-        scanf("%c", &opcion);
-<<<<<<< HEAD
     }*/
-=======
-    }
->>>>>>> origin/master
->>>>>>> origin/master
     if (opcion=='s')
     {
         for (i=0; i<12; i++)
         {
             cajita[i].abiertaOcerrada=1;
-<<<<<<< HEAD
-            cajita[i].filita=inicFila(cajita[i].filita);
-=======
-<<<<<<< HEAD
-//            cajita[i].filita=inicFila(cajita[i].filita);
-=======
             //cajita[i].filita=inicFila(cajita[i].filita);
->>>>>>> origin/master
->>>>>>> origin/master
         }
     }
 
@@ -119,7 +94,7 @@ caja buscarCaja(caja A[], int buscada)
 
 int contarClientesCaja (Fila * filita)
 {
-printf("contarClientesCaja \n");
+    printf("contarClientesCaja \n");
     nodo * aux=filita->primero;
     int cont=0;
     if (aux)
@@ -131,66 +106,63 @@ printf("contarClientesCaja \n");
             cont++;
         }
     }
-     printf("contarClientesCaja %d\n",cont);
+    printf("contarClientesCaja %d\n",cont);
     return cont;
 }
 
 void mostrarCaja(caja cajita)
 {
-   /* if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
-    {*/
-        puts("------------------------------------------");
-        if(cajita.abiertaOcerrada==1)
-        {
-            printf("Caja abierta");
-        }
-        else
-        {
-            printf("Caja cerrada");
-        }
-        printf("\nSalgortmo de planificacion: %s",cajita.algoritmoPlanificacion);
-        printf("\nCajero: %s",cajita.nombreCajero);
-        printf("\nCaja numero: %d",cajita.nro_de_caja);
-        if (cajita.tipo_pago==1)
-        {
-            printf("\nPago: Efectivo");
-        }
-        else if (cajita.tipo_pago==2)
-        {
-            printf("\nPago: debito/credito");
-        }
-        else
-        {
-            printf("\nPago: todos");
-        }
-        char control= 's';
+    /* if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
+     {*/
+    puts("------------------------------------------");
+    if(cajita.abiertaOcerrada==1)
+    {
+        printf("Caja abierta");
+    }
+    else
+    {
+        printf("Caja cerrada");
+    }
+    printf("\nSalgortmo de planificacion: %s",cajita.algoritmoPlanificacion);
+    printf("\nCajero: %s",cajita.nombreCajero);
+    printf("\nCaja numero: %d",cajita.nro_de_caja);
+    if (cajita.tipo_pago==1)
+    {
+        printf("\nPago: Efectivo");
+    }
+    else if (cajita.tipo_pago==2)
+    {
+        printf("\nPago: debito/credito");
+    }
+    else
+    {
+        printf("\nPago: todos");
+    }
+    char control= 's';
+    puts("\n------------------------------------------");
+    printf("\nDesea mostrar la fila? s/n: ");
+    fflush(stdin);
+    scanf("%c",&control);
+    if(control == 's')
+    {
         puts("\n------------------------------------------");
         printf("\nDesea mostrar la fila? s/n: ");
         fflush(stdin);
         scanf("%c",&control);
-        if(control == 's')
+        if(control == 's' )
         {
-<<<<<<< HEAD
-            puts("\n------------------------------------------");
-            printf("\nDesea mostrar la fila? s/n: ");
-            fflush(stdin);
-            scanf("%c",&control);
-            if(control == 's' )
-            {
-                mostrar(&cajita.filita);
-            }
-            puts("\n------------------------------------------");
-        }
-
-   /* }
-=======
             mostrar(&cajita.filita);
         }
         puts("\n------------------------------------------");
     }
->>>>>>> origin/master
-    else
-        printf("\nla caja no existe");*/
+
+    /* }
+             mostrar(&cajita.filita);
+         }
+         puts("\n------------------------------------------");
+     }
+     else
+         printf("\nla caja no existe");*/
 }
 
 
@@ -244,12 +216,7 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
     {
         tipopago=arbol->p.tipo_pago;
         cantsub=Subarreglo(&(cajita),&(aux),tipopago);
-        printf("El problema esta en la primera vez que se llama a si misma");
-
-        cantsub=Subarreglo(cajita,aux,tipopago);
-        printf("\n---%s---",aux[0].algoritmoPlanificacion);
         menor=contarClientesCaja(&(aux[i]).filita);
-        printf("\n---%s---",aux[0].algoritmoPlanificacion);
 
         posmenor=i;
         i++;
@@ -264,7 +231,7 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
             i++;
         }
 
-        agregar(&aux[posmenor].filita,arbol->p);
+        agregarSegunAlgoritmo(&aux[posmenor],arbol->p);
         agregarClientePreorden(arbol->izq,&cajita);
         agregarClientePreorden(arbol->der,&cajita);
         pasarAuxACaja(aux,cajita);
@@ -394,3 +361,107 @@ void pasarAuxACaja (caja aux, caja cajita[])
         i++;
     }
 }
+
+
+caja agregarSegunAlgoritmo (caja cajita, persona a)
+{
+    char fifo[]={"FIFO"};
+    char prioridadesa[]={"PRIORIDADES A"};
+    char prioridadesna[]={"PRIORIDADES NA"};
+    char srtf[]={"SRTF"};
+    char sjf[]={"SJF"};
+    char rr[]={"RR"};
+
+    if (strcmp(cajita.algoritmoPlanificacion,fifo)==0)
+    {
+        cajita.filita=agregarFIFO
+    }
+    else if (strcmp(cajita.algoritmoPlanificacion,prioridadesa)==0)
+    {
+        cajita.filita=agregarPrioridadesA
+    }
+    else if (strcmp(cajita.algoritmoPlanificacion,prioridadesna)==0)
+    {
+        cajita.filitaagregarPrioridadesNA
+    }
+    else if strcmp(cajita.algoritmoPlanificacion,srtf)==0)
+    {
+        cajita.filitaagregarSRTF
+    }
+    else if strcmp(cajita.algoritmoPlanificacion,sjf)==0)
+    {
+        cajita.filitaagregarSJF
+    }
+    else if strcmp(cajita.algoritmoPlanificacion,rr)==0)
+    {
+        cajita.filitaagregarRR
+    }
+
+    return caja;
+}
+
+caja agregarFIFO (caja cajita, persona a)
+{
+    agregar(cajita.filita,a);
+
+    return cajita;
+}
+
+caja agregarPrioridadesA(caja cajita, persona a)
+{
+    nodo * nuevo=crearNodoLista(a);
+    if (cajita.filita==NULL)
+    {
+        agregar(cajita.filita,a)
+    }
+    else
+    {
+        int prioridad=a.tipo_cliente;
+        Fila * aux=cajita.filita;
+        nodo * seg=aux->primero;
+        while (seg.cliente<=prioridad && aux2!=NULL)
+        {
+            seg=seg->siguiente;
+        }
+        if (seg==NULL)
+        {
+            agregar(cajita.filita,a);
+        }
+        else
+        {
+            seg->siguiente=nuevo;
+            nuevo->anterior=seg;
+        }
+    }
+    return cajita;
+}
+
+caja agregarPrioridadesNA(caja cajita, persona a)
+{
+    nodo * nuevo=crearNodoLista(a);
+    if (cajita.filita==NULL)
+    {
+        agregar(cajita.filita,a)
+    }
+    else
+    {
+        int prioridad=a.tipo_cliente;
+        Fila * aux=cajita.filita;
+        nodo * seg=aux->primero;
+        while (seg.cliente<=prioridad && aux2!=NULL)
+        {
+            seg=seg->siguiente;
+        }
+        if (seg==NULL)
+        {
+            agregar(cajita.filita,a);
+        }
+        else
+        {
+            seg->siguiente=nuevo;
+            nuevo->anterior=seg;
+        }
+    }
+    return cajita;
+}
+
