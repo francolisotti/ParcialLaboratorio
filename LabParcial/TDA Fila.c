@@ -58,7 +58,6 @@ void mostrar(Fila * filita)
     else
     {
         mostrarLista(filita->primero);
-        printf("tumami");
     }
 }
 

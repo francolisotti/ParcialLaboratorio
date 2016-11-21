@@ -35,10 +35,10 @@ persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,
     aux.tipo_cliente=tipo_Cliente;
     aux.tipo_pago=tipo_Pago;
 
-    ///reparar
+
     aux.tiempoDeEspera=0;
     aux.tiempoProcesado=0;
-    ///reparar
+
 
     return aux;
 }
@@ -86,14 +86,13 @@ void mostrarArchiPersona (char archi_persona[])
         while (fread(&aux,sizeof(persona),1,archi)>0)
         {
             mostrarPersona(aux);
-            printf("\n::::");
+            printf("\nAprete enter para continuar");
             getch();
         }
-        printf("\n se termino aca perrin");
     }
     else
     {
-        printf("\nERROR archivo no encontrado");
+        printf("\nERROR\nArchivo no encontrado");
     }
     fclose(archi);
 

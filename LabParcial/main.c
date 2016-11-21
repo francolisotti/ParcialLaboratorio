@@ -9,7 +9,7 @@
 
 int main()
 {
-    nodo * lista=inicLista();
+    //nodo * lista=inicLista();
     nodoArbol * arbol=inicArbol();
     char archi_persona[]={"cliente.bin"};
     char archi_caja[]={"caja.bin"};
@@ -21,13 +21,17 @@ int main()
     int i=0;
     pasarDeArchiAcaja(archi_caja,cajita);
     abrir_cajas_(cajita);
-    while (i<12)
-    {
-        //mostrarCaja(cajita[i]);
-        i++;
-    }
     agregarClienteACaja(&cajita,arbol);
-    mostrar(&(cajita[11].filita));
-
+    int j=0;
+    //mostrar(&(cajita[11].filita));
+    caja cajaAux;
+    while (j<12)
+    {
+        printf("\n\n\n\n\n\nUltimo while va a mostrar las cajas (hay un getch())\n\n");
+        getch();
+        cajaAux=cajita[j];
+        mostrarCaja(cajaAux);
+        j++;
+    }
     return 0;
 }

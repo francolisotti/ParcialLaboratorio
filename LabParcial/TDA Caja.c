@@ -73,17 +73,18 @@ void mostrarCaja(caja cajita)
     if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
     {
         puts("------------------------------------------");
+        printf("Caja numero: %d",cajita.nro_de_caja);
         if(cajita.abiertaOcerrada==1)
         {
-            printf("Caja abierta");
+            printf("\nCaja abierta");
         }
         else
         {
-            printf("Caja cerrada");
+            printf("\nCaja cerrada");
         }
-        printf("\nSalgortmo de planificacion: %s",cajita.algoritmoPlanificacion);
+        printf("\nalgoritmo de planificacion: %s",cajita.algoritmoPlanificacion);
         printf("\nCajero: %s",cajita.nombreCajero);
-        printf("\nCaja numero: %d",cajita.nro_de_caja);
+
         if (cajita.tipo_pago==1)
         {
             printf("\nPago: Efectivo");
@@ -96,18 +97,16 @@ void mostrarCaja(caja cajita)
         {
             printf("\nPago: todos");
         }
-        char control='s';
-        if (filaVacia(&(cajita.filita))==1)
-        {
-            printf("\nDesea mostrar la fila? s/n");
-            fflush(stdin);
-            scanf("%c",&control);
-        }
 
-        if(control == 's')
-        {
+       /* char control='s';
+        printf("\nDesea mostrar la fila? s/n: ");
+        scanf("%c", &control);*/
+
+       // if(control == 's')
+        //{
+        printf("\nFila:\n");
             mostrar(&cajita.filita);
-        }
+        //}
         puts("\n------------------------------------------");
     }
 
@@ -153,15 +152,11 @@ int Subarreglo (caja cajita[], caja aux[12], int tipopago)
             if (cajita[i].tipo_pago==tipopago)
             {
                 aux[u]=cajita[i];
-                printf("%d",tipopago);
-
                 u++;
             }
             if (cajita[i].tipo_pago==3)
             {
                 aux[u]=cajita[i];
-                printf("%d",tipopago);
-
                 u++;
             }
         }
@@ -253,6 +248,11 @@ int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
             aux[u]=cajita[i];
             u++;
         }
+        if (cajita[i].tipo_pago==3)
+        {
+            aux[u]=cajita[i];
+            u++;
+        }
         i++;
     }
 
@@ -277,6 +277,7 @@ int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
             posmenor=j;
         }
         j++;
+        printf("\nj=%d",j);
     }
     return posmenor;
 }
@@ -288,21 +289,18 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
     persona aux;
     if (arbol==NULL)
     {
-
+        printf("\nERROR\nEl arbol no existe");
     }
     else
     {
         aux=arbol->p;
         tipoPago=aux.tipo_pago;
         pos_menor=evaluar_caja_con_menos_clientes(cajita,tipoPago);
-        Fila filosa;
-        filosa=cajita[pos_menor].filita;
-        agregar(&filosa,aux);
+        agregar(&cajita[pos_menor].filita,aux);
         agregarClientePreorden(arbol->izq,cajita);
         agregarClientePreorden(arbol->der,cajita);
     }
 }
-
 
 /*void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
 {
@@ -396,7 +394,7 @@ void agregarClienteACaja (caja cajita[], nodoArbol * raiz)
     {
         //agregarClientePostorden(raiz,cajita);
     }
-    return cajita;
+    //return cajita;
 }
 
 void pasarAuxACaja (caja aux, caja cajita[])
