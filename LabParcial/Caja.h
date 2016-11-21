@@ -28,13 +28,13 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita[]);
 
 void agregarClienteACaja (caja cajita[], nodoArbol * raiz);
 void pasarAuxACaja (caja aux, caja cajita[]);
-caja agregarFIFO (caja cajita, persona a);
-caja agregarPrioridadesA(caja cajita, persona a);
-caja agregarPrioridadesNA(caja cajita, persona a);
-caja agregarSRTF (caja cajita, persona a);
+void agregarFIFO (Fila * filita, persona a);
+void agregarPrioridadesA(Fila * filita, persona a);
+void agregarPrioridadesNA(Fila * filita, persona a);
+void agregarSRTF (Fila * filita, persona a);
 
 
-caja agregarSegunAlgoritmo (caja cajita, persona a);
+void agregarSegunAlgoritmo (Fila * filita, persona a, char algoritmo[]);
 
 caja agregarClienteACajaEnTiempoDeterminado ();
 caja atenderClientes (caja cajita);

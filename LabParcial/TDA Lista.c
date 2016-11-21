@@ -21,7 +21,10 @@ nodo * crearNodoLista (persona cliente)
 nodo * agregarAlPrincipio (nodo * lista, nodo * nuevo)
 {
     nuevo->siguiente=lista;
-
+    if(lista!=NULL)
+    {
+        lista->anterior=nuevo;
+    }
     return nuevo;
 }
 
@@ -53,53 +56,68 @@ nodo * agregarAlFinal (nodo * lista, nodo * nuevo)
     }
 }
 
-nodo * agregarEnOrdenTipoCliente(nodo * lista, nodo * nuevo)
+nodo * agregarEnOrdenTipoCliente (nodo * lista, nodo * nuevo)
 {
-    nodo * seg=lista;
-
-    while (seg->cliente.tipo_cliente <= nuevo->cliente.tipo_cliente)
+    if (lista==NULL)
     {
-        seg=seg->siguiente;
+        lista=nuevo;
     }
-
-    if (seg->siguiente==NULL)
+    else if(nuevo->cliente.tipo_cliente <= lista->cliente.tipo_cliente)
     {
-        lista=agregarAlFinal(lista,nuevo);
-
+        lista=agregarAlPrincipio(lista,nuevo);
     }
     else
     {
-        nodo * aux=seg->siguiente;
-        nuevo->siguiente=seg->siguiente;
-        aux->anterior=nuevo;
-        nuevo->anterior=seg;
-        seg->siguiente=nuevo;
+        nodo * ante=lista;
+        nodo * seg=lista->siguiente;
+        while(seg!=NULL && seg->cliente.tipo_cliente <= nuevo->cliente.tipo_cliente)
+        {
+            ante=seg;
+            seg=seg->siguiente;
+        }
+
+        ante->siguiente=nuevo;
+        nuevo->anterior=ante;
+        nuevo->siguiente=seg;
+
+        if(seg!=NULL)
+        {
+            seg->anterior=nuevo;
+        }
     }
-
     return lista;
-
 }
+
 nodo * agregarEnOrdenPorCant (nodo * lista, nodo * nuevo)
 {
-    nodo * seg=lista;
-    while (seg->cliente.cantArticulos <= nuevo->cliente.cantArticulos)
+    if (lista==NULL)
     {
-        seg=seg->siguiente;
+        lista=nuevo;
     }
-    if (seg->siguiente==NULL)
+    else if(nuevo->cliente.cantArticulos <= lista->cliente.cantArticulos)
     {
-        lista=agregarAlFinal(lista,nuevo);
-
+        lista=agregarAlPrincipio(lista,nuevo);
     }
     else
     {
-        nodo * aux=seg->siguiente;
-        nuevo->siguiente=seg->siguiente;
-        aux->anterior=nuevo;
-        nuevo->anterior=seg;
-        seg->siguiente=nuevo;
-    }
+        nodo * ante=lista;
+        nodo * seg=lista->siguiente;
+        while(seg!=NULL && seg->cliente.cantArticulos <= nuevo->cliente.cantArticulos)
+        {
+            ante=seg;
+            seg=seg->siguiente;
+        }
 
+        ante->siguiente=nuevo;
+        nuevo->anterior=ante;
+        nuevo->siguiente=seg;
+
+        if(seg!=NULL)
+        {
+            seg->anterior=nuevo;
+        }
+    }
+    return lista;
 }
 
 void mostrarLista(nodo * aux)

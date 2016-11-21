@@ -98,14 +98,14 @@ void mostrarCaja(caja cajita)
             printf("\nPago: todos");
         }
 
-       /* char control='s';
-        printf("\nDesea mostrar la fila? s/n: ");
-        scanf("%c", &control);*/
+        /* char control='s';
+         printf("\nDesea mostrar la fila? s/n: ");
+         scanf("%c", &control);*/
 
-       // if(control == 's')
+        // if(control == 's')
         //{
         printf("\nFila:\n");
-            mostrar(&cajita.filita);
+        mostrar(&cajita.filita);
         //}
         puts("\n------------------------------------------");
     }
@@ -186,135 +186,39 @@ int contarClientesCaja (caja cajita)
     return cont;
 }
 
-/*void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
-{
-
-    caja aux[12];
-    int cantsub=0;
-    int i=0;
-    int cantclientes=0;
-    int menor=0;
-
-    int posmenor=0;
-    int tipopago=0;
-
-    if(arbol!=NULL)
-    {
-        printf("\nA\n");
-        tipopago=arbol->p.tipo_pago;
-        printf("%d",tipopago);
-        cantsub=Subarreglo((cajita),(aux),tipopago);
-        printf("\nB\n");
-        menor=contarClientesCaja(aux[i]);
-        printf("\nC\n");
-        posmenor=i;
-        i++;
-        while (i<cantsub)
-        {
-
-            cantclientes=contarClientesCaja(aux[i]);
-            if (cantclientes<menor)
-            {
-                menor=cantclientes;
-                posmenor=i;
-
-            }
-            i++;
-        }
-
-        aux[posmenor]=agregarSegunAlgoritmo(aux[posmenor],arbol->p);
-        agregarClientePreorden(arbol->izq,&cajita);
-        agregarClientePreorden(arbol->der,&cajita);
-        pasarAuxACaja(aux[posmenor],cajita);
-    }
-
-
-}*/
-
 int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
 {
     int i=0;
     int u=0;
-    int c=0;
+    int flag=0;
     int menor=0;
     int posmenor=0;
 
-    caja aux[12];
-
+    while (flag==0)
+    {
+        if (cajita[i].tipo_pago==tipoPago)
+        {
+            flag=1;
+            posmenor=i;
+            menor=contarClientesCaja(cajita[posmenor]);
+        }
+        i++;
+    }
     while (i<12)
     {
         if (cajita[i].tipo_pago==tipoPago)
         {
-            aux[u]=cajita[i];
-            u++;
-        }
-        if (cajita[i].tipo_pago==3)
-        {
-            aux[u]=cajita[i];
-            u++;
+            if (menor>contarClientesCaja(cajita[i]))
+            {
+                menor=contarClientesCaja(cajita[i]);
+                posmenor=i;
+            }
+
         }
         i++;
     }
-
-    menor=contarClientesCaja(aux[posmenor]);
-    c++;
-    while (c<u)
-    {
-        if (menor>contarClientesCaja(aux[c]))
-        {
-            menor=contarClientesCaja(aux[c]);
-
-            posmenor=c;
-        }
-        c++;
-
-    }
-    int j=0;
-    while (j<12)
-    {
-        if (cajita[j].nro_de_caja==aux[posmenor].nro_de_caja)
-        {
-            posmenor=j;
-        }
-        j++;
-        printf("\nj=%d",j);/*
-        BORRAR ESTE PRINTF
-
-
-        */
-    }
     return posmenor;
 }
-
-void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
-{
-    int tipoPago;
-    int pos_menor;
-    persona aux;
-    if (arbol==NULL)
-    {
-        printf("\nERROR\nEl arbol no existe");
-    }
-    else
-    {
-        aux=arbol->p;
-        tipoPago=aux.tipo_pago;
-        pos_menor=evaluar_caja_con_menos_clientes(cajita,tipoPago);
-        agregar(&cajita[pos_menor].filita,aux);
-        agregarClientePreorden(arbol->izq,cajita);
-        agregarClientePreorden(arbol->der,cajita);
-    }
-}
-
-/*void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
-{
-
-}
-
-void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
-{
-
-}*/
 
 void agregarClienteACaja (caja cajita[], nodoArbol * raiz)
 {
@@ -341,192 +245,34 @@ void agregarClienteACaja (caja cajita[], nodoArbol * raiz)
     //return cajita;
 }
 
-void pasarAuxACaja (caja aux, caja cajita[])
-{
-    int i=0,flag=0;
-    while (i<12 && flag==0)
-    {
-        if (strcmp(aux.nombreCajero,cajita[i].nombreCajero)==0)
-        {
-            cajita[i]=aux;
-            flag=1;
-        }
-        i++;
-    }
-}
-
-caja agregarFIFO (caja cajita, persona a)
-{
-    agregar(&cajita.filita,a);
-
-    return cajita;
-}
-
-caja agregarPrioridadesA(caja cajita, persona a)
+void agregarPrioridadesA(Fila * filita, persona a)
 {
     nodo * nuevo=crearNodoLista(a);
-    if (filaVacia(&cajita.filita)==0)
-    {
-        agregar(&cajita.filita,a);
-    }
-    else
-    {
-        int prioridad=a.tipo_cliente;
-        Fila * aux=&(cajita.filita);
-        nodo * seg=aux->primero;
-        while (seg->cliente.tipo_cliente<=prioridad && seg!=NULL)
-        {
-            seg=seg->siguiente;
-        }
-        if (seg==NULL)
-        {
-            agregar(&(cajita.filita),a);
-        }
-        else
-        {
-            seg->siguiente=nuevo;
-            nuevo->anterior=seg;
-        }
-    }
-    return cajita;
+    filita->primero=agregarEnOrdenTipoCliente(filita->primero,nuevo);
 }
 
-caja agregarPrioridadesNA(caja cajita, persona a)
+void agregarPrioridadesNA(Fila * filita, persona a)
 {
     nodo * nuevo=crearNodoLista(a);
-    if (filaVacia(&cajita.filita)==0)
-    {
-        agregar((&cajita.filita),a);
-    }
-    else
-    {
-        int prioridad=a.tipo_cliente;
-        Fila * aux=&(cajita.filita);
-        nodo * ante=aux->primero;
-        nodo * seg=ante->siguiente;
-        while (seg!=NULL && seg->cliente.tipo_cliente<=prioridad)
-        {
-            ante=seg;
-            seg=seg->siguiente;
-        }
-        if (seg==NULL)
-        {
-            agregar(&cajita.filita,a);
-        }
-        else
-        {
-            ante->siguiente=nuevo;
-            nuevo->anterior=ante;
-            nuevo->siguiente=seg;
-            seg->anterior=nuevo;
-        }
-    }
-    return cajita;
+    filita->primero=agregarEnOrdenTipoCliente(filita->primero,nuevo);
 }
 
-caja agregarSRTF (caja cajita, persona a)
+void agregarSRTF (Fila * filita, persona a)
 {
     nodo * nuevo=crearNodoLista(a);
-    if (filaVacia(&cajita.filita)==0)
-    {
-        agregar((&cajita.filita),a);
-    }
-    else
-    {
-        int cantidad=a.cantArticulos;
-        Fila * aux=&(cajita.filita);
-        nodo * ante=aux->primero;
-        nodo * seg=ante->siguiente;
-        while (seg!=NULL && seg->cliente.cantArticulos<=cantidad)
-        {
-            ante=seg;
-            seg=seg->siguiente;
-        }
-        if (seg==NULL)
-        {
-            agregar(&cajita.filita,a);
-        }
-        else
-        {
-            ante->siguiente=nuevo;
-            nuevo->anterior=ante;
-            nuevo->siguiente=seg;
-            seg->anterior=nuevo;
-        }
-    }
-    return cajita;
+    filita->primero=agregarEnOrdenPorCant(filita->primero,nuevo);
 }
 
-caja agregarSJF (caja cajita, persona a)
+void agregarSJF (Fila * filita, persona a)
 {
     nodo * nuevo=crearNodoLista(a);
-    if (filaVacia(&cajita.filita)==0)
-    {
-        agregar((&cajita.filita),a);
-    }
-    else
-    {
-        int cantidad=a.cantArticulos;
-        Fila * aux=&(cajita.filita);
-        nodo * ante=aux->primero;
-        nodo * seg=ante->siguiente;
-        while (seg!=NULL && seg->cliente.cantArticulos<=cantidad)
-        {
-            ante=seg;
-            seg=seg->siguiente;
-        }
-        if (seg==NULL)
-        {
-            agregar(&cajita.filita,a);
-        }
-        else
-        {
-            ante->siguiente=nuevo;
-            nuevo->anterior=ante;
-            nuevo->siguiente=seg;
-            seg->anterior=nuevo;
-        }
-    }
-    return cajita;
-}
-
-caja agregarRR(caja cajita, persona a)
-{
-    nodo * nuevo=crearNodoLista(a);
-    if (filaVacia(&cajita.filita)==0)
-    {
-        agregar((&cajita.filita),a);
-    }
-    else
-    {
-        int prioridad=a.tipo_cliente;
-        Fila * aux=&(cajita.filita);
-        nodo * ante=aux->primero;
-        nodo * seg=ante->siguiente;
-        while (seg!=NULL && seg->cliente.tipo_cliente<=prioridad)
-        {
-            ante=seg;
-            seg=seg->siguiente;
-        }
-        if (seg==NULL)
-        {
-            agregar(&cajita.filita,a);
-        }
-        else
-        {
-            ante->siguiente=nuevo;
-            nuevo->anterior=ante;
-            nuevo->siguiente=seg;
-            seg->anterior=nuevo;
-        }
-    }
-    return cajita;
+    filita->primero=agregarEnOrdenPorCant(filita->primero,nuevo);
 }
 
 
 
 
-caja agregarSegunAlgoritmo (caja cajita, persona a)
+void agregarSegunAlgoritmo (Fila * filita, persona a, char algoritmo[])
 {
     char fifo[]= {"FIFO"};
     char prioridadesa[]= {"PRIORIDADES A"};
@@ -534,31 +280,60 @@ caja agregarSegunAlgoritmo (caja cajita, persona a)
     char srtf[]= {"SRTF"};
     char sjf[]= {"SJF"};
     char rr[]= {"RR"};
+    printf("%s ",algoritmo);
 
-    if (strcmp(cajita.algoritmoPlanificacion,fifo)==0)
+    if (strcmp(algoritmo,fifo)==0)
     {
-        cajita=agregarFIFO(cajita,a);
+        agregar(filita,a);
     }
-    else if (strcmp(cajita.algoritmoPlanificacion,prioridadesa)==0)
+    else if (strcmp(algoritmo,prioridadesa)==0)
     {
-        cajita=agregarPrioridadesA(cajita,a);
+        agregarPrioridadesA(filita,a);
     }
-    else if (strcmp(cajita.algoritmoPlanificacion,prioridadesna)==0)
+    else if (strcmp(algoritmo,prioridadesna)==0)
     {
-        cajita=agregarPrioridadesNA(cajita,a);
+        agregarPrioridadesNA(filita,a);
     }
-    else if (strcmp(cajita.algoritmoPlanificacion,srtf)==0)
+    else if (strcmp(algoritmo,srtf)==0)
     {
-        cajita=agregarSRTF(cajita,a);
+        agregarSRTF(filita,a);
     }
-    else if (strcmp(cajita.algoritmoPlanificacion,sjf)==0)
+    else if (strcmp(algoritmo,sjf)==0)
     {
-        cajita=agregarSJF(cajita,a);
+        agregarSJF(filita,a);
     }
-    else if (strcmp(cajita.algoritmoPlanificacion,rr)==0)
+    else if (strcmp(algoritmo,rr)==0)
     {
-        cajita=agregarRR(cajita,a);
+        agregar(filita,a);
     }
-
-    return cajita;
 }
+
+void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
+{
+    int tipoPago;
+    int pos_menor;
+    persona aux;
+    if (arbol==NULL)
+    {
+    }
+    else
+    {
+        aux=arbol->p;
+        tipoPago=aux.tipo_pago;
+        pos_menor=evaluar_caja_con_menos_clientes(cajita,tipoPago);
+        //agregar(&cajita[pos_menor].filita,aux);
+        agregarSegunAlgoritmo(&cajita[pos_menor].filita,aux,cajita[pos_menor].algoritmoPlanificacion);
+        agregarClientePreorden(arbol->izq,cajita);
+        agregarClientePreorden(arbol->der,cajita);
+    }
+}
+
+/*void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
+{
+
+}
+
+void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
+{
+
+}*/
