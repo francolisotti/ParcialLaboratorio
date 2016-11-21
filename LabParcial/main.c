@@ -15,8 +15,8 @@ int main()
     char archi_caja[]={"caja.bin"};
     int orden=0;
     arbol=ArchiToArbol(archi_persona,arbol);
-   // orden= selectOrden();
-   // mostrarArbol(arbol,orden);
+    //orden= selectOrden();
+    //mostrarArbol(arbol,orden);
     caja cajita[12];
     int i=0;
     pasarDeArchiAcaja(archi_caja,cajita);

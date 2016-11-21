@@ -277,7 +277,11 @@ int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
             posmenor=j;
         }
         j++;
-        printf("\nj=%d",j);
+        printf("\nj=%d",j);/*
+        BORRAR ESTE PRINTF
+
+
+        */
     }
     return posmenor;
 }
@@ -304,72 +308,12 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
 
 /*void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
 {
-    caja aux[12];
-    int cantsub=0;
-    int i=0;
-    int cantclientes=0;
-    int menor;
-    int posmenor;
-    int tipopago=0;
 
-
-    if(arbol!=NULL)
-    {
-        agregarClienteInorden(arbol->izq,cajita);
-        tipopago=arbol->p.tipo_pago;
-        cantsub=Subarreglo(&(cajita),aux,tipopago);
-        menor=contarClientesCaja(aux[i]);
-        posmenor=i;
-        while (i<cantsub)
-        {
-            cantclientes=contarClientesCaja(aux[i]);
-            if (cantclientes<menor)
-            {
-                menor=cantclientes;
-                posmenor=i;
-            }
-            i++;
-        }
-        agregar(&aux[posmenor].filita,arbol->p);
-        agregarClienteInorden(arbol->der,cajita);
-        pasarAuxACaja(aux[posmenor],(&cajita));
-
-    }
 }
 
 void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
 {
-    caja aux[12];
-    int cantsub=0;
-    int i=0;
-    int cantclientes=0;
-    int menor;
-    int posmenor;
-    int tipopago=0;
 
-    if(arbol!=NULL)
-    {
-        agregarClientePostorden(arbol->izq,cajita);
-        agregarClientePostorden(arbol->der,cajita);
-        tipopago=arbol->p.tipo_pago;
-        cantsub=Subarreglo(&(cajita),aux,tipopago);
-        menor=contarClientesCaja(aux[i]);
-        posmenor=i;
-        i++;
-        while (i<cantsub)
-        {
-            cantclientes=contarClientesCaja(aux[i]);
-            if (cantclientes<menor)
-            {
-                menor=cantclientes;
-                posmenor=i;
-            }
-            i++;
-        }
-        agregar(&aux[posmenor].filita,arbol->p);
-        pasarAuxACaja(aux[posmenor],(&cajita));
-        printf("ACAESTAELPROBLEMA");
-    }
 }*/
 
 void agregarClienteACaja (caja cajita[], nodoArbol * raiz)
