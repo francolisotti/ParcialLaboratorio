@@ -23,10 +23,11 @@ int main()
     abrir_cajas_(cajita);
     while (i<12)
     {
-        mostrarCaja(cajita[i]);
+        //mostrarCaja(cajita[i]);
         i++;
     }
-    agregarClienteACaja(cajita,arbol);
+    agregarClienteACaja(&cajita,arbol);
+    mostrar(&(cajita[11].filita));
 
     return 0;
 }

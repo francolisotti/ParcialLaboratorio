@@ -177,6 +177,7 @@ int contarClientesCaja (caja cajita)
     int cont=0;
     Fila seg=cajita.filita;
     nodo * aux;
+    int x=0;
     if (filaVacia(&seg)==1)
     {
 
@@ -235,7 +236,7 @@ int contarClientesCaja (caja cajita)
 
 }*/
 
-int evaluar_caja_con_menos_clientes (caja cajita[], int tipoPago)
+int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
 {
     int i=0;
     int u=0;
@@ -256,15 +257,17 @@ int evaluar_caja_con_menos_clientes (caja cajita[], int tipoPago)
     }
 
     menor=contarClientesCaja(aux[posmenor]);
-
+    c++;
     while (c<u)
     {
-        if (menor>contarClientesCaja(aux[c+1]))
+        if (menor>contarClientesCaja(aux[c]))
         {
-            menor=contarClientesCaja(aux[c+1]);
-            posmenor=c+1;
+            menor=contarClientesCaja(aux[c]);
+
+            posmenor=c;
         }
         c++;
+
     }
     int j=0;
     while (j<12)
@@ -272,7 +275,6 @@ int evaluar_caja_con_menos_clientes (caja cajita[], int tipoPago)
         if (cajita[j].nro_de_caja==aux[posmenor].nro_de_caja)
         {
             posmenor=j;
-            printf("\nhola");
         }
         j++;
     }
@@ -281,30 +283,22 @@ int evaluar_caja_con_menos_clientes (caja cajita[], int tipoPago)
 
 void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
 {
-    printf("\nEntro algoritmo");
     int tipoPago;
     int pos_menor;
     persona aux;
-    printf("\n asigno persona");
-
     if (arbol==NULL)
     {
-        printf("\nERROR:\nEl arbol no existe");
+
     }
     else
     {
         aux=arbol->p;
         tipoPago=aux.tipo_pago;
-
         pos_menor=evaluar_caja_con_menos_clientes(cajita,tipoPago);
-        printf("\nevalua la caja con menos clientes -%d-", pos_menor);
         Fila filosa;
         filosa=cajita[pos_menor].filita;
-        mostrar(&filosa);
         agregar(&filosa,aux);
-        mostrar(&filosa);
         agregarClientePreorden(arbol->izq,cajita);
-        printf("\nhola 3");
         agregarClientePreorden(arbol->der,cajita);
     }
 }
@@ -592,12 +586,12 @@ caja agregarRR(caja cajita, persona a)
 
 caja agregarSegunAlgoritmo (caja cajita, persona a)
 {
-    char fifo[]={"FIFO"};
-    char prioridadesa[]={"PRIORIDADES A"};
-    char prioridadesna[]={"PRIORIDADES NA"};
-    char srtf[]={"SRTF"};
-    char sjf[]={"SJF"};
-    char rr[]={"RR"};
+    char fifo[]= {"FIFO"};
+    char prioridadesa[]= {"PRIORIDADES A"};
+    char prioridadesna[]= {"PRIORIDADES NA"};
+    char srtf[]= {"SRTF"};
+    char sjf[]= {"SJF"};
+    char rr[]= {"RR"};
 
     if (strcmp(cajita.algoritmoPlanificacion,fifo)==0)
     {
