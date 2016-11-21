@@ -2,7 +2,7 @@
 #define FILA_H_INCLUDED
 
 #include "Lista.h"
-#include "Persona.h"
+#include "arbol.h"
 
 typedef struct
 {

@@ -13,13 +13,31 @@ typedef struct
     Fila filita;
 }caja;
 
+void abrir_cajas_(caja cajita[]);
 caja abrirOcerrarCaja (caja cajita);
 caja buscarCaja (caja A[], int buscada);
+int contarClientesCaja (caja cajita);
 void mostrarCaja (caja cajita);
-caja agregarClienteACaja (caja cajita[], nodoArbol * raiz);
+void pasarDeArchiAcaja (char archiCajas[], caja cajita[]);
+int Subarreglo (caja cajita[], caja aux[12], int tipopago);
+int evaluar_caja_con_menos_clientes (caja cajita[], int tipoPago);
+
+void agregarClientePreorden(nodoArbol * arbol, caja cajita[]);
+void agregarClienteInorden(nodoArbol * arbol, caja cajita[]);
+void agregarClientePostorden(nodoArbol * arbol, caja cajita[]);
+
+void agregarClienteACaja (caja cajita[], nodoArbol * raiz);
+void pasarAuxACaja (caja aux, caja cajita[]);
+caja agregarFIFO (caja cajita, persona a);
+caja agregarPrioridadesA(caja cajita, persona a);
+caja agregarPrioridadesNA(caja cajita, persona a);
+caja agregarSRTF (caja cajita, persona a);
+
+
+caja agregarSegunAlgoritmo (caja cajita, persona a);
+
 caja agregarClienteACajaEnTiempoDeterminado ();
 caja atenderClientes (caja cajita);
-void pasarDeArchiAcaja (char archiCajas[], caja cajita[]);
 
 
 

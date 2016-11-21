@@ -1,4 +1,4 @@
-//#include "Menu.h"
+#include "Menu.h"
 #include "string.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,7 +16,7 @@ void nombreArchivoPersona (char nombre[])
     {
         printf("\nERROR:");
         printf("\nNo existe un archivo con tal nombre");
-        printf("\nPor favor ingrese otro nombre: ");
+        printf("\nPor favor, ingrese otro nombre: ");
         gets(&supuestoNombre);
         archi=fopen(supuestoNombre, "rb");
     }
@@ -44,3 +44,5 @@ void nombreArchivoCaja (char nombre[])
     fclose(archi);
     strcpy(nombre,supuestoNombre);
 }
+
+

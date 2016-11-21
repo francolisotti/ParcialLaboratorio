@@ -42,26 +42,6 @@ persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,
 
     return aux;
 }
-/*FILE*/
-void mostrarArchiPersona (char archi_persona[])
-{
-    FILE * archi=fopen(archi_persona, "rb");
-    persona aux;
-    if (archi!=NULL)
-    {
-        while (fread(&aux,sizeof(persona),1,archi)>0)
-        {
-            mostrarPersona(aux);
-        }
-    }
-    else
-    {
-        printf("\nERROR archivo no encontrado");
-    }
-    fclose(archi);
-
-}
-
 
 void mostrarPersona(persona aux)
 {
@@ -84,16 +64,41 @@ void mostrarPersona(persona aux)
     }
     if (aux.tipo_pago==1)
     {
-        printf("\n           Tipo pago : Efectivo");
+        printf("\n            Tipo pago: Efectivo");
     }
     else if (aux.tipo_pago==2)
     {
-        printf("\n           Tipo pago : Debito/Credito");
+        printf("\n            Tipo pago: Debito/Credito");
     }
     else
     {
-        printf("\n           Tipo pago : Todos los metodos");
+        printf("\n            Tipo pago: Todos los metodos");
     }
     puts("\n------------------------------------------");
 }
+
+void mostrarArchiPersona (char archi_persona[])
+{
+    FILE * archi=fopen(archi_persona, "rb");
+    persona aux;
+    if (archi!=NULL)
+    {
+        while (fread(&aux,sizeof(persona),1,archi)>0)
+        {
+            mostrarPersona(aux);
+            printf("\n::::");
+            getch();
+        }
+        printf("\n se termino aca perrin");
+    }
+    else
+    {
+        printf("\nERROR archivo no encontrado");
+    }
+    fclose(archi);
+
+}
+
+
+
 

@@ -20,6 +20,7 @@ void agregar (Fila * filita, persona a)
     else
     {
         filita->primero=agregarAlFinal(filita->primero,nuevo);
+
     }
     filita->ultimo=nuevo;
 }
@@ -47,10 +48,19 @@ char quitar (Fila * filita)
     }
     return resp;
 }
+
 void mostrar(Fila * filita)
 {
-    mostrarLista(filita->primero);
+    if (filaVacia(filita)==0)
+    {
+        printf("\nFila vacia");
+    }
+    else
+    {
+        mostrarLista(filita->primero);
+    }
 }
+
 int filaVacia(Fila * filita)
 {
     int rta=1;
