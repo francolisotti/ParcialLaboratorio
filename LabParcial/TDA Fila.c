@@ -97,6 +97,7 @@ void tiempo_de_espera_fila (Fila * filita)
 
 
 void tiempo_de_espera_fila_RR (Fila * filita)
+///CAMBIARLA A RR
 {
     if (filaVacia(filita)==1)
     {

@@ -2,9 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="TDA Arbol.c" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="TDA Fila.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1432" topLine="45" />
+			<Cursor1 position="2078" topLine="83" />
+		</Cursor>
+	</File>
+	<File name="TDA Arbol.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1432" topLine="90" />
 		</Cursor>
 	</File>
 	<File name="TDA Lista.c" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -12,14 +17,14 @@
 			<Cursor1 position="399" topLine="144" />
 		</Cursor>
 	</File>
-	<File name="TDA Caja.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="TDA Caja.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7574" topLine="288" />
+			<Cursor1 position="9454" topLine="389" />
 		</Cursor>
 	</File>
-	<File name="TDA Persona.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="TDA Persona.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2173" topLine="62" />
+			<Cursor1 position="1898" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Arbol.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -37,24 +42,19 @@
 			<Cursor1 position="681" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Persona.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Persona.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="273" topLine="0" />
+			<Cursor1 position="473" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Caja.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Caja.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1185" topLine="3" />
+			<Cursor1 position="1273" topLine="5" />
 		</Cursor>
 	</File>
 	<File name="Fila.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="217" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="TDA Fila.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1323" topLine="64" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
