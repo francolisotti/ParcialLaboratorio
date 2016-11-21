@@ -70,3 +70,54 @@ int filaVacia(Fila * filita)
     }
     return rta;
 }
+
+void tiempo_de_espera_fila (Fila * filita)
+{
+    if (filaVacia(filita)==1)
+    {
+        int espera=0;
+        nodo * aux=filita->primero;
+        aux->cliente.tiempoDeEspera=espera;
+        espera=aux->cliente.cantArticulos;
+        aux->cliente.tiempoProcesado=aux->cliente.cantArticulos;
+        if(aux->siguiente!=NULL)
+        {
+            aux=aux->siguiente;
+            while (aux!=NULL)
+            {
+                aux->cliente.tiempoDeEspera=espera;
+                espera=espera+aux->cliente.cantArticulos;
+                aux->cliente.tiempoProcesado=aux->cliente.tiempoDeEspera+aux->cliente.cantArticulos;
+
+                aux=aux->siguiente;
+            }
+        }
+    }
+}
+
+
+void tiempo_de_espera_fila_RR (Fila * filita)
+{
+    if (filaVacia(filita)==1)
+    {
+        int espera=0;
+        int quantum=6;
+        nodo * aux=filita->primero;
+        aux->cliente.tiempoDeEspera=espera;
+        espera=aux->cliente.cantArticulos;
+        aux->cliente.tiempoProcesado=aux->cliente.cantArticulos;
+
+        if(aux->siguiente!=NULL)
+        {
+            aux=aux->siguiente;
+            while (aux!=NULL)
+            {
+                aux->cliente.tiempoDeEspera=espera;
+                espera=espera+aux->cliente.cantArticulos;
+                aux->cliente.tiempoProcesado=aux->cliente.tiempoDeEspera+aux->cliente.cantArticulos;
+
+                aux=aux->siguiente;
+            }
+        }
+    }
+}

@@ -25,6 +25,7 @@ int main()
     int j=0;
     //mostrar(&(cajita[11].filita));
     caja cajaAux;
+    tiempo_de_espera_fila(&cajita[0].filita);
     while (j<12)
     {
         printf("\n\n\n\n\n\nUltimo while va a mostrar las cajas (hay un getch())\n\n");
