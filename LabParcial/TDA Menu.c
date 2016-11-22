@@ -100,6 +100,7 @@ void opcion1 (caja cajita[],nodoArbol * cliente, int validos)
 
 void opcion2 (caja cajita[], int validos)
 {
+
     atenderClientes(cajita);
     mostrar_todas_las_cajas(cajita,validos);
 }
@@ -129,7 +130,7 @@ void opcion5(caja cajita[],int validos)
         {
             quitar(&cajita[i].filita);
         }
-        printf("\nTERMINO LA CAJA");
+        //printf("\nTERMINO LA CAJA");
         i++;
 
     }
@@ -162,24 +163,21 @@ void opcion6(caja cajita[], int validos)
                     mostrar(&cajita[i].filita);
                     cajita[i].abiertaOcerrada=0;
                 }
-            scanf("%c",&control2);
-            if (control2=='s')
-            {
-                atenderClientes(cajita);
-                mostrar(&cajita[i].filita);
-                quitar(&cajita[i].filita);
-                cajita[i].abiertaOcerrada=0;
+                scanf("%c",&control2);
+                if (control2=='s')
+                {
+                    atenderClientes(cajita);
+                    mostrar(&cajita[i].filita);
+                    quitar(&cajita[i].filita);
+                    cajita[i].abiertaOcerrada=0;
 
+                }
+                i++;
             }
-            i++;
         }
     }
 }
 
-void opcion7 (caja cajita[], int validos)
-{
-
-}
 
 
 

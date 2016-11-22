@@ -47,6 +47,8 @@ int main()
     int flag1=0;
     int flag2=0;
     int flag3=0;
+    int flag4=0;
+    int k=0;
     int posicion=-1;
     while (menu!=0)
     {
@@ -55,7 +57,7 @@ int main()
         printf("\n2) Calcular y mostrar los tiempos segun Algoritmos de Planificacion");
         printf("\n3) Ingresar cliente en tiempo determinado");
         printf("\n4) Ejecutar y mostrar tiempos nuevos con el cliente agregado");
-        printf("\n5) Repetir");
+        printf(flag4"\n5) Repetir");
         printf("\n6) Vaciar una caja, mostrando proceso a proceso");
         printf("\n7) Recorrer cajas y calcular tiempos de espera promedios");
         printf("\n");
@@ -113,31 +115,46 @@ int main()
         }
         if (menu==7)
         {
-            int z=0;
-            float promediosE[12];
-            float promediosR[12];
-            char mander='s';
-            promedioCajas(cajita,cantidadDeCajas,promediosE,promediosR);
-            printf("\nDesea mostrar los promedios de cada caja? S/N: ");
-            fflush(stdin);
-            scanf("%c",&mander);
-            if (mander=='s')
+            while (k<cantidadDeCajas)
             {
-                while(z<cantidadDeCajas)
+                if (cajita[i].abiertaOcerrada==1)
                 {
-                    mostrarCaja(cajita[z]);
-                    printf("\nPromedio de tiempo de espera : %f",promediosE[z]);
-                    printf("\nPromedio de tiempo de procesado : %f",promediosR[z]);
-                    printf("\nPromedio de ambos es : %f\n\n",((promediosE[z]+promediosR[z])/2));
-                    z++;
-                    printf("\nPromedio de tiempo de espera : %f\n",promediosE[z]);
-                    printf("\nPromedio de tiempo de procesado : %f\n",promediosR[z]);
-                    printf("\nPromedio de ambos es : %f",((promediosE[z]+promediosR[z])/2));
+                    flag4=1;
+
+                }
+                k++;
+            }
+            if (flag4==1)
+            {
+                int z=0;
+                float promediosE[12];
+                float promediosR[12];
+                char mander='s';
+                promedioCajas(cajita,cantidadDeCajas,promediosE,promediosR);
+                printf("\nDesea mostrar los promedios de cada caja? S/N: ");
+                fflush(stdin);
+                scanf("%c",&mander);
+                if (mander=='s')
+                {
+                    while(z<cantidadDeCajas)
+                    {
+                        mostrarCaja(cajita[z]);
+                        printf("\nPromedio de tiempo de espera : %f",promediosE[z]);
+                        printf("\nPromedio de tiempo de procesado : %f",promediosR[z]);
+                        printf("\nPromedio de ambos es : %f\n\n",((promediosE[z]+promediosR[z])/2));
+                        z++;
+                        printf("\nPromedio de tiempo de espera : %f\n",promediosE[z]);
+                        printf("\nPromedio de tiempo de procesado : %f\n",promediosR[z]);
+                        printf("\nPromedio de ambos es : %f",((promediosE[z]+promediosR[z])/2));
+                    }
                 }
             }
+            else
+            {
+                printf("\nNo hay ninguna caja abierta para promediar");
+            }
+
         }
-
-
     }
     return 0;
 }

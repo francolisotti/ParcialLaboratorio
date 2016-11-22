@@ -189,7 +189,7 @@ int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
 
     while (flag==0)
     {
-        if (cajita[i].tipo_pago==tipoPago)
+        if ((cajita[i].tipo_pago==tipoPago) &&(cajita[i].abiertaOcerrada)==1)
         {
             flag=1;
             posmenor=i;
@@ -325,6 +325,7 @@ void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
     }
     else
     {
+
         agregarClienteInorden(arbol->izq,cajita);
         aux=arbol->p;
         tipoPago=aux.tipo_pago;
@@ -382,7 +383,7 @@ int agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
     int posicion;
     while (i<12 && flag==0)
     {
-        if (cajita[i].tipo_pago==tipodepago)
+        if ((cajita[i].tipo_pago==tipodepago)&&(cajita[i].abiertaOcerrada==1))
         {
             mostrarCaja(cajita[i]);
             printf("\nDesea cargar el cliente a esta caja? s/n: ");
@@ -590,17 +591,20 @@ void promedioCajas (caja cajita[],int validos, float promediosE[], float promedi
 
     while (i<validos)
     {
-        filita=&cajita[i].filita;
-        aux=filita->primero;
-        while (aux!=NULL)
+        if (cajita[i].abiertaOcerrada==1)
         {
-            sumaR=sumaR+aux->cliente.tiempoProcesado;
-            sumaE=sumaE+aux->cliente.tiempoDeEspera;
-            cant++;
-            aux=aux->siguiente;
+            filita=&cajita[i].filita;
+            aux=filita->primero;
+            while (aux!=NULL)
+            {
+                sumaR=sumaR+aux->cliente.tiempoProcesado;
+                sumaE=sumaE+aux->cliente.tiempoDeEspera;
+                cant++;
+                aux=aux->siguiente;
+            }
+            promediosE[i]=sumaE/cant;
+            promediosR[i]=sumaR/cant;
         }
-        promediosE[i]=sumaE/cant;
-        promediosR[i]=sumaR/cant;
         i++;
     }
 }
