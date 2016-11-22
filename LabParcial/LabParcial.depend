@@ -597,10 +597,66 @@
 	"Persona.h"
 
 1479779117 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda persona.c
+<<<<<<< HEAD
 	<stdio.h>
 	<stdlib.h>
 	"Persona.h"
 
+1479786524 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Menu.h"
+
+1479786388 c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\caja.h
+	"Arbol.h"
+	"Fila.h"
+
+1479786388 c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\fila.h
+	"Lista.h"
+	"arbol.h"
+
+1479765368 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda fila.c
+	<stdio.h>
+	<stdlib.h>
+	"Fila.h"
+
+1479780330 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda caja.c
+	<stdio.h>
+	<stdlib.h>
+	"Caja.h"
+
+1479781993 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda menu.c
+	<stdio.h>
+	<stdlib.h>
+	"Menu.h"
+	"Arbol.h"
+	"Caja.h"
+	"Fila.h"
+	"Lista.h"
+	"Persona.h"
+
+1479786464 c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\menu.h
+	"string.h"
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+	"Arbol.h"
+	"Lista.h"
+	"Caja.h"
+	"Fila.h"
+
+1479769850 source:c:\users\user\desktop\parciallaboratorio-master\labparcial\tda arbol.c
+=======
+>>>>>>> origin/master
+	<stdio.h>
+	<stdlib.h>
+	"Arbol.h"
+
+1479769850 c:\users\user\desktop\parciallaboratorio-master\labparcial\arbol.h
+	"Persona.h"
+
+<<<<<<< HEAD
+=======
 1479786524 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\main.c
 	<stdio.h>
 	<stdlib.h>
@@ -652,6 +708,7 @@
 1479769850 c:\users\user\desktop\parciallaboratorio-master\labparcial\arbol.h
 	"Persona.h"
 
+>>>>>>> origin/master
 1479769850 c:\users\user\desktop\parciallaboratorio-master\labparcial\persona.h
 	<string.h>
 
@@ -687,6 +744,7 @@
 	"Caja.h"
 
 1479792776 source:c:\users\user\desktop\parciallaboratorio-master\labparcial\tda fila.c
+<<<<<<< HEAD
 	<stdio.h>
 	<stdlib.h>
 	"Fila.h"
@@ -713,6 +771,8 @@
 
 1479769850 e:\users\franco\desktop\parciallaboratorio\labparcial\menu.h
 	"string.h"
+=======
+>>>>>>> origin/master
 	<stdio.h>
 	<stdlib.h>
 	"Persona.h"
@@ -721,7 +781,16 @@
 	"Caja.h"
 	"Fila.h"
 
+<<<<<<< HEAD
 1479799639 source:e:\users\franco\desktop\parciallaboratorio\labparcial\tda menu.c
+=======
+1479769850 source:c:\users\user\desktop\parciallaboratorio-master\labparcial\tda lista.c
+	<stdio.h>
+	<stdlib.h>
+	"Lista.h"
+
+1479794146 source:c:\users\user\desktop\parciallaboratorio-master\labparcial\tda menu.c
+>>>>>>> origin/master
 	<stdio.h>
 	<stdlib.h>
 	"Menu.h"
@@ -730,4 +799,12 @@
 	"Fila.h"
 	"Lista.h"
 	"Persona.h"
+<<<<<<< HEAD
+=======
+
+1479769850 source:c:\users\user\desktop\parciallaboratorio-master\labparcial\tda persona.c
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+>>>>>>> origin/master
 

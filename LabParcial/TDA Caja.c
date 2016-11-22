@@ -577,6 +577,14 @@ void vaciar_cajas (caja cajita[], int validos)
     }
 }
 
+<<<<<<< HEAD
+=======
+void vaciar_caja_especifica(caja cajita[])
+{
+
+}
+
+>>>>>>> origin/master
 
 void promedioCajas (caja cajita[],int validos, float promediosE[], float promediosR[])
 {

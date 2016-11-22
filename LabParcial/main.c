@@ -80,7 +80,11 @@ int main()
         }
         if (menu==3)
         {
+<<<<<<< HEAD
             posicion=opcion3(cajita);
+=======
+            posicion=opcion3(&cajita);
+>>>>>>> origin/master
             flag2++;
         }
         if (menu==4)
@@ -125,10 +129,16 @@ int main()
                 while(z<cantidadDeCajas)
                 {
                     mostrarCaja(cajita[z]);
+<<<<<<< HEAD
                     printf("\nPromedio de tiempo de espera : %f",promediosE[z]);
                     printf("\nPromedio de tiempo de procesado : %f",promediosR[z]);
                     printf("\nPromedio de ambos es : %f\n\n",((promediosE[z]+promediosR[z])/2));
                     z++;
+=======
+                    printf("\nPromedio de tiempo de espera : %f\n",promediosE[z]);
+                    printf("\nPromedio de tiempo de procesado : %f\n",promediosR[z]);
+                    printf("\nPromedio de ambos es : %f",((promediosE[z]+promediosR[z])/2));
+>>>>>>> origin/master
                 }
             }
         }
