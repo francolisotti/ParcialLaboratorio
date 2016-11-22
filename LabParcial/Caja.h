@@ -34,9 +34,10 @@ void agregarSRTF (Fila * filita, persona a);
 
 void agregarSegunAlgoritmo (Fila * filita, persona a, char algoritmo[]);
 
-void agregarClienteACajaEnTiempoDeterminado (caja cajita[]);
+void agregarClienteACajaEnTiempoDeterminado (caja cajita[],int tiempo);
 void atenderClientes (caja cajita[]);
 
+void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int tiempo);
 
 
 #endif // CAJA_H_INCLUDED

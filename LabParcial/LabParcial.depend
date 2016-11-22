@@ -581,3 +581,54 @@
 	<stdlib.h>
 	"Persona.h"
 
+1479763663 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda arbol.c
+	<stdio.h>
+	<stdlib.h>
+	"Arbol.h"
+
+1479763663 c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\arbol.h
+	"Persona.h"
+
+1479763663 c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\persona.h
+	<string.h>
+
+1479763663 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda lista.c
+	<stdio.h>
+	<stdlib.h>
+	"Lista.h"
+
+1479763663 c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\lista.h
+	"Persona.h"
+
+1479763663 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda persona.c
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+
+1479773136 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+	"Arbol.h"
+	"Lista.h"
+	"Caja.h"
+	"Fila.h"
+
+1479772258 c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\caja.h
+	"Arbol.h"
+	"Fila.h"
+
+1479763663 c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\fila.h
+	"Lista.h"
+	"arbol.h"
+
+1479765368 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda fila.c
+	<stdio.h>
+	<stdlib.h>
+	"Fila.h"
+
+1479773119 source:c:\users\sureda\desktop\tp 2 programacion\githubnuevo\parciallaboratorio\labparcial\tda caja.c
+	<stdio.h>
+	<stdlib.h>
+	"Caja.h"
+

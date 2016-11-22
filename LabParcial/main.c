@@ -15,24 +15,31 @@ int main()
     char archi_caja[]={"caja.bin"};
     int orden=0;
     arbol=ArchiToArbol(archi_persona,arbol);
-    //orden= selectOrden();
-    //mostrarArbol(arbol,orden);
     caja cajita[12];
     int i=0;
     pasarDeArchiAcaja(archi_caja,cajita);
     abrir_cajas_(cajita);
     agregarClienteACaja(&cajita,arbol);
     int j=0;
-    //mostrar(&(cajita[11].filita));
     caja cajaAux;
     atenderClientes(&cajita);
-    while (j<12)
+    /*while (j<12)
     {
         printf("\n\n\n\n\n\nUltimo while va a mostrar las cajas (hay un getch())\n\n");
         getch();
         cajaAux=cajita[j];
         mostrarCaja(cajaAux);
         j++;
+    }*/
+    agregarClienteACajaEnTiempoDeterminado(cajita,10);
+    int jamaica=0;
+    while (jamaica<12)
+    {
+        printf("\n\n\n\n\n\nUltimo while va a mostrar las cajas (hay un getch())\n\n");
+        getch();
+        cajaAux=cajita[jamaica];
+        mostrarCaja(cajaAux);
+        jamaica++;
     }
     return 0;
 }

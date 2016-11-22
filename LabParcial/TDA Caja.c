@@ -98,15 +98,19 @@ void mostrarCaja(caja cajita)
             printf("\nPago: todos");
         }
 
-        char control='s';
-        printf("\nDesea mostrar la fila? s/n: ");
-        scanf("%c", &control);*/
-
-        if(control == 's')
+        /*if (filaVacia(&cajita.filita)==1)
         {
-            printf("\nFila:\n");
-            mostrar(&cajita.filita);
-        }
+            char control='s';
+            printf("\nDesea mostrar la fila? s/n: ");
+            scanf("%c", &control);
+
+            if(control == 's')
+            {
+                printf("\nFila:\n");*/
+                mostrar(&cajita.filita);
+           /* }
+
+        }*/
         puts("\n------------------------------------------");
     }
 
@@ -207,7 +211,7 @@ void agregarClienteACaja (caja cajita[], nodoArbol * raiz)
     }
     else
     {
-       agregarClientePostorden(raiz,cajita);
+        agregarClientePostorden(raiz,cajita);
     }
 }
 
@@ -291,7 +295,7 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
 
 void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
 {
-     int tipoPago;
+    int tipoPago;
     int pos_menor;
     persona aux;
     if (arbol==NULL)
@@ -310,7 +314,7 @@ void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
 
 void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
 {
-        int tipoPago;
+    int tipoPago;
     int pos_menor;
     persona aux;
     if (arbol==NULL)
@@ -330,7 +334,7 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
 void atenderClientes(caja cajita[])
 {
     int i=0;
-    char rr[]={"RR"};
+    char rr[]= {"RR"};
     while (i<12)
     {
         if (strcmp(cajita[i].algoritmoPlanificacion,rr)==0)
@@ -349,25 +353,30 @@ void agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
 {
     persona cliente;
     cliente=nuevo_Persona();
+    int tipodepago=cliente.tipo_pago;
     char control='s';
     int flag=0;
-
+    int i=0;
+    int posicion;
     while (i<12 && flag==0)
     {
-        mostrarCaja(cajita[i]);
-        printf("\nDesea cargar el cliente a esta caja? s/n: ");
-        fflush(stdin);
-        scanf("%c",&control);
-        if (control=='s')
+        if (cajita[i].tipo_pago==tipodepago)
         {
-            flag=1;
-            int posicion=i;
+            mostrarCaja(cajita[i]);
+            printf("\nDesea cargar el cliente a esta caja? s/n: ");
+            fflush(stdin);
+            scanf("%c",&control);
+            if (control=='s')
+            {
+                flag=1;
+                posicion=i;
+            }
         }
         i++;
     }
-
-    char algoritmo[]=cajita[posicion].algoritmoPlanificacion;
-    agergarSegunAlgoritmoEnTiempo(&cajita[posmenor].filita,cliente,algoritmo, tiempo)
+    char algoritmo[20];
+    strcpy(algoritmo,cajita[posicion].algoritmoPlanificacion);
+    agregarSegunAlgoritmoEnTiempo(&cajita[posicion].filita,cliente,algoritmo, tiempo);
 
 
 
@@ -380,7 +389,142 @@ void agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
 
 }
 
-agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int tiempo)
+void agregarPrioridadesAEnTiempo(Fila * filita,persona a,int tiempo)
+{
+    nodo * aux;
+    aux=filita->primero;
+    while (0<tiempo)
+    {
+        if (aux->cliente.cantArticulos<=tiempo)
+        {
+            tiempo=tiempo-aux->cliente.cantArticulos;
+            filita->primero=borrarPrimero(filita->primero);
+        }
+        else
+        {
+            aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
+            tiempo=0;
+        }
+    }
+    agregarPrioridadesA(filita,a);
+    tiempo_de_espera_fila(filita);
+}
+
+
+void agregarPrioridadesNAEnTiempo(Fila * filita,persona a,int tiempo)
+{
+    nodo * aux;
+    aux=filita->primero;
+    while (0<tiempo)
+    {
+        if (aux->cliente.cantArticulos<=tiempo)
+        {
+            tiempo=tiempo-aux->cliente.cantArticulos;
+            filita->primero=borrarPrimero(filita->primero);
+        }
+        else
+        {
+            aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
+            tiempo=0;
+        }
+    }
+    Fila * filosa=aux->siguiente;
+    agregarPrioridadesNA(filosa,a);
+    tiempo_de_espera_fila(filita);
+}
+
+void agregarSRTFEnTiempo(Fila * filita, persona a,int tiempo)
+{
+    nodo * aux;
+    aux=filita->primero;
+    while (0<tiempo)
+    {
+        if (aux->cliente.cantArticulos<=tiempo)
+        {
+            tiempo=tiempo-aux->cliente.cantArticulos;
+            filita->primero=borrarPrimero(filita->primero);
+        }
+        else
+        {
+            aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
+            tiempo=0;
+        }
+    }
+    agregarSRTF(filita,a);
+    tiempo_de_espera_fila(filita);
+}
+
+void agregarSJFEnTiempo(Fila * filita,persona a,int tiempo)
+{
+    nodo * aux;
+    aux=filita->primero;
+    while (0<tiempo)
+    {
+        printf("\nentro al wile vite");
+        if (aux->cliente.cantArticulos<=tiempo)
+        {
+            tiempo=tiempo-aux->cliente.cantArticulos;
+            filita->primero=borrarPrimero(filita->primero);
+        }
+        else
+        {
+            aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
+            tiempo=0;
+            printf("\nesta haciendo lo de tiempo raro de liso");
+        }
+    }
+    Fila * filosa=aux->siguiente;
+    printf("\nva a agregar");
+    agregarSJF(filosa,a);
+    printf("\nya agrego");
+    tiempo_de_espera_fila(filita);
+}
+
+void agregarFIFOEnTiempo(Fila * filita, persona a, int tiempo)
+{
+    nodo * aux;
+    aux=filita->primero;
+    while (0<tiempo)
+    {
+        if (aux->cliente.cantArticulos<=tiempo)
+        {
+            tiempo=tiempo-aux->cliente.cantArticulos;
+            filita->primero=borrarPrimero(filita->primero);
+        }
+        else
+        {
+            aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
+            tiempo=0;
+        }
+    }
+    agregar(filita,a);
+    tiempo_de_espera_fila(filita);
+}
+
+void agregarRREnTiempo(Fila * filita,persona a,int tiempo)
+{
+    nodo * aux;
+    aux=filita->primero;
+    while (0<tiempo)
+    {
+        if (aux->cliente.cantArticulos<=tiempo)
+        {
+            tiempo=tiempo-aux->cliente.cantArticulos;
+            filita->primero=borrarPrimero(filita->primero);
+        }
+        else
+        {
+            aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
+            tiempo=0;
+        }
+    }
+    Fila * filosa=aux->siguiente;
+    agregar(filosa,a);
+    tiempo_de_espera_fila(filita);
+}
+
+
+void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int tiempo)
 {
     char fifo[]= {"FIFO"};
     char prioridadesa[]= {"PRIORIDADES A"};
@@ -391,7 +535,7 @@ agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int ti
 
     if (strcmp(algoritmo,fifo)==0)
     {
-        agregar(filita,a);
+        agregarFIFOEnTiempo(filita,a,tiempo);
     }
     else if (strcmp(algoritmo,prioridadesa)==0)
     {
@@ -411,7 +555,7 @@ agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int ti
     }
     else if (strcmp(algoritmo,rr)==0)
     {
-        /// no se agregar(filita,a,tiempo);
+        /// no se agregarRREnTiempo(filita,a,tiempo);
     }
 
 
