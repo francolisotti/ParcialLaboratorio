@@ -122,7 +122,6 @@ void opcion4(caja cajita[], int posicion)
 
 void opcion5(caja cajita[],int validos)
 {
-<<<<<<< HEAD
     int i=0;
     while (i<validos)
     {
@@ -134,20 +133,15 @@ void opcion5(caja cajita[],int validos)
         i++;
 
     }
-=======
     vaciar_cajas(cajita,validos);
->>>>>>> origin/master
 }
 
 void opcion6(caja cajita[], int validos)
 {
     printf("\nDesea vaciar alguna caja? s/n: ");
     char control;
-<<<<<<< HEAD
     char contro2;
-=======
     char control2;
->>>>>>> origin/master
     fflush(stdin);
     scanf("%c", &control);
     int i=0;
@@ -158,7 +152,6 @@ void opcion6(caja cajita[], int validos)
             mostrarCaja(cajita[i]);
             printf("\nDesea vaciar esta caja, y cerrarla? s/n: ");
             fflush(stdin);
-<<<<<<< HEAD
             scanf("%c",&contro2);
             if (contro2=='s')
             {
@@ -169,7 +162,6 @@ void opcion6(caja cajita[], int validos)
                     mostrar(&cajita[i].filita);
                     cajita[i].abiertaOcerrada=0;
                 }
-=======
             scanf("%c",&control2);
             if (control2=='s')
             {
@@ -178,22 +170,18 @@ void opcion6(caja cajita[], int validos)
                 quitar(&cajita[i].filita);
                 cajita[i].abiertaOcerrada=0;
 
->>>>>>> origin/master
             }
             i++;
         }
     }
 }
 
-<<<<<<< HEAD
-=======
 void opcion7 (caja cajita[], int validos)
 {
 
 }
 
 
->>>>>>> origin/master
 
 
 
