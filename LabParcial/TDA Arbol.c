@@ -5,7 +5,7 @@
 int selectOrden ()
 {
     int orden=0;
-    printf("Decida el orden en que se va a mostrar el arbol\nSiendo 1 preorden,2 inorden y 3 postorden: ");
+    printf("Decida el orden en que se va a mostrar el arbol: ");
     scanf("%d",&orden);
     while ((orden > 3) && (orden <1))
     {
@@ -41,7 +41,9 @@ nodoArbol * insertarNodoArbol(nodoArbol * arbol, persona p)
 {
     if(arbol==NULL)
     {
+
         arbol = crearNodoArbol(p);
+
     }
     else
     {
@@ -185,7 +187,6 @@ nodoArbol * ArchiToArbol (char nombre[],nodoArbol * arbol)
             if (!feof(archi))
             {
                 arbol=insertarNodoArbol(arbol,aux);
-
             }
         }
     }

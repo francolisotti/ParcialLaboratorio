@@ -95,7 +95,6 @@ void mostrarArchiPersona (char archi_persona[])
         printf("\nERROR\nArchivo no encontrado");
     }
     fclose(archi);
-
 }
 
 

@@ -132,7 +132,10 @@ void mostrarLista(nodo * aux)
 nodo * borrarPrimero (nodo * lista)
 {
     nodo * seg=lista;
-    lista=lista->siguiente;
+    if (lista->siguiente)
+    {
+        lista=lista->siguiente;
+    }
     lista->anterior=NULL;
     free(seg);
 

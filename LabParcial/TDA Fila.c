@@ -24,29 +24,28 @@ void agregar (Fila * filita, persona a)
     }
     filita->ultimo=nuevo;
 }
-char quitar (Fila * filita)
+void quitar (Fila * filita)
 {
-    char resp[40];
-    strcpy(resp,"ninguno");
+    printf("\n-ENTRA-");
     if (filita->primero!=NULL)
     {
         nodo * aux=filita->primero;
         nodo * sig=aux->siguiente;
-
         if(filita->primero!=filita->ultimo)
         {
             sig->anterior=NULL;
             filita->primero=sig;
+            printf("\n--MASDEUNO-----");
         }
         else
         {
-            filita->primero=NULL;
-            filita->ultimo=NULL;
+            inicFila(filita);
+            printf("\n---ULTIMO---");
         }
-        strcpy(resp,aux->cliente.nombreApellido);
         free(aux);
     }
-    return resp;
+    printf("\n-SALE-");
+
 }
 
 void mostrar(Fila * filita)
@@ -122,3 +121,41 @@ void tiempo_de_espera_fila_RR (Fila * filita)
         }
     }
 }
+
+void vaciar_fila(Fila * filita)
+{
+    while (filaVacia(filita)==1)
+    {
+        filita->primero=borrarPrimero(filita->primero);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

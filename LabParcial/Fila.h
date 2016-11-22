@@ -13,8 +13,10 @@ typedef struct
 
 void inicFila(Fila * filita);
 void agregar (Fila * filita, persona a);
-char quitar (Fila * filita);
+void quitar (Fila * filita);
 void mostrar(Fila * filita);
 int filaVacia(Fila * filita);
+void vaciar_fila(Fila * filita);
+
 
 #endif // FILA_H_INCLUDED

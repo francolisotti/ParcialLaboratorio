@@ -16,9 +16,11 @@ typedef struct
 void abrir_cajas_(caja cajita[]);
 caja abrirOcerrarCaja (caja cajita);
 caja buscarCaja (caja A[], int buscada);
+void mostrarArchiCaja (char archi_Caja[]);
+
 int contarClientesCaja (caja cajita);
 void mostrarCaja (caja cajita);
-void pasarDeArchiAcaja (char archiCajas[], caja cajita[]);
+int pasarDeArchiAcaja_yContar (char archiCajas[], caja cajita[]);
 int evaluar_caja_con_menos_clientes (caja cajita[], int tipoPago);
 
 void agregarClientePreorden(nodoArbol * arbol, caja cajita[]);
@@ -34,10 +36,11 @@ void agregarSRTF (Fila * filita, persona a);
 
 void agregarSegunAlgoritmo (Fila * filita, persona a, char algoritmo[]);
 
-void agregarClienteACajaEnTiempoDeterminado (caja cajita[],int tiempo);
+int agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo);
 void atenderClientes (caja cajita[]);
 
 void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int tiempo);
 
+void vaciar_cajas (caja cajita[], int validos);
 
 #endif // CAJA_H_INCLUDED
