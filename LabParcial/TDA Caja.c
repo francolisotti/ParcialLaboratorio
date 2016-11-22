@@ -575,28 +575,18 @@ void vaciar_cajas (caja cajita[], int validos)
     int i=0;
     while(i<validos)
     {
-        vaciar_fila(cajita[i],0);
+        vaciar_fila(&cajita[i].filita);
         i++;
     }
 }
 
-void vaciar_fila(caja cajita[], int op)
+void vaciar_caja_especifica(caja cajita[])
 {
-    Fila * filita;
-    while (filaVacia(&cajita.filita)==1)
-    {
-        filita=(&cajita.filita);
-        if (op==1)
-        {
 
-            mostrar(filita->primero);
-            atenderClientes(cajita);
-        }
-        filita->primero=borrarPrimero(&cajita.filita->primero);
-    }
 }
 
-void promedioCajas (caja cajita[],int validos, float promediosE[], float promediosR)
+
+void promedioCajas (caja cajita[],int validos, float promediosE[], float promediosR[])
 {
     int promedio=0;
     int cant=0;
@@ -609,7 +599,7 @@ void promedioCajas (caja cajita[],int validos, float promediosE[], float promedi
 
     while (i<validos)
     {
-        filita=cajita[i].filita;
+        filita=&cajita[i].filita;
         aux=filita->primero;
         while (aux!=NULL)
         {
@@ -617,10 +607,9 @@ void promedioCajas (caja cajita[],int validos, float promediosE[], float promedi
             sumaE=sumaE+aux->cliente.tiempoDeEspera;
             cant++;
             aux=aux->siguiente;
-
         }
-
-
+        promediosE[i]=sumaE/cant;
+        promediosR[i]=sumaR/cant;
         i++;
     }
 }

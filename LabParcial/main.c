@@ -80,7 +80,7 @@ int main()
         }
         if (menu==3)
         {
-            posicion=opcion3(cajita);
+            posicion=opcion3(&cajita);
             flag2++;
         }
         if (menu==4)
@@ -108,16 +108,31 @@ int main()
         }
         if (menu==6)
         {
-
+            opcion6(cajita,cantidadDeCajas);
         }
+        if (menu==7)
+        {
+            int z=0;
+            float promediosE[12];
+            float promediosR[12];
+            char mander='s';
+            promedioCajas(cajita,cantidadDeCajas,promediosE,promediosR);
+            printf("\nDesea mostrar los promedios de cada caja? S/N: ");
+            fflush(stdin);
+            scanf("%c",&mander);
+            if (mander=='s')
+            {
+                while(z<cantidadDeCajas)
+                {
+                    mostrarCaja(cajita[z]);
+                    printf("\nPromedio de tiempo de espera : %f\n",promediosE[z]);
+                    printf("\nPromedio de tiempo de procesado : %f\n",promediosR[z]);
+                    printf("\nPromedio de ambos es : %f",((promediosE[z]+promediosR[z])/2));
+                }
+            }
+        }
+
+
     }
-
-
-
-
-
-
-
-
     return 0;
 }

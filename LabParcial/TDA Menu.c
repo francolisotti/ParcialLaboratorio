@@ -143,9 +143,11 @@ void opcion6(caja cajita[], int validos)
             scanf("%c",&control2);
             if (control2=='s')
             {
-                vaciar_fila(cajita[i].filita);
+                atenderClientes(cajita);
+                mostrar(&cajita[i].filita);
+                quitar(&cajita[i].filita);
                 cajita[i].abiertaOcerrada=0;
-                mostrar(cajita[i].filita);
+
             }
             i++;
         }

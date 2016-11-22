@@ -123,7 +123,13 @@ void tiempo_de_espera_fila_RR (Fila * filita)
     }
 }
 
-
+void vaciar_fila(Fila * filita)
+{
+    while (filaVacia(filita)==1)
+    {
+        filita->primero=borrarPrimero(filita->primero);
+    }
+}
 
 
 

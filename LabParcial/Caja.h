@@ -42,7 +42,5 @@ void atenderClientes (caja cajita[]);
 void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int tiempo);
 
 void vaciar_cajas (caja cajita[], int validos);
-void vaciar_fila(caja cajita, int op);
-
 
 #endif // CAJA_H_INCLUDED
