@@ -67,12 +67,33 @@ caja buscarCaja(caja A[], int buscada)
     return A[i];
 }
 
+void mostrarArchiCaja (char archi_Caja[])
+{
+    FILE * archi=fopen(archi_Caja, "rb");
+    caja aux;
+    if (archi!=NULL)
+    {
+        while (fread(&aux,sizeof(caja),1,archi)>0)
+        {
+            inicFila(&(aux.filita));
+            puts("\n------------------------------------------");
+            mostrarCaja(aux);
+            printf("\nAprete enter para continuar");
+            getch();
+        }
+    }
+    else
+    {
+        printf("\nERROR\nArchivo no encontrado");
+    }
+    fclose(archi);
+}
+
 
 void mostrarCaja(caja cajita)
 {
     if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
     {
-        puts("------------------------------------------");
         printf("Caja numero: %d",cajita.nro_de_caja);
         if(cajita.abiertaOcerrada==1)
         {
@@ -98,19 +119,19 @@ void mostrarCaja(caja cajita)
             printf("\nPago: todos");
         }
 
-        /*if (filaVacia(&cajita.filita)==1)
+        if (filaVacia(&cajita.filita)==1)
         {
             char control='s';
             printf("\nDesea mostrar la fila? s/n: ");
+            fflush(stdin);
             scanf("%c", &control);
 
             if(control == 's')
             {
-                printf("\nFila:\n");*/
+                printf("\nFila:\n");
                 mostrar(&cajita.filita);
-           /* }
-
-        }*/
+            }
+        }
         puts("\n------------------------------------------");
     }
 
@@ -120,7 +141,7 @@ void mostrarCaja(caja cajita)
     }
 }
 
-void pasarDeArchiAcaja (char archiCajas[], caja cajita[])
+int pasarDeArchiAcaja_yContar (char archiCajas[], caja cajita[])
 {
     FILE * archi=fopen(archiCajas,"rb");
     int i=0;
@@ -135,6 +156,7 @@ void pasarDeArchiAcaja (char archiCajas[], caja cajita[])
         }
     }
     fclose(archi);
+    return i;
 }
 
 
@@ -237,7 +259,6 @@ void agregarSJF (Fila * filita, persona a)
 {
     nodo * nuevo=crearNodoLista(a);
     filita->primero=agregarEnOrdenPorCant(filita->primero,nuevo);
-    printf("JUUUUANI");
 }
 
 void agregarSegunAlgoritmo (Fila * filita, persona a, char algoritmo[])
@@ -350,7 +371,7 @@ void atenderClientes(caja cajita[])
     }
 }
 
-void agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
+int agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
 {
     persona cliente;
     cliente=nuevo_Persona();
@@ -378,6 +399,7 @@ void agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
     char algoritmo[20];
     strcpy(algoritmo,cajita[posicion].algoritmoPlanificacion);
     agregarSegunAlgoritmoEnTiempo(&cajita[posicion].filita,cliente,algoritmo, tiempo);
+    return posicion;
 }
 
 void agregarPrioridadesAEnTiempo(Fila * filita,persona a,int tiempo)
@@ -548,5 +570,58 @@ void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], i
 
 }
 
+void vaciar_cajas (caja cajita[], int validos)
+{
+    int i=0;
+    while(i<validos)
+    {
+        vaciar_fila(cajita[i],0);
+        i++;
+    }
+}
 
+void vaciar_fila(caja cajita[], int op)
+{
+    Fila * filita;
+    while (filaVacia(&cajita.filita)==1)
+    {
+        filita=(&cajita.filita);
+        if (op==1)
+        {
+
+            mostrar(filita->primero);
+            atenderClientes(cajita);
+        }
+        filita->primero=borrarPrimero(&cajita.filita->primero);
+    }
+}
+
+void promedioCajas (caja cajita[],int validos, float promediosE[], float promediosR)
+{
+    int promedio=0;
+    int cant=0;
+    int sumaE=0;
+    int sumaR=0;
+    atenderClientes(cajita);
+    Fila * filita;
+    nodo * aux;
+    int i=0;
+
+    while (i<validos)
+    {
+        filita=cajita[i].filita;
+        aux=filita->primero;
+        while (aux!=NULL)
+        {
+            sumaR=sumaR+aux->cliente.tiempoProcesado;
+            sumaE=sumaE+aux->cliente.tiempoDeEspera;
+            cant++;
+            aux=aux->siguiente;
+
+        }
+
+
+        i++;
+    }
+}
 
