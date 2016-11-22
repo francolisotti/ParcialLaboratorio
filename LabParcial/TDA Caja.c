@@ -237,6 +237,7 @@ void agregarSJF (Fila * filita, persona a)
 {
     nodo * nuevo=crearNodoLista(a);
     filita->primero=agregarEnOrdenPorCant(filita->primero,nuevo);
+    printf("JUUUUANI");
 }
 
 void agregarSegunAlgoritmo (Fila * filita, persona a, char algoritmo[])
@@ -377,16 +378,6 @@ void agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
     char algoritmo[20];
     strcpy(algoritmo,cajita[posicion].algoritmoPlanificacion);
     agregarSegunAlgoritmoEnTiempo(&cajita[posicion].filita,cliente,algoritmo, tiempo);
-
-
-
-
-
-
-
-
-
-
 }
 
 void agregarPrioridadesAEnTiempo(Fila * filita,persona a,int tiempo)
@@ -429,7 +420,7 @@ void agregarPrioridadesNAEnTiempo(Fila * filita,persona a,int tiempo)
         }
     }
     Fila * filosa=aux->siguiente;
-    agregarPrioridadesNA(filosa,a);
+    agregarPrioridadesNA(&filosa,a);
     tiempo_de_espera_fila(filita);
 }
 
@@ -460,7 +451,6 @@ void agregarSJFEnTiempo(Fila * filita,persona a,int tiempo)
     aux=filita->primero;
     while (0<tiempo)
     {
-        printf("\nentro al wile vite");
         if (aux->cliente.cantArticulos<=tiempo)
         {
             tiempo=tiempo-aux->cliente.cantArticulos;
@@ -470,13 +460,10 @@ void agregarSJFEnTiempo(Fila * filita,persona a,int tiempo)
         {
             aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
             tiempo=0;
-            printf("\nesta haciendo lo de tiempo raro de liso");
         }
     }
     Fila * filosa=aux->siguiente;
-    printf("\nva a agregar");
-    agregarSJF(filosa,a);
-    printf("\nya agrego");
+    agregarSJF(&filosa,a);
     tiempo_de_espera_fila(filita);
 }
 
@@ -519,7 +506,7 @@ void agregarRREnTiempo(Fila * filita,persona a,int tiempo)
         }
     }
     Fila * filosa=aux->siguiente;
-    agregar(filosa,a);
+    agregar(&filosa,a);
     tiempo_de_espera_fila(filita);
 }
 

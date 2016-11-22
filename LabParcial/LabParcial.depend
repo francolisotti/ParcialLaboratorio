@@ -337,7 +337,7 @@
 1479409840 e:\users\franco\desktop\parciallaboratorio\labparcial\persona.h
 	<string.h>
 
-1479764115 source:e:\users\franco\desktop\parciallaboratorio\labparcial\tda fila.c
+1479767643 source:e:\users\franco\desktop\parciallaboratorio\labparcial\tda fila.c
 	<stdio.h>
 	<stdlib.h>
 	"Fila.h"
@@ -359,7 +359,7 @@
 	<stdlib.h>
 	"Persona.h"
 
-1479763839 source:e:\users\franco\desktop\parciallaboratorio\labparcial\main.c
+1479777556 source:e:\users\franco\desktop\parciallaboratorio\labparcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Persona.h"
@@ -368,11 +368,11 @@
 	"Caja.h"
 	"Fila.h"
 
-1479758466 e:\users\franco\desktop\parciallaboratorio\labparcial\caja.h
+1479777556 e:\users\franco\desktop\parciallaboratorio\labparcial\caja.h
 	"Arbol.h"
 	"Fila.h"
 
-1479763718 source:e:\users\franco\desktop\parciallaboratorio\labparcial\tda caja.c
+1479777767 source:e:\users\franco\desktop\parciallaboratorio\labparcial\tda caja.c
 	<stdio.h>
 	<stdlib.h>
 	"Caja.h"
