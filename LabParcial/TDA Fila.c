@@ -26,7 +26,7 @@ void agregar (Fila * filita, persona a)
 }
 void quitar (Fila * filita)
 {
-    printf("\n-ENTRA-");
+    //printf("\n-ENTRA-");
     if (filita->primero!=NULL)
     {
         nodo * aux=filita->primero;
@@ -35,16 +35,16 @@ void quitar (Fila * filita)
         {
             sig->anterior=NULL;
             filita->primero=sig;
-            printf("\n--MASDEUNO-----");
+           // printf("\n--MASDEUNO-----");
         }
         else
         {
             inicFila(filita);
-            printf("\n---ULTIMO---");
+           // printf("\n---ULTIMO---");
         }
         free(aux);
     }
-    printf("\n-SALE-");
+   // printf("\n-SALE-");
 
 }
 
@@ -96,7 +96,6 @@ void tiempo_de_espera_fila (Fila * filita)
 
 
 void tiempo_de_espera_fila_RR (Fila * filita)
-///CAMBIARLA A RR
 {
     if (filaVacia(filita)==1)
     {

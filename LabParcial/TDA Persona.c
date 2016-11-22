@@ -18,7 +18,7 @@ persona nuevo_Persona()
     scanf("%d", &cantArticulos);
     printf("\nTipo de cliente (1: embarazada, 2: jubilado y 3: normal): ");
     scanf("%d", &tipo_Cliente);
-    printf("\nTipo de pago (1 efectivo, 2 crédito o débito, 3 todos): ");
+    printf("\nTipo de pago (1 efectivo, 2 credito o debito, 3 todos): ");
     scanf("%d", &tipo_Pago);
 
     nuevo=crearPersona(nombreApellido,cantArticulos,tipo_Cliente,tipo_Pago);
@@ -52,15 +52,15 @@ void mostrarPersona(persona aux)
     printf("\n  Tiempo de procesado: %d", aux.tiempoProcesado);
     if(aux.tipo_cliente==1)
     {
-        printf("\n      Tipo de cliente: embarazada");
+        printf("\n      Tipo de cliente: Embarazada");
     }
     else if (aux.tipo_cliente==2)
     {
-        printf("\n      Tipo de cliente: jubilado");
+        printf("\n      Tipo de cliente: Jubilado");
     }
     else
     {
-        printf("\n      Tipo de cliente: normal");
+        printf("\n      Tipo de cliente: Normal");
     }
     if (aux.tipo_pago==1)
     {
