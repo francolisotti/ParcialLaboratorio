@@ -74,7 +74,7 @@ void mostrarPersona(persona aux)
     {
         printf("\n            Tipo pago: Todos los metodos");
     }
-    puts("\n------------------------------------------");
+    printf("\n-----------------------\n");
 }
 
 void mostrarArchiPersona (char archi_persona[])

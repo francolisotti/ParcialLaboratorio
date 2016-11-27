@@ -31,18 +31,136 @@ int main()
         nombreArchivoCaja(archi_caja);
         nombreArchivoPersona(archi_cliente);
     }
-
-    Mostrar_Archivos(archi_cliente,archi_caja);
-
-
-
     caja cajita[12];
-    nodoArbol * cliente=inicArbol();
+    nodoArbol * arbol=inicArbol();
 
     int cantidadDeCajas=pasarDeArchiAcaja_yContar(archi_caja,cajita);
-    cliente=ArchiToArbol(archi_cliente,cliente);
+    int opcion=-1;
+    int opcionArchi;
+    int opcionArbol;
+    int opcionCaja;
+    int flagArbol=0;
+    int controlOpcion1Caja;
+    int controlOpcion2Caja;
+    int flagCajaConClientes=0;
+    while (opcion!=0)
+    {
+        opcion=menuGeneral();
+        if (opcion==1)
+        {
+            opcionArchi=menu_archivo();
+            while (opcionArchi>0)
+            {
+                if (opcionArchi==1)
+                {
+                    subMenu_archivo_opcion1(archi_cliente);
+                }
+                else if (opcionArchi==2)
+                {
+                    subMenu_archivo_opcion2(archi_caja);
+                }
+                system("cls");
+                opcionArchi=menu_archivo();
+            }
+        }
+        else if (opcion==2)
+        {
+            opcionArbol=menu_arbol();
+            while(opcionArbol>0)
+            {
+                if (opcionArbol==1)
+                {
+                    arbol=subMenu_arbol_opcion1(archi_cliente,arbol);
+                    printf("\nArbol cargado exitosamente");
+                    printf("\nPresione cualquier tecla para continuar");
+                    getch();
+                    flagArbol=1;
+                }
+                else if (opcionArbol==2)
+                {
+                    if (flagArbol==1)
+                    {
+                        subMenu_arbol_opcion2(arbol);
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                    }
+                    else
+                    {
+                        printf("\nERROR, primero debe pasar al arbol los clientes del archivo");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                    }
+                }
+                opcionArbol=menu_arbol();
+            }
 
+        }
+        else if (opcion==3)
+        {
+            system("cls");
+            opcionCaja=menu_cajas();
+            while (opcionCaja>0)
+            {
+                if (opcionCaja==1)
+                {
+                    controlOpcion1Caja=subMenu_caja_opcion1(cajita);
+                    while (controlOpcion1Caja>0)
+                    {
+                        controlOpcion1Caja=subMenu_caja_opcion1(cajita);
+                    }
 
+                }
+                else if (opcionCaja==2)
+                {
+                    controlOpcion2Caja=subMenu_caja_opcion2(cajita);
+                    while (controlOpcion2Caja>0)
+                    {
+                        controlOpcion2Caja=subMenu_caja_opcion2(cajita);
+                    }
+                }
+                else if (opcionCaja==3)
+                {
+                    if (flagArbol==1)
+                    {
+                        subMenu_caja_opcion3(cajita,arbol);
+                        flagCajaConClientes=1;
+                    }
+                    else
+                    {
+                        printf("\nERROR, el arbol esta vacio");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                    }
+                }
+                else if (opcionCaja==4)
+                {
+                    if (flagCajaConClientes==1)
+                    {
+
+                        subMenu_caja_opcion4(cajita);
+                        printf("\nClientes atendidos correctamente");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                    }
+                    else
+                    {
+                        printf("\nLas cajas estan vacias");
+                    }
+                }
+                else if (opcionCaja==5)
+                {
+                    subMenu_caja_opcion5(cajita);
+                    printf("\nPresione cualquier tecla para continuar");
+                    getch();
+                }
+                opcionCaja=menu_cajas();
+
+            }
+        }
+
+    }
+
+/*
     int menu=15;
     int flag1=0;
     int flag2=0;
@@ -53,11 +171,11 @@ int main()
     while (menu!=0)
     {
         printf("\nMENU:\n");
-        printf("1) Carga de los clientes según metodo de recorrido y se muestran como quedan las cajas");
+        printf("1) Carga de los clientes segun metodo de recorrido y se muestran como quedan las cajas");
         printf("\n2) Calcular y mostrar los tiempos segun Algoritmos de Planificacion");
         printf("\n3) Ingresar cliente en tiempo determinado");
         printf("\n4) Ejecutar y mostrar tiempos nuevos con el cliente agregado");
-        printf(flag4"\n5) Repetir");
+        printf("\n5) Repetir");
         printf("\n6) Vaciar una caja, mostrando proceso a proceso");
         printf("\n7) Recorrer cajas y calcular tiempos de espera promedios");
         printf("\n");
@@ -82,9 +200,15 @@ int main()
         }
         if (menu==3)
         {
-            posicion=opcion3(cajita);
-            posicion=opcion3(&cajita);
-            flag2++;
+            if (flag1==1)
+            {
+                posicion=opcion3(cajita);
+                flag2++;
+            }
+            else
+            {
+                printf("No hay clientes en las cajas.")
+            }
         }
         if (menu==4)
         {
@@ -117,7 +241,7 @@ int main()
         {
             while (k<cantidadDeCajas)
             {
-                if (cajita[i].abiertaOcerrada==1)
+                if (cajita[k].abiertaOcerrada==1)
                 {
                     flag4=1;
 
@@ -155,6 +279,6 @@ int main()
             }
 
         }
-    }
+    }*/
     return 0;
 }

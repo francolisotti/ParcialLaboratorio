@@ -130,9 +130,9 @@ void mostrarCaja(caja cajita)
             {
                 printf("\nFila:\n");
                 mostrar(&cajita.filita);
+                printf("\n-----------------------\n");
             }
         }
-        puts("\n------------------------------------------");
     }
 
     else
@@ -185,11 +185,11 @@ int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
     int u=0;
     int flag=0;
     int menor=0;
-    int posmenor=0;
+    int posmenor=-1;
 
-    while (flag==0)
+    while (flag==0 && i<12)
     {
-        if ((cajita[i].tipo_pago==tipoPago) &&(cajita[i].abiertaOcerrada)==1)
+        if ((cajita[i].tipo_pago==tipoPago) && (cajita[i].abiertaOcerrada==1))
         {
             flag=1;
             posmenor=i;
@@ -197,9 +197,10 @@ int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
         }
         i++;
     }
+
     while (i<12)
     {
-        if (cajita[i].tipo_pago==tipoPago)
+        if ((cajita[i].tipo_pago==tipoPago) && (cajita[i].abiertaOcerrada==1))
         {
             if (menor>contarClientesCaja(cajita[i]))
             {
@@ -218,7 +219,7 @@ void agregarClienteACaja (caja cajita[], nodoArbol * raiz)
     int recorrido;
     printf("\nElija el algoritmo de recorrido: ");
     scanf("%d", &recorrido);
-    while (recorrido>3 && recorrido<1)
+    while (recorrido>3 || recorrido<1)
     {
         printf("ERROR, algoritmo no existente, ingrese nuevamente: ");
         scanf("%d", &recorrido);
@@ -309,7 +310,10 @@ void agregarClientePreorden(nodoArbol * arbol, caja cajita[])
         aux=arbol->p;
         tipoPago=aux.tipo_pago;
         pos_menor=evaluar_caja_con_menos_clientes(cajita,tipoPago);
-        agregarSegunAlgoritmo(&cajita[pos_menor].filita,aux,cajita[pos_menor].algoritmoPlanificacion);
+        if (pos_menor>=0)
+        {
+            agregarSegunAlgoritmo(&cajita[pos_menor].filita,aux,cajita[pos_menor].algoritmoPlanificacion);
+        }
         agregarClientePreorden(arbol->izq,cajita);
         agregarClientePreorden(arbol->der,cajita);
     }
@@ -330,7 +334,10 @@ void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
         aux=arbol->p;
         tipoPago=aux.tipo_pago;
         pos_menor=evaluar_caja_con_menos_clientes(cajita,tipoPago);
-        agregarSegunAlgoritmo(&cajita[pos_menor].filita,aux,cajita[pos_menor].algoritmoPlanificacion);
+        if (pos_menor>=0)
+        {
+            agregarSegunAlgoritmo(&cajita[pos_menor].filita,aux,cajita[pos_menor].algoritmoPlanificacion);
+        }
         agregarClienteInorden(arbol->der,cajita);
     }
 }
@@ -350,7 +357,10 @@ void agregarClientePostorden(nodoArbol * arbol, caja cajita[])
         aux=arbol->p;
         tipoPago=aux.tipo_pago;
         pos_menor=evaluar_caja_con_menos_clientes(cajita,tipoPago);
-        agregarSegunAlgoritmo(&cajita[pos_menor].filita,aux,cajita[pos_menor].algoritmoPlanificacion);
+        if (pos_menor>=0)
+        {
+            agregarSegunAlgoritmo(&cajita[pos_menor].filita,aux,cajita[pos_menor].algoritmoPlanificacion);
+        }
     }
 }
 
@@ -381,22 +391,8 @@ int agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
     int flag=0;
     int i=0;
     int posicion;
-    while (i<12 && flag==0)
-    {
-        if ((cajita[i].tipo_pago==tipodepago)&&(cajita[i].abiertaOcerrada==1))
-        {
-            mostrarCaja(cajita[i]);
-            printf("\nDesea cargar el cliente a esta caja? s/n: ");
-            fflush(stdin);
-            scanf("%c",&control);
-            if (control=='s')
-            {
-                flag=1;
-                posicion=i;
-            }
-        }
-        i++;
-    }
+
+    posicion=evaluar_caja_con_menos_clientes(cajita,tipodepago);
     char algoritmo[20];
     strcpy(algoritmo,cajita[posicion].algoritmoPlanificacion);
     agregarSegunAlgoritmoEnTiempo(&cajita[posicion].filita,cliente,algoritmo, tiempo);

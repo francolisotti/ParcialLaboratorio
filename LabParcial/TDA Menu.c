@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Menu.h"
-#include "Arbol.h"
-#include "Caja.h"
-#include "Fila.h"
-#include "Lista.h"
-#include "Persona.h"
 
 
 void nombreArchivoPersona (char nombre[])
@@ -57,7 +52,9 @@ void mostrar_todas_las_cajas (caja cajita[], int validos)
     while (i<validos)
     {
         cajaAux=cajita[i];
+        printf("\n-----------------------\n");
         mostrarCaja(cajaAux);
+        printf("\n-----------------------\n");
         printf("\nPresione cualquier tecla para continuar\n");
         getch();
 
@@ -91,109 +88,327 @@ void Mostrar_Archivos (char archi_cliente[], char archi_caja[])
     }
 }
 
-void opcion1 (caja cajita[],nodoArbol * cliente, int validos)
+int menuGeneral ()
 {
-    abrir_cajas_(cajita);
-    agregarClienteACaja(cajita,cliente);
-    mostrar_todas_las_cajas(cajita,validos);
+    int opcion;
+    system("cls");
+    printf("\nMENU GENERAL:\n ");
+    printf("\n[1] Acceder al menu de archivos.");
+    printf("\n[2] Acceder al menu de arbol.");
+    printf("\n[3] Acceder al menu de cajas.");
+    printf("\n");
+    printf("\n[0] Salir del programa.");
+    printf("\nIngrese un numero: ");
+    scanf("%d", &opcion);
+    while (opcion<0 || opcion>3)
+    {
+        printf("\nERROR, ingrese opcion nuevamente: ");
+        scanf("%d", &opcion);
+    }
+    return opcion;
 }
 
-void opcion2 (caja cajita[], int validos)
+int menu_archivo ()
 {
+    system("cls");
+    int control;
+    printf("MENU DE ARCHIVOS\n");
+    printf("\n[1] Mostrar Archivo de clientes");
+    printf("\n[2] Mostrar Archivo de cajas");
+    printf("\n");
+    printf("\n[0] Volver al menu general");
+    printf("\nIngrese un numero: ");
+    scanf("%d",&control);
+    while (control<0 || control>2)
+    {
+        printf("Opcion incorrecta, ingrese nuevamente:");
+        scanf("%d",&control);
+    }
+    return control;
+}
 
+void subMenu_archivo_opcion1 (char nombre_archi_cliente[])
+{
+    system("cls");
+    mostrarArchiPersona(nombre_archi_cliente);
+}
+
+void subMenu_archivo_opcion2 (char nombre_archi_cajas[])
+{
+    system("cls");
+    mostrarArchiCaja(nombre_archi_cajas);
+}
+
+
+int menu_arbol ()
+{
+    int control;
+    system("cls");
+    printf("\nMENU DE ARBOL\n");
+    printf("\n[1] Pasar archivo de clientes a arbol");
+    printf("\n[2] Mostrar arbol de clientes en orden que pida");
+    printf("\n");
+    printf("\n[0] Volver al menu general");
+    printf("\nIngrese un numero: ");
+    fflush(stdin);
+    scanf("%d",&control);
+    while (control<0 || control>2)
+    {
+        printf("Opcion incorrecta, ingrese nuevamente: ");
+        scanf("%d",&control);
+    }
+    return control;
+}
+
+nodoArbol * subMenu_arbol_opcion1(char nombre_archi[], nodoArbol * arbol)
+{
+    arbol=ArchiToArbol(nombre_archi,arbol);
+}
+
+void subMenu_arbol_opcion2(nodoArbol * arbol)
+{
+    system("cls");
+    int orden;
+    printf("En que orden desea mostrar el arbol");
+    printf("\n[1] Preorden");
+    printf("\n[2] Inorden");
+    printf("\n[3] Postorden");
+    printf("\nIngrese un numero: ");
+    scanf("%d",&orden);
+    while (orden<1 || orden>3)
+    {
+        printf("\nERROR, ingrese un orden valido: ");
+        scanf("%d", &orden);
+    }
+    mostrarArbol(arbol,orden);
+}
+
+int menu_cajas()
+{
+    system("cls");
+    int control;
+    printf("\nMENU DE CAJAS\n");
+    printf("\n[1] Abrir o cerrar una o todas las cajas");
+    printf("\n[2] Mostrar las cajas");
+    printf("\n[3] Pasar clientes del arbol a cajas");
+    printf("\n[4] Atender clientes");
+    printf("\n[5] Agregar en tiempo determinado");
+    printf("\n[6] Vaciar una o todas las cajas");
+    printf("\n[7] Calcular tiempos promedios");
+    printf("\n");
+    printf("\n[0] Volver al menu general");
+    printf("\nIngrese un numero: ");
+    scanf("%d",&control);
+    while (control<0 || control>7)
+    {
+        printf("Opcion incorrecta, ingrese nuevamente: ");
+        scanf("%d",&control);
+    }
+    return control;
+}
+
+int subMenu_caja_opcion1(caja cajita[])
+{
+    system("cls");
+    int control,i,d,numCaja;
+    printf("\n[1] Abrir todas las cajas");
+    printf("\n[2] Cerrar todas las cajas");
+    printf("\n[3] Abrir de a una caja");
+    printf("\n[4] Cerrar de a una caja");
+    printf("\n");
+    printf("\n[0] Volver al menu de caja");
+    printf("\nIngrese un numero: ");
+    scanf("%d",&control);
+    while (control<0 || control>4)
+    {
+        printf("Opcion incorrecta, ingrese nuevamente: ");
+        scanf("%d",&control);
+    }
+    if (control==1)
+    {
+        i=0;
+        while(i<12)
+        {
+            if (cajita[i].abiertaOcerrada==0)
+            {
+                cajita[i]=abrirOcerrarCaja(cajita[i]);
+            }
+            i++;
+        }
+        printf("\nCajas abiertas exitosamente");
+        printf("\nPresione cualquier tecla para continuar");
+        getch();
+    }
+    if (control==2)
+    {
+        d=0;
+        while(d<12)
+        {
+            if (cajita[d].abiertaOcerrada==1)
+            {
+                cajita[d]=abrirOcerrarCaja(cajita[d]);
+            }
+            d++;
+        }
+        printf("\nCajas cerradas exitosamente");
+        printf("\nPresione cualquier tecla para continuar");
+        getch();
+    }
+    char flag='s';
+    char flag2='s';
+    if (control==3)
+    {
+        while (flag=='s')
+        {
+            printf("\nIngrese el numero de caja que quiere abrir: ");
+            scanf("%d", &numCaja);
+            while (numCaja<1 || numCaja>12)
+            {
+                printf("\nERROR, la caja no existe, ingrese nuevemente: ");
+                scanf("%d", &numCaja);
+            }
+            printf("\n-----------------------\n");
+            mostrarCaja(cajita[numCaja-1]);
+            printf("\n-----------------------\n");
+
+            if (cajita[numCaja-1].abiertaOcerrada==1)
+            {
+                printf("\nEsa caja ya esta abierta");
+                printf("\nIngrese cualquier tecla para continuar");
+                getch();
+            }
+            else
+            {
+                cajita[numCaja-1]=abrirOcerrarCaja(cajita[numCaja-1]);
+                printf("\nCaja abierta exitosamente");
+            }
+            printf("\nDesea abrir otra caja? s/n: ");
+            fflush(stdin);
+            scanf("%c", &flag);
+        }
+    }
+    if (control==4)
+    {
+        while (flag2=='s')
+        {
+            printf("\nIngrese el numero de caja que quiere cerrar: ");
+            scanf("%d", &numCaja);
+            while (numCaja<1 || numCaja>12)
+            {
+                printf("\nERROR, la caja no existe, ingrese nuevemente: ");
+                scanf("%d", &numCaja);
+            }
+            printf("\n-----------------------\n");
+            mostrarCaja(cajita[numCaja-1]);
+            printf("\n-----------------------\n");
+            if (cajita[numCaja-1].abiertaOcerrada==0)
+            {
+                printf("\nEsa caja ya esta cerrada");
+                printf("\nIngrese cualquier tecla para continuar");
+                getch();
+            }
+            else
+            {
+                cajita[numCaja-1]=abrirOcerrarCaja(cajita[numCaja-1]);
+                printf("\nCaja cerrada exitosamente");
+            }
+            printf("\nDesea cerrar otra caja? s/n: ");
+            fflush(stdin);
+            scanf("%c", &flag2);
+        }
+    }
+    return control;
+}
+
+int subMenu_caja_opcion2(caja cajita[])
+{
+    int opcion;
+    int i=0;
+    int numCaja;
+    char control='s';
+    system("cls");
+    printf("\n[1] Mostrar todas las cajas");
+    printf("\n[2] Mostrar una caja especifica");
+    printf("\n");
+    printf("\n[0] Volver al menu de cajas");
+    printf("\nIngrese una opcion: ");
+    scanf("%d", &opcion);
+    while (opcion>2 || opcion<0)
+    {
+        printf("\nERROR, ingrese opcion nuevamente: ");
+        scanf("%d", &opcion);
+    }
+    if (opcion==1)
+    {
+        while (i<12)
+        {
+            printf("\n-----------------------\n");
+            mostrarCaja(cajita[i]);
+            i++;
+        }
+        printf("\nPresione cualquier tecla para continuar\n");
+        getch();
+    }
+    else if (opcion==2)
+    {
+        while (control=='s' )
+        {
+            printf("\nIngrese el numero de la caja que desea mostrar: ");
+            scanf("%d", &i);
+            printf("\n-----------------------\n");
+            mostrarCaja(cajita[i-1]);
+            printf("\nDesea mostrar otra caja? s/n: ");
+            fflush(stdin);
+            scanf("%c", &control);
+        }
+        printf("\nPresione cualquier tecla para continuar\n");
+        getch();
+    }
+    return opcion;
+}
+
+void subMenu_caja_opcion3(caja cajita[], nodoArbol * arbol)
+{
+    int i=0;
+    int flag=0;
+    while (i<12)
+    {
+        if(cajita[i].abiertaOcerrada==1)
+        {
+            flag=1;
+        }
+        i++;
+    }
+    if (flag==0)
+    {
+        printf("\nERROR, todas las cajas estan cerradas");
+    }
+    else
+    {
+        agregarClienteACaja(cajita,arbol);
+        printf("\nClientes cargados exitosamente");
+    }
+    printf("\nPresione cualquier tecla para continuar");
+    getch();
+}
+
+void subMenu_caja_opcion4(caja cajita[])
+{
     atenderClientes(cajita);
-    mostrar_todas_las_cajas(cajita,validos);
 }
 
-int opcion3 (caja cajita[])
+void subMenu_caja_opcion5(caja cajita[])
 {
     int tiempo;
-    printf("\nElija el tiempo en el que quiere ingresar al nuevo cliente: ");
+    int posicion;
+    printf("\nEn que tiempo desea cargar su cliente: ");
     scanf("%d", &tiempo);
-    int posicion=agregarClienteACajaEnTiempoDeterminado(cajita,tiempo);
-    return posicion;
-}
-
-void opcion4(caja cajita[], int posicion)
-{
-    atenderClientes(cajita);
+    posicion=agregarClienteACajaEnTiempoDeterminado(cajita,tiempo);
+    printf("\n-----------------------\n");
     mostrarCaja(cajita[posicion]);
+    printf("\n-----------------------\n");
 
 }
-
-void opcion5(caja cajita[],int validos)
-{
-    int i=0;
-    while (i<validos)
-    {
-        while (filaVacia(&cajita[i].filita)==1)
-        {
-            quitar(&cajita[i].filita);
-        }
-        //printf("\nTERMINO LA CAJA");
-        i++;
-
-    }
-    vaciar_cajas(cajita,validos);
-}
-
-void opcion6(caja cajita[], int validos)
-{
-    printf("\nDesea vaciar alguna caja? s/n: ");
-    char control;
-    char contro2;
-    char control2;
-    fflush(stdin);
-    scanf("%c", &control);
-    int i=0;
-    if (control=='s')
-    {
-        while (i<validos)
-        {
-            mostrarCaja(cajita[i]);
-            printf("\nDesea vaciar esta caja, y cerrarla? s/n: ");
-            fflush(stdin);
-            scanf("%c",&contro2);
-            if (contro2=='s')
-            {
-                while (filaVacia(&cajita[i].filita)==1)
-                {
-                    quitar(&cajita[i].filita);
-                    atenderClientes(cajita);
-                    mostrar(&cajita[i].filita);
-                    cajita[i].abiertaOcerrada=0;
-                }
-                scanf("%c",&control2);
-                if (control2=='s')
-                {
-                    atenderClientes(cajita);
-                    mostrar(&cajita[i].filita);
-                    quitar(&cajita[i].filita);
-                    cajita[i].abiertaOcerrada=0;
-
-                }
-                i++;
-            }
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -17,5 +17,4 @@ persona nuevo_Persona();
 persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,int tipo_Pago);
 void cargarPersona (char nombreDelArchivo[]);
 void mostrarPersona(persona aux);
-
 #endif // PERSONA_H_INCLUDED

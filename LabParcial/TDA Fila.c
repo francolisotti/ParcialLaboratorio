@@ -86,7 +86,7 @@ void tiempo_de_espera_fila (Fila * filita)
             {
                 aux->cliente.tiempoDeEspera=espera;
                 espera=espera+aux->cliente.cantArticulos;
-                aux->cliente.tiempoProcesado=aux->cliente.tiempoDeEspera+aux->cliente.cantArticulos;
+                aux->cliente.tiempoProcesado=aux->cliente.cantArticulos;
 
                 aux=aux->siguiente;
             }
@@ -105,7 +105,6 @@ void tiempo_de_espera_fila_RR (Fila * filita)
         aux->cliente.tiempoDeEspera=espera;
         espera=aux->cliente.cantArticulos;
         aux->cliente.tiempoProcesado=aux->cliente.cantArticulos;
-
         if(aux->siguiente!=NULL)
         {
             aux=aux->siguiente;
@@ -113,7 +112,7 @@ void tiempo_de_espera_fila_RR (Fila * filita)
             {
                 aux->cliente.tiempoDeEspera=espera;
                 espera=espera+aux->cliente.cantArticulos;
-                aux->cliente.tiempoProcesado=aux->cliente.tiempoDeEspera+aux->cliente.cantArticulos;
+                aux->cliente.tiempoProcesado=aux->cliente.cantArticulos;
 
                 aux=aux->siguiente;
             }

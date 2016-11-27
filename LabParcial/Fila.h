@@ -16,6 +16,9 @@ void agregar (Fila * filita, persona a);
 void quitar (Fila * filita);
 void mostrar(Fila * filita);
 int filaVacia(Fila * filita);
+void tiempo_de_espera_fila (Fila * filita);
+void tiempo_de_espera_fila_RR (Fila * filita);
+
 void vaciar_fila(Fila * filita);
 
 
