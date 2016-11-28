@@ -163,7 +163,6 @@ int contarClientesCaja (caja cajita)
     int cont=0;
     Fila seg=cajita.filita;
     nodo * aux;
-    int x=0;
     if (filaVacia(&seg)==1)
     {
 
@@ -180,7 +179,7 @@ int contarClientesCaja (caja cajita)
 int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
 {
     int i=0;
-    int u=0;
+
     int flag=0;
     int menor=0;
     int posmenor=-1;
@@ -241,6 +240,7 @@ void agregarPrioridadesA(Fila * filita, persona a)
     nodo * nuevo=crearNodoLista(a);
     filita->primero=agregarEnOrdenTipoCliente(filita->primero,nuevo);
 }
+
 
 void agregarPrioridadesNA(Fila * filita, persona a)
 {
@@ -324,6 +324,7 @@ void agregarClienteInorden(nodoArbol * arbol, caja cajita[])
     persona aux;
     if (arbol==NULL)
     {
+        printf("\nERROR, el arbol no existe");
     }
     else
     {

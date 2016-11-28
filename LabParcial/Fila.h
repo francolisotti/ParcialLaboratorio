@@ -4,7 +4,7 @@
 #include "Lista.h"
 #include "arbol.h"
 
-typedef struct
+typedef struct Fila
 {
     struct nodo * primero;
     struct nodo * ultimo;

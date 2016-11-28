@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-typedef struct
+typedef struct persona
 {
     char nombreApellido [40];
     int cantArticulos; // es el tiempo de ejecución

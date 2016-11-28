@@ -3,7 +3,7 @@
 #include "Arbol.h"
 #include "Fila.h"
 
-typedef struct
+typedef struct caja
 {
     int nro_de_caja;
     char nombreCajero[40];

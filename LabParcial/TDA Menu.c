@@ -448,7 +448,7 @@ void subMenu_caja_opcion6(caja cajita[], int cantidadDeCajas)
             scanf("%c", &control2);
             if (control2=='s')
             {
-                vaciar_cajas(cajita,i);
+                quitar(&cajita[i-1].filita);
             }
             printf("\nDesea vaciar otra caja? s/n: ");
             fflush(stdin);
@@ -459,7 +459,7 @@ void subMenu_caja_opcion6(caja cajita[], int cantidadDeCajas)
     {
         for (i=0;i<12;i++)
         {
-            vaciar_cajas(cajita,i);
+            quitar(&cajita[i].filita);
         }
         printf("\nCajas vaciadas exitosamente");
     }

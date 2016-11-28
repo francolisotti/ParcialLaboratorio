@@ -2,7 +2,7 @@
 #define ARBOL_H_INCLUDED
 #include "Persona.h"
 
-typedef struct
+typedef struct nodoArbol
 {
     persona p;
     struct nodoArbol * izq;

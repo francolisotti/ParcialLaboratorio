@@ -3,7 +3,7 @@
 
 #include "Persona.h"
 
-typedef struct
+typedef struct nodo
 {
     persona cliente;
     struct nodo * siguiente;
