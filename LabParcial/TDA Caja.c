@@ -256,7 +256,7 @@ void agregarSRTF (Fila * filita, persona a)
 
 void agregarSJF (Fila * filita, persona a)
 {
-    nodo * nuevo=crearNodoLista(a);
+    nodo * nuevo=crearNodoLista(a);///revisar el warning
     filita->primero=agregarEnOrdenPorCant(filita->primero,nuevo);
 }
 
@@ -386,9 +386,9 @@ int agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
     persona cliente;
     cliente=nuevo_Persona();
     int tipodepago=cliente.tipo_pago;
-    char control='s';
-    int flag=0;
-    int i=0;
+    ///char control='s';
+    ///int flag=0;
+   ///unused int i=0;
     int posicion;
 
     posicion=evaluar_caja_con_menos_clientes(cajita,tipodepago);
@@ -570,7 +570,7 @@ void vaciar_cajas (caja cajita[], int validos)
 
 void promedioCajas (caja cajita[],int validos, float promediosE[], float promediosR[])
 {
-    int promedio=0;
+    ///unused int promedio=0;
     int cant=0;
     int sumaE=0;
     int sumaR=0;
