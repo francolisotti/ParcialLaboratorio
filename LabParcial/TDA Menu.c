@@ -410,6 +410,95 @@ void subMenu_caja_opcion5(caja cajita[])
 
 }
 
+void subMenu_caja_opcion6(caja cajita[], int cantidadDeCajas)
+{
+    system("cls");
+    int opcion;
+    int i=0;
+    char control='s';
+    char control2;
+    printf("\n[1] Vaciar de a una caja por vez");
+    printf("\n[2] Vaciar todas las cajas");
+    printf("\n");
+    printf("\n[0] Volver al menu caja");
+    printf("\nIngrese opcion: ");
+    scanf("%d", &opcion);
+    while (opcion<0 || opcion>2)
+    {
+        printf("\nERROR, ingrese opcion nuevamente: ");
+        scanf("%d", &opcion);
+    }
+    system("cls");
+    if (opcion==1)
+    {
+        while (control=='s')
+        {
+            printf("\nIngrese el numero de caja que desea vaciar: ");
+            scanf("%d",&i);
+            while(i<1 && i>12)
+            {
+                printf("\nERROR, ingrese opcion nuevamente");
+                scanf("%d",&i);
+            }
+            printf("\n-----------------------\n");
+            mostrarCaja(cajita[i-1]);
+            printf("\n-----------------------\n");
+            printf("\nDesea vaciar esta caja? s/n: ");///por si se equivoco de caja
+            fflush(stdin);
+            scanf("%c", &control2);
+            if (control2=='s')
+            {
+                vaciar_cajas(cajita,i);
+            }
+            printf("\nDesea vaciar otra caja? s/n: ");
+            fflush(stdin);
+            scanf("%c",&control);
+        }
+    }
+    else if (opcion==2)
+    {
+        for (i=0;i<12;i++)
+        {
+            vaciar_cajas(cajita,i);
+        }
+        printf("\nCajas vaciadas exitosamente");
+    }
+}
+
+void subMenu_caja_opcion7(caja cajita[], int cantidadDeCajas)
+{
+    int z=0;
+    float promediosE[12];
+    float promediosR[12];
+    char mander='s';
+    promedioCajas(cajita,cantidadDeCajas,promediosE,promediosR);
+    printf("\nDesea mostrar los promedios de cada caja? s/n: ");
+    fflush(stdin);
+    scanf("%c",&mander);
+    if (mander=='s')
+    {
+        while(z<cantidadDeCajas)
+        {
+            printf("\n-----------------------\n");
+            mostrarCaja(cajita[z]);
+            printf("\nPromedio de tiempo de espera: %2.f",promediosE[z]);
+            printf("\nPromedio de tiempo de procesado: %2.f",promediosR[z]);
+            printf("\nPromedio de ambos es: %2.f\n",((promediosE[z]+promediosR[z])/2));
+            z++;
+            printf("-----------------------\n");
+            /*printf("\nPromedio de tiempo de espera: %2.f\n",promediosE[z]);
+            printf("\nPromedio de tiempo de procesado: %2.f\n",promediosR[z]);
+            printf("\nPromedio de ambos es : %2.f",((promediosE[z]+promediosR[z])/2));*/
+        }
+    }
+    else
+    {
+        printf("\nNo hay ninguna caja abierta para promediar");
+    }
+}
+
+
+
 
 
 

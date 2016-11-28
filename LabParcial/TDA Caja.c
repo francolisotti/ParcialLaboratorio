@@ -130,11 +130,9 @@ void mostrarCaja(caja cajita)
             {
                 printf("\nFila:\n");
                 mostrar(&cajita.filita);
-                printf("\n-----------------------\n");
             }
         }
     }
-
     else
     {
         printf("\nLa caja no existe");
@@ -566,12 +564,7 @@ void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], i
 
 void vaciar_cajas (caja cajita[], int validos)
 {
-    int i=0;
-    while(i<validos)
-    {
-        vaciar_fila(&cajita[i].filita);
-        i++;
-    }
+    quitar(&cajita[validos-1].filita);
 }
 
 void promedioCajas (caja cajita[],int validos, float promediosE[], float promediosR[])

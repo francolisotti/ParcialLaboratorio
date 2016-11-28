@@ -27,25 +27,20 @@ void agregar (Fila * filita, persona a)
 void quitar (Fila * filita)
 {
     //printf("\n-ENTRA-");
+    nodo * aux;
+    nodo * sig;
     if (filita->primero!=NULL)
     {
-        nodo * aux=filita->primero;
-        nodo * sig=aux->siguiente;
-        if(filita->primero!=filita->ultimo)
+        aux=filita->primero;
+        while(aux!=NULL)
         {
+            sig=aux->siguiente;
+            free(aux);
             sig->anterior=NULL;
             filita->primero=sig;
-           // printf("\n--MASDEUNO-----");
+            aux=filita->primero;
         }
-        else
-        {
-            inicFila(filita);
-           // printf("\n---ULTIMO---");
-        }
-        free(aux);
     }
-   // printf("\n-SALE-");
-
 }
 
 void mostrar(Fila * filita)

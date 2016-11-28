@@ -153,11 +153,17 @@ int main()
                     printf("\nPresione cualquier tecla para continuar");
                     getch();
                 }
+                else if (opcionCaja==6)
+                {
+                    subMenu_caja_opcion6(cajita,cantidadDeCajas);
+                }
+                else if (opcionCaja==7)
+                {
+                    subMenu_caja_opcion7(cajita,cantidadDeCajas);
+                }
                 opcionCaja=menu_cajas();
-
             }
         }
-
     }
 
 /*
@@ -255,7 +261,7 @@ int main()
                 float promediosR[12];
                 char mander='s';
                 promedioCajas(cajita,cantidadDeCajas,promediosE,promediosR);
-                printf("\nDesea mostrar los promedios de cada caja? S/N: ");
+                printf("\nDesea mostrar los promedios de cada caja? s/n: ");
                 fflush(stdin);
                 scanf("%c",&mander);
                 if (mander=='s')
@@ -265,11 +271,11 @@ int main()
                         mostrarCaja(cajita[z]);
                         printf("\nPromedio de tiempo de espera : %f",promediosE[z]);
                         printf("\nPromedio de tiempo de procesado : %f",promediosR[z]);
-                        printf("\nPromedio de ambos es : %f\n\n",((promediosE[z]+promediosR[z])/2));
+                        printf("\nPromedio de ambos es : %f.2\n\n",((promediosE[z]+promediosR[z])/2));
                         z++;
                         printf("\nPromedio de tiempo de espera : %f\n",promediosE[z]);
                         printf("\nPromedio de tiempo de procesado : %f\n",promediosR[z]);
-                        printf("\nPromedio de ambos es : %f",((promediosE[z]+promediosR[z])/2));
+                        printf("\nPromedio de ambos es : %f.2",((promediosE[z]+promediosR[z])/2));
                     }
                 }
             }
