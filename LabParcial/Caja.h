@@ -24,7 +24,7 @@ int pasarDeArchiAcaja_yContar (char archiCajas[], caja cajita[]);
 int contarClientesCaja (caja cajita);
 int evaluar_caja_con_menos_clientes (caja cajita[], int tipoPago);
 
-void agregarClienteACaja (caja cajita[], nodoArbol * raiz);
+int agregarClienteACaja (caja cajita[], nodoArbol * raiz);
 void agregarPrioridadesA(Fila * filita, persona a);
 void agregarPrioridadesNA(Fila * filita, persona a);
 void agregarSRTF (Fila * filita, persona a);
@@ -32,9 +32,9 @@ void agregarSJF (Fila * filita, persona a);
 
 void agregarSegunAlgoritmo (Fila * filita, persona a, char algoritmo[]);
 
-void agregarClientePreorden(nodoArbol * arbol, caja cajita[]);
-void agregarClienteInorden(nodoArbol * arbol, caja cajita[]);
-void agregarClientePostorden(nodoArbol * arbol, caja cajita[]);
+int agregarClientePreorden(nodoArbol * arbol, caja cajita[],int contadorclientes);
+int agregarClienteInorden(nodoArbol * arbol, caja cajita[],int contadorclientes);
+int agregarClientePostorden(nodoArbol * arbol, caja cajita[],int contadorclientes);
 
 
 void atenderClientes (caja cajita[]);

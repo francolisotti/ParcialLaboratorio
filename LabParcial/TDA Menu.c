@@ -367,9 +367,10 @@ int subMenu_caja_opcion2(caja cajita[])
     return opcion;
 }
 
-void subMenu_caja_opcion3(caja cajita[], nodoArbol * arbol)
+int subMenu_caja_opcion3(caja cajita[], nodoArbol * arbol)
 {
     int i=0;
+    int cantidadclientes=0;
     int flag=0;
     while (i<12)
     {
@@ -385,11 +386,13 @@ void subMenu_caja_opcion3(caja cajita[], nodoArbol * arbol)
     }
     else
     {
-        agregarClienteACaja(cajita,arbol);
-        printf("\nClientes cargados exitosamente");
+        cantidadclientes=agregarClienteACaja(cajita,arbol);
+        printf("\nClientes cargados exitosamente: se han cargado %d de 35 clientes", cantidadclientes);
     }
     printf("\nPresione cualquier tecla para continuar");
     getch();
+
+    return cantidadclientes;
 }
 
 void subMenu_caja_opcion4(caja cajita[])
@@ -449,6 +452,7 @@ void subMenu_caja_opcion6(caja cajita[], int cantidadDeCajas)
             if (control2=='s')
             {
                 quitar(&cajita[i-1].filita);
+                cajita[i-1].abiertaOcerrada=0;
             }
             printf("\nDesea vaciar otra caja? s/n: ");
             fflush(stdin);
@@ -462,6 +466,9 @@ void subMenu_caja_opcion6(caja cajita[], int cantidadDeCajas)
             quitar(&cajita[i].filita);
         }
         printf("\nCajas vaciadas exitosamente");
+        printf("\nPresione cualquier tecla para continuar\n");
+        getch();
+
     }
 }
 
@@ -481,14 +488,11 @@ void subMenu_caja_opcion7(caja cajita[], int cantidadDeCajas)
         {
             printf("\n-----------------------\n");
             mostrarCaja(cajita[z]);
-            printf("\nPromedio de tiempo de espera: %2.f",promediosE[z]);
-            printf("\nPromedio de tiempo de procesado: %2.f",promediosR[z]);
-            printf("\nPromedio de ambos es: %2.f\n",((promediosE[z]+promediosR[z])/2));
+            printf("\nPromedio de tiempo de espera: %.2f",promediosE[z]);
+            printf("\nPromedio de tiempo de procesado: %.2f",promediosR[z]);
+            printf("\nPromedio de ambos es: %.2f\n",((promediosE[z]+promediosR[z])/2));
             z++;
             printf("-----------------------\n");
-            /*printf("\nPromedio de tiempo de espera: %2.f\n",promediosE[z]);
-            printf("\nPromedio de tiempo de procesado: %2.f\n",promediosR[z]);
-            printf("\nPromedio de ambos es : %2.f",((promediosE[z]+promediosR[z])/2));*/
         }
     }
     else

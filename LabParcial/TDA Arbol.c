@@ -24,17 +24,17 @@ nodoArbol * crearNodoArbol(persona p)///recibimos una persona p cargada con los 
 {
     nodoArbol * aux = (nodoArbol *) malloc(sizeof(nodoArbol));///creamos un auxiliar con los casteos necesarios
 
-    strcpy(aux->p.nombreApellido,p.nombreApellido);
+    strcpy(aux->p.nombreApellido,p.nombreApellido);///asignamos los valores de p a aux
     aux->p.tipo_cliente=p.tipo_cliente;
     aux->p.tipo_pago=p.tipo_pago;
-    aux->p.cantArticulos=p.cantArticulos;/// //////////////////////////////////////////
-    aux->p.tiempoDeEspera=NULL;///no iria 0?
-    aux->p.tiempoProcesado=NULL;///no iria 0?
+    aux->p.cantArticulos=p.cantArticulos;
+    aux->p.tiempoDeEspera=NULL;
+    aux->p.tiempoProcesado=NULL;
 
-    aux->izq=NULL;/// //////////////////////////////////////////////////////
+    aux->izq=NULL;
     aux->der=NULL;
 
-    return aux;
+    return aux;///retornamos aux que sera el nuevo nodoArbol
 }
 
 nodoArbol * insertarNodoArbol(nodoArbol * arbol, persona p)///incerta una persona en el arbol
@@ -93,7 +93,7 @@ void mostrarArbol (nodoArbol * arbol, int orden)
 {///mostramos el arbol segun el orden que recivamos (orden)
     if(arbol)
     {
-        if(orden==1)
+        if(orden==1)///con esto evaluamos el orden a utilizar
         {
             preorder(arbol);
         }
@@ -110,28 +110,28 @@ void mostrarArbol (nodoArbol * arbol, int orden)
 
 nodoArbol * nodoMasDerecho(nodoArbol * arbol)///buscamos el nodo mas a la derecha
 {
-    nodoArbol * aux;/// ////////////////////////////////// aca no iria lo de malloc?????
-    if(!arbol->der)
+    nodoArbol * aux;///lo usamos para recorrer el arbol
+    if(!arbol->der)///si ya no hay mas nodos a la derecha, ese es el nodo mas derecho
     {
         aux=arbol;
     }
     else
     {
-        aux=nodoMasDerecho(arbol->der);
+        aux=nodoMasDerecho(arbol->der);///sino seguimos buscando hacia la derecha
     }
     return aux;
 }
 
 nodoArbol * nodoMasIzquierdo(nodoArbol * arbol)
 {
-    nodoArbol * aux;
-    if(!arbol->izq)
+    nodoArbol * aux;///lo usamos para recorrer el arbol
+    if(!arbol->izq)///si ya no hay mas nodos a la izquierda, ese es el nodo mas izquierdo
     {
         aux=arbol;
     }
     else
     {
-        aux=nodoMasIzquierdo(arbol->izq);
+        aux=nodoMasIzquierdo(arbol->izq);///sino seguimos buscando hacia la izquierda
     }
     return aux;
 }
@@ -147,28 +147,23 @@ nodoArbol * borrarNodoArbol (nodoArbol * arbol, char nombre [])///buscamos un no
         else if (strcmp(nombre,arbol->p.nombreApellido)<0)///si el nombre es "menor" seguimos buscando a la izquierda
         {
             arbol->izq=borrarNodoArbol(arbol->izq, nombre);
-        }
-        else/// ////////////////////ayudame a explicar esto por que tengo sueño////////////////////////////////////////////////
-            /// ////////////////////ayudame a explicar esto por que tengo sueño////////////////////////////////////////////////
-            /// ////////////////////ayudame a explicar esto por que tengo sueño////////////////////////////////////////////////
-            /// ////////////////////ayudame a explicar esto por que tengo sueño////////////////////////////////////////////////
-            /// ////////////////////ayudame a explicar esto por que tengo sueño////////////////////////////////////////////////
-            /// ////////////////////ayudame a explicar esto por que tengo sueño////////////////////////////////////////////////
+        }///esto lo usamos para que no recorra zonas en las que no puede estar (ah no ser que se haya cargado mal el arbol)
+        else///sino (es decir si se encontro el nodo buscado)
         {
-            if(arbol->izq)
+            if(arbol->izq)///asignamos las direcciones de memoria para no romper el arbol
             {
                 arbol->p= (nodoMasDerecho(arbol->izq))->p;
                 arbol->izq=borrarNodoArbol(arbol->izq, arbol->p.nombreApellido);
             }
-            else if(arbol->der!=NULL)
+            else if(arbol->der!=NULL)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 arbol->p=(nodoMasIzquierdo(arbol->der))->p;
                 arbol->der=borrarNodoArbol(arbol->der, arbol->p.nombreApellido);
             }
-            else
+            else///borramos el nodoArbol
             {
-                free(arbol);///SE LIBRE ARBOL, SE LIBRE!!!!!!!
-                arbol=NULL;
+                free(arbol);
+                arbol=NULL;///!!!!!!!!!!!!!!!!!!!!!!
             }
         }
     }
@@ -184,7 +179,7 @@ nodoArbol * ArchiToArbol (char nombre[],nodoArbol * arbol)///pasamos los datos d
     }
     else
     {
-        while (!feof(archi))
+        while (!feof(archi))///tambien podria ser while (fread(&aux,sizeof(persona),1,archi)>0) sin el if (!feof(archi))
         {
             fread(&aux,sizeof(persona),1,archi);
             if (!feof(archi))///mientras que no se supere el final del archivo
@@ -193,7 +188,7 @@ nodoArbol * ArchiToArbol (char nombre[],nodoArbol * arbol)///pasamos los datos d
             }
         }
     }
-    fclose(archi);///cerramos el arvhibo
+    fclose(archi);///cerramos el archivo
 
     return arbol;///retornamos arbol para guardar los parametros ya que no usamos punteros dobles
 }

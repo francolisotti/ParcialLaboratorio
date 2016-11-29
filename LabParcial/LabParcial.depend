@@ -874,3 +874,127 @@
 	<stdlib.h>
 	"Menu.h"
 
+1480431348 source:c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Menu.h"
+
+1480430132 c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\menu.h
+	"string.h"
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+	"Arbol.h"
+	"Lista.h"
+	"Caja.h"
+	"Fila.h"
+
+1480362780 c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\persona.h
+	<string.h>
+
+1480362780 c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\arbol.h
+	"Persona.h"
+
+1480362780 c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\lista.h
+	"Persona.h"
+
+1480430732 c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\caja.h
+	"Arbol.h"
+	"Fila.h"
+
+1480434618 c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\fila.h
+	"Lista.h"
+	"arbol.h"
+
+1480421968 source:c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\tda arbol.c
+	<stdio.h>
+	<stdlib.h>
+	"Arbol.h"
+
+1480434618 source:c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\tda caja.c
+	<stdio.h>
+	<stdlib.h>
+	"Caja.h"
+
+1480434367 source:c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\tda fila.c
+	<stdio.h>
+	<stdlib.h>
+	"Fila.h"
+
+1480434212 source:c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\tda lista.c
+	<stdio.h>
+	<stdlib.h>
+	"Lista.h"
+
+1480362780 source:c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\tda persona.c
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+
+1480430132 source:c:\users\sandra\desktop\franco\parciallaboratorio-master\labparcial\tda menu.c
+	<stdio.h>
+	<stdlib.h>
+	"Menu.h"
+
+1480437817 source:c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Menu.h"
+
+1480426534 c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\menu.h
+	"string.h"
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+	"Arbol.h"
+	"Lista.h"
+	"Caja.h"
+	"Fila.h"
+
+1480359180 c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\persona.h
+	<string.h>
+
+1480359180 c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\arbol.h
+	"Persona.h"
+
+1480359180 c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\lista.h
+	"Persona.h"
+
+1480427134 c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\caja.h
+	"Arbol.h"
+	"Fila.h"
+
+1480431020 c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\fila.h
+	"Lista.h"
+	"arbol.h"
+
+1480442044 source:c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\tda caja.c
+	<stdio.h>
+	<stdlib.h>
+	"Caja.h"
+
+1480444481 source:c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\tda lista.c
+	<stdio.h>
+	<stdlib.h>
+	"Lista.h"
+
+1480426534 source:c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\tda menu.c
+	<stdio.h>
+	<stdlib.h>
+	"Menu.h"
+
+1480444481 source:c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\tda persona.c
+	<stdio.h>
+	<stdlib.h>
+	"Persona.h"
+
+1480438626 source:c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\tda arbol.c
+	<stdio.h>
+	<stdlib.h>
+	"Arbol.h"
+
+1480444481 source:c:\users\sureda\desktop\parciallaboratorio-master (6)\parciallaboratorio-master\labparcial\tda fila.c
+	<stdio.h>
+	<stdlib.h>
+	"Fila.h"
+

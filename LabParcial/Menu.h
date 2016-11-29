@@ -24,9 +24,12 @@ void subMenu_arbol_opcion2(nodoArbol * arbol);
 int menu_cajas();
 int subMenu_caja_opcion1(caja cajita[]);
 int subMenu_caja_opcion2(caja cajita[]);
-void subMenu_caja_opcion3(caja cajita[], nodoArbol * arbol);
+int subMenu_caja_opcion3(caja cajita[], nodoArbol * arbol);
 void subMenu_caja_opcion4(caja cajita[]);
 void subMenu_caja_opcion5(caja cajita[]);
+void subMenu_caja_opcion6(caja cajita[], int cantidadDeCajas);
+void subMenu_caja_opcion7(caja cajita[], int cantidadDeCajas);
+
 
 
 

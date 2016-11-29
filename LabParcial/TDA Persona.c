@@ -2,15 +2,12 @@
 #include <stdlib.h>
 #include "Persona.h"
 
-
-
-
-persona nuevo_Persona()
+persona nuevo_Persona()///crearemos una nueva persona
 {
     char nombreApellido[40];
     int cantArticulos,tipo_Cliente,tipo_Pago;
     persona nuevo;
-
+///obtenemos los datos de la persona
     printf("\nNombre y Apellido: ");
     fflush(stdin);
     gets(&nombreApellido);
@@ -22,8 +19,8 @@ persona nuevo_Persona()
     scanf("%d", &tipo_Pago);
 
     nuevo=crearPersona(nombreApellido,cantArticulos,tipo_Cliente,tipo_Pago);
-
-    return nuevo;
+///creamos la nueva persona
+    return nuevo;///y la retornamos
 }
 
 persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,int tipo_Pago)
@@ -35,24 +32,21 @@ persona crearPersona (char nombreApellido[], int cantArticulos,int tipo_Cliente,
     aux.tipo_cliente=tipo_Cliente;
     aux.tipo_pago=tipo_Pago;
 
-
     aux.tiempoDeEspera=0;
-    aux.tiempoProcesado=0;
+    aux.tiempoProcesado=0;///le asignamos espera y procesado 0 ya que todabia no fueron atendidas
 
-
-    return aux;
+    return aux;///retornamos la nueva persona
 }
 
 void mostrarPersona(persona aux)
 {
-
-    printf("\n    Nombre y Apellido: %s", aux.nombreApellido);
+    printf("\n    Nombre y Apellido: %s", aux.nombreApellido);///mosrtamos cada dato
     printf("\nCantidad de articulos: %d", aux.cantArticulos);
     printf("\n     Tiempo de espera: %d", aux.tiempoDeEspera);
     printf("\n  Tiempo de procesado: %d", aux.tiempoProcesado);
-    if(aux.tipo_cliente==1)
+    if(aux.tipo_cliente==1)///para no mostrar tipo de cliente:1/2/3
     {
-        printf("\n      Tipo de cliente: Embarazada");
+        printf("\n      Tipo de cliente: Embarazada");///leemos el tipo de cliente y lo mostramos en palabras
     }
     else if (aux.tipo_cliente==2)
     {
@@ -64,7 +58,7 @@ void mostrarPersona(persona aux)
     }
     if (aux.tipo_pago==1)
     {
-        printf("\n            Tipo pago: Efectivo");
+        printf("\n            Tipo pago: Efectivo");///tambien con el tipo de pago
     }
     else if (aux.tipo_pago==2)
     {
@@ -74,27 +68,27 @@ void mostrarPersona(persona aux)
     {
         printf("\n            Tipo pago: Todos los metodos");
     }
-    printf("\n-----------------------\n");
+    printf("\n-----------------------\n");///linea divisoria para emprolijar
 }
 
-void mostrarArchiPersona (char archi_persona[])
+void mostrarArchiPersona (char archi_persona[])///sirve para comprobar si el archivo no esta dañado
 {
-    FILE * archi=fopen(archi_persona, "rb");
+    FILE * archi=fopen(archi_persona, "rb");///abrimos el archivo en modo lectura
     persona aux;
-    if (archi!=NULL)
+    if (archi!=NULL)///si el archivo no esta vacio
     {
-        while (fread(&aux,sizeof(persona),1,archi)>0)
+        while (fread(&aux,sizeof(persona),1,archi)>0)///mientras no se llegue al final
         {
-            mostrarPersona(aux);
-            printf("\nAprete enter para continuar");
-            getch();
+            mostrarPersona(aux);///mostramos los atributos de la persona
+            printf("\nPrecione cualquier tecla para continuar");
+            getch();///asi resulta mas comodo leer el archivo
         }
     }
-    else
+    else///sino se informa del error
     {
-        printf("\nERROR\nArchivo no encontrado");
+        printf("\nERROR, archivo no encontrado");
     }
-    fclose(archi);
+    fclose(archi);///cerramos el archivo
 }
 
 

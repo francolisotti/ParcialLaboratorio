@@ -2,22 +2,23 @@
 #include <stdlib.h>
 #include "Menu.h"
 
-
+///A LAS CAJAS. EN MOSTRAR RR MOSTRAR QUANTUM A QUANTUM.
 int main()
 {
-    system("color 3");
+    system("color 3");///cambio a color amigable de fondo y fuente
 
     char archi_cliente[25];
     char archi_caja[25];
     int control;
-    printf("Bienvenido a U.T.N mart\n\n\n");
-    puts("------------------------------");
-    printf("\nDesea usar los archivos locales(1), o utilizar uno externo(2): ");
+    printf("Bienvenido a U.T.N Mart.\n\n");
+    printf("MENU INICIAL\n");
+    printf("\n[1] Usar archivos locales");
+    printf("\n[2] Usar archivos externos");
+    printf("\nIngrese un numero: ");
     scanf("%d",&control);
     while ((control<1) || (control>2))
     {
         printf("\nERROR\nIngrese una opcion valida");
-        printf("\nUsar los archivos locales(1), o utilizar uno externo(2):");
         scanf("%d",&control);
     }
     if(control==1)
@@ -70,11 +71,22 @@ int main()
             {
                 if (opcionArbol==1)
                 {
-                    arbol=subMenu_arbol_opcion1(archi_cliente,arbol);
-                    printf("\nArbol cargado exitosamente");
-                    printf("\nPresione cualquier tecla para continuar");
-                    getch();
-                    flagArbol=1;
+                    if (flagArbol==0)
+                    {
+                        arbol=subMenu_arbol_opcion1(archi_cliente,arbol);
+                        printf("\nArbol cargado exitosamente");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                        flagArbol=1;
+                    }
+                    else
+                    {
+                        printf("\nERROR, el arbol ya ha sido cargado");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+
+                    }
+
                 }
                 else if (opcionArbol==2)
                 {
@@ -122,8 +134,19 @@ int main()
                 {
                     if (flagArbol==1)
                     {
-                        subMenu_caja_opcion3(cajita,arbol);
-                        flagCajaConClientes=1;
+                        if (flagCajaConClientes==0)
+                        {
+                            subMenu_caja_opcion3(cajita,arbol);
+                            flagCajaConClientes=1;
+                        }
+                        else
+                        {
+                            printf("\nERROR, las cajas ya han sido cargadas");
+                            printf("\nPresione cualquier tecla para continuar");
+                            getch();
+
+                        }
+
                     }
                     else
                     {
@@ -156,6 +179,7 @@ int main()
                 else if (opcionCaja==6)
                 {
                     subMenu_caja_opcion6(cajita,cantidadDeCajas);
+                    flagCajaConClientes=0;
                 }
                 else if (opcionCaja==7)
                 {
@@ -165,126 +189,5 @@ int main()
             }
         }
     }
-
-/*
-    int menu=15;
-    int flag1=0;
-    int flag2=0;
-    int flag3=0;
-    int flag4=0;
-    int k=0;
-    int posicion=-1;
-    while (menu!=0)
-    {
-        printf("\nMENU:\n");
-        printf("1) Carga de los clientes segun metodo de recorrido y se muestran como quedan las cajas");
-        printf("\n2) Calcular y mostrar los tiempos segun Algoritmos de Planificacion");
-        printf("\n3) Ingresar cliente en tiempo determinado");
-        printf("\n4) Ejecutar y mostrar tiempos nuevos con el cliente agregado");
-        printf("\n5) Repetir");
-        printf("\n6) Vaciar una caja, mostrando proceso a proceso");
-        printf("\n7) Recorrer cajas y calcular tiempos de espera promedios");
-        printf("\n");
-        printf("\n0) Salir");
-        printf("\n\nIngrese un numero: ");
-        scanf("%d", &menu);
-        if (menu==1)
-        {
-            opcion1(cajita,cliente,cantidadDeCajas);
-            flag1++;
-        }
-        if (menu==2)
-        {
-            if(flag1==1)
-            {
-                opcion2(cajita,cantidadDeCajas);
-            }
-            else
-            {
-                printf("\nEs necesario que primero se llame a la opcion 1\nYa que no hay clientes en las cajas");
-            }
-        }
-        if (menu==3)
-        {
-            if (flag1==1)
-            {
-                posicion=opcion3(cajita);
-                flag2++;
-            }
-            else
-            {
-                printf("No hay clientes en las cajas.")
-            }
-        }
-        if (menu==4)
-        {
-            if (flag2==1)
-            {
-                opcion4(cajita,posicion);
-                flag3++;
-            }
-            else
-            {
-                printf("\nEs necesario que primero se llame a la opcion 3\nYa que aun no se agrego un cliente nuevo");
-            }
-        }
-        if (menu==5)
-        {
-            if (flag3==1)
-            {
-                opcion5(cajita,cantidadDeCajas);
-            }
-            else
-            {
-                printf("\nEs necesario que primero se llame a la opcion 4\nYa que aun no hay clientes que quitar");
-            }
-        }
-        if (menu==6)
-        {
-            opcion6(cajita,cantidadDeCajas);
-        }
-        if (menu==7)
-        {
-            while (k<cantidadDeCajas)
-            {
-                if (cajita[k].abiertaOcerrada==1)
-                {
-                    flag4=1;
-
-                }
-                k++;
-            }
-            if (flag4==1)
-            {
-                int z=0;
-                float promediosE[12];
-                float promediosR[12];
-                char mander='s';
-                promedioCajas(cajita,cantidadDeCajas,promediosE,promediosR);
-                printf("\nDesea mostrar los promedios de cada caja? s/n: ");
-                fflush(stdin);
-                scanf("%c",&mander);
-                if (mander=='s')
-                {
-                    while(z<cantidadDeCajas)
-                    {
-                        mostrarCaja(cajita[z]);
-                        printf("\nPromedio de tiempo de espera : %f",promediosE[z]);
-                        printf("\nPromedio de tiempo de procesado : %f",promediosR[z]);
-                        printf("\nPromedio de ambos es : %f.2\n\n",((promediosE[z]+promediosR[z])/2));
-                        z++;
-                        printf("\nPromedio de tiempo de espera : %f\n",promediosE[z]);
-                        printf("\nPromedio de tiempo de procesado : %f\n",promediosR[z]);
-                        printf("\nPromedio de ambos es : %f.2",((promediosE[z]+promediosR[z])/2));
-                    }
-                }
-            }
-            else
-            {
-                printf("\nNo hay ninguna caja abierta para promediar");
-            }
-
-        }
-    }*/
     return 0;
 }
