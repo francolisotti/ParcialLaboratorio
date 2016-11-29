@@ -104,7 +104,7 @@ void mostrarCaja(caja cajita)
 
                         mostrarLista(filita->primero);
                         aux->cliente.tiempoProcesado=(filita->primero->cliente.tiempoProcesado)+6;
-                        aux->cliente.tiempoDeEspera=contador*6;
+                        aux->cliente.tiempoDeEspera=contador*6;///hacemos los procesos del quantum
 
                         if ((filita->primero->cliente.tiempoProcesado)>=(filita->primero->cliente.cantArticulos))
                         {

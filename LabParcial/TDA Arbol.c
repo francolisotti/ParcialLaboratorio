@@ -155,7 +155,7 @@ nodoArbol * borrarNodoArbol (nodoArbol * arbol, char nombre [])///buscamos un no
                 arbol->p= (nodoMasDerecho(arbol->izq))->p;
                 arbol->izq=borrarNodoArbol(arbol->izq, arbol->p.nombreApellido);
             }
-            else if(arbol->der!=NULL)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else if(arbol->der!=NULL)
             {
                 arbol->p=(nodoMasIzquierdo(arbol->der))->p;
                 arbol->der=borrarNodoArbol(arbol->der, arbol->p.nombreApellido);
@@ -163,7 +163,7 @@ nodoArbol * borrarNodoArbol (nodoArbol * arbol, char nombre [])///buscamos un no
             else///borramos el nodoArbol
             {
                 free(arbol);
-                arbol=NULL;///!!!!!!!!!!!!!!!!!!!!!!
+                arbol=NULL;
             }
         }
     }
