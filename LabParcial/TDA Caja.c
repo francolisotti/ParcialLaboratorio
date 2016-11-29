@@ -2,45 +2,6 @@
 #include <stdlib.h>
 #include "Caja.h"
 
-
-/*void abrir_cajas_(caja cajita[])
-{
-    char opcion='s';
-    char opcion2='s';
-    int i=0;
-    printf("\nDesea abrir todas las cajas? s/n: ");
-    fflush(stdin);
-    scanf("%c",&opcion);
-    if (opcion=='s')
-    {
-        for (i=0; i<12; i++)
-        {
-            cajita[i].abiertaOcerrada=1;
-        }
-    }
-    else
-    {
-        printf("\nDesea abrir alguna caja s/n: ");
-        fflush(stdin);
-        scanf("%c", &opcion2);
-        if (opcion2=='s')
-        {
-            for (i=0; i<12; i++)
-            {
-                mostrarCaja(cajita[i]);
-                printf("\nDesea abrir esta caja: s/n: ");
-                fflush(stdin);
-                scanf("%c",&opcion2);
-                if (opcion2=='s')
-                {
-                    cajita[i].abiertaOcerrada=1;
-                }
-            }
-        }
-
-    }
-}*/
-
 caja abrirOcerrarCaja (caja cajita)
 {
     if (cajita.abiertaOcerrada == 1)///si la caja estaba abierta la cierra
@@ -54,7 +15,7 @@ caja abrirOcerrarCaja (caja cajita)
     return cajita;///retorna la caja ya que aca no la recive como puntero en tonces no se modificaria
 }
 
-caja buscarCaja(caja A[], int buscada)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+caja buscarCaja(caja A[], int buscada)
 {
     int i=0;
     if((A[i].nro_de_caja!=buscada) && (buscada<=12))///corroboramos que no este buscando un numero de caja que no pueda existir
@@ -70,7 +31,7 @@ caja buscarCaja(caja A[], int buscada)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void mostrarArchiCaja (char archi_Caja[])
 {
     FILE * archi=fopen(archi_Caja, "rb");///abrimos el archivo en modo lectura
-    caja aux;///creamos una caja auxiliar que tenga los datos que iremos leyendo del archivo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    caja aux;///creamos una caja auxiliar que tenga los datos que iremos leyendo del archivo, se pisara a si misma
     if (archi!=NULL)
     {
         while (fread(&aux,sizeof(caja),1,archi)>0)///mientras que el archivo no este vacio
@@ -92,12 +53,13 @@ void mostrarArchiCaja (char archi_Caja[])
 
 void mostrarCaja(caja cajita)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 {
-    char rr[]={"RR"};///esto lo necesitaremos ya que las de tipo round robin se muestran de forma diferente
+    char rr[]= {"RR"}; ///esto lo necesitaremos ya que las de tipo round robin se muestran de forma diferente
     if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
     {
         printf("Caja numero: %d",cajita.nro_de_caja);
         if(cajita.abiertaOcerrada==1)///para no mostrar caja: 1 o 0 si esta abierta o cerrada
-        {///lo evaluamos y el usuario solo lee Caja abierta o cerrada
+        {
+            ///lo evaluamos y el usuario solo lee Caja abierta o cerrada
             printf("\nCaja abierta");
         }
         else
@@ -119,31 +81,65 @@ void mostrarCaja(caja cajita)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             printf("\nPago: todos");
         }
+        int contador=1;
+        int flag=0;
         if (filaVacia(&cajita.filita)==1)///si la fila no esta vacia
         {
             char control='s';
-            printf("\nDesea mostrar la fila? s/n: ");///preguntamos si decea mostrarla
+            printf("\nDesea mostrar la fila? s/n: ");///preguntamos si desea mostrarla
             fflush(stdin);
             scanf("%c", &control);
 
-            if(control == 's')///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if(control == 's')///si desea mostrarla
             {
                 if (strcmp(cajita.algoritmoPlanificacion,rr)==0)///si es round robin
                 {
-                    while (filaVacia(&cajita.filita)==1)///mientras la fila no este vacia
+                    Fila * filita=&cajita.filita;
+                    nodo * aux=filita->primero;
+                    while (flag==0 && filaVacia(aux)==1)///mientras la fila no este vacia
                     {
                         printf("\nFila:\n");
-                        cajita.filita=mostrar_RR(cajita.filita);
-                        tiempo_de_espera_fila_RR(&cajita.filita);
-                        printf("\nPresione cualquier tecla para sumar un quantum de 6 (seis)");
-                        getch();
+                        system("cls");
+                        nodo * aux=filita->primero;
+
+                        mostrarLista(filita->primero);
+                        aux->cliente.tiempoProcesado=(filita->primero->cliente.tiempoProcesado)+6;
+                        aux->cliente.tiempoDeEspera=contador*6;
+
+                        if ((filita->primero->cliente.tiempoProcesado)>=(filita->primero->cliente.cantArticulos))
+                        {
+                            extraer(&cajita.filita);
+                            contador++;
+                        }
+                        else
+                        {
+                            if (aux->siguiente==NULL)
+                            {
+                                inicFila(&filita);
+                                flag=1;
+                                printf("\nLa fila se ha vaciado.");
+                                printf("\nPresione cualquier tecla.");
+                                getch();
+
+                            }
+                            else
+                            {
+                                agregar(&cajita.filita,aux->cliente);
+                                extraer(&cajita.filita);
+                                printf("\nPresione cualquier tecla para sumar un quantum de 6 (seis)");
+                                getch();
+                            }
+
+                            contador++;
+                        }
+
                     }
 
                 }
                 else///si no es round robin
                 {
-                printf("\nFila:\n");
-                mostrar(&cajita.filita);///mosrtamos la fila
+                    printf("\nFila:\n");
+                    mostrar(&cajita.filita);///mostramos la fila
                 }
             }
         }
@@ -169,9 +165,8 @@ int pasarDeArchiAcaja_yContar (char archiCajas[], caja cajita[])
         }
     }
     fclose(archi);///cerramos el archivo
-    return i;///retornamos la cantidad de cajas que tenemos para que si se introduce un archivo con otra cantidad de cajas, los demas algoritmos sigan funcionando
+    return i;///retornamos la cantidad de cajas pasadas
 }
-///11111111111111mira arriba el return i!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 int contarClientesCaja (caja cajita)
 {
@@ -190,25 +185,31 @@ int contarClientesCaja (caja cajita)
     return cont;///retornamos la cantidad de clientes
 }
 
-int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-{///buscaremos la caja con menos clientes, dentro de las que tengan el tipo de pago solicitado
+int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)
+{
+    ///buscaremos la caja con menos clientes, dentro de las que tengan el tipo de pago correspondiente
     int i=0;
     int flag=0;
     int menor=0;
     int posmenor=-1;
 
-    while (flag==0 && i<12)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    {///mientras que no se supere el limite de cajas
+    while (flag==0 && i<12)
+    ///el flag indica que ya encontro la primer caja correspondiente
+    ///ya que esta se comparara con las siguientes del mismo tipo de pago
+    {
+        ///mientras que no se supere el limite de cajas
         if ((cajita[i].tipo_pago==tipoPago) && (cajita[i].abiertaOcerrada==1))
-        {///si el tipo de pago coincide y la caja esta abierta
-            flag=1;///!!!!!!!!!!!!!!!!!!!!!!!!!!!!por que este flag!!!!!!!!!!!!!!!!!!!!LISOOOOO
+        {
+            ///si el tipo de pago coincide y la caja esta abierta
+            flag=1;
             posmenor=i;
             menor=contarClientesCaja(cajita[posmenor]);
         }
         i++;
-    }///encontramos la primer caja y suponemos que es la que tiene menos clientes
+    }
     while (i<12)
-    {///seguimos comparando a partir de ahi!!!!!!!!!!!!!!!!!!!!!!!!
+    {
+        ///seguimos comparando con las del mismo pago
         if ((cajita[i].tipo_pago==tipoPago) && (cajita[i].abiertaOcerrada==1))
         {
             if (menor>contarClientesCaja(cajita[i]))
@@ -220,7 +221,7 @@ int evaluar_caja_con_menos_clientes (caja  cajita[], int tipoPago)///!!!!!!!!!!!
         }
         i++;
     }
-    return posmenor;///retornamos la poscicio de la caja con ese tipo de pago y menos clientes
+    return posmenor;///retornamos la poscicion de la caja con ese tipo de pago y menos clientes
 }
 
 int agregarClienteACaja (caja cajita[], nodoArbol * raiz)
@@ -289,27 +290,27 @@ void agregarSegunAlgoritmo (Fila * filita, persona a, char algoritmo[])
     ///ahora veremos que tipo de algoritmo eligio el usuario y agregaremos teniendo en cuenta eso
     if (strcmp(algoritmo,fifo)==0)
     {
-        agregar(filita,a);
+        agregar(filita,a);///en orden fde llegada
     }
     else if (strcmp(algoritmo,prioridadesa)==0)
     {
-        agregarPrioridadesA(filita,a);
+        agregarPrioridadesA(filita,a);///por prioridades apropiativo
     }
     else if (strcmp(algoritmo,prioridadesna)==0)
     {
-        agregarPrioridadesNA(filita,a);
+        agregarPrioridadesNA(filita,a);///por prioridades no apropiativo
     }
     else if (strcmp(algoritmo,srtf)==0)
     {
-        agregarSRTF(filita,a);
+        agregarSRTF(filita,a);///por menor cantidad de articulos apropiativo
     }
     else if (strcmp(algoritmo,sjf)==0)
     {
-        agregarSJF(filita,a);
+        agregarSJF(filita,a);///por menor cantidad de articulos no apropiativo
     }
     else if (strcmp(algoritmo,rr)==0)
     {
-        agregar(filita,a);///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        agregar(filita,a);///round robin es fifo
     }
 }
 
@@ -386,19 +387,15 @@ int agregarClientePostorden(nodoArbol * arbol, caja cajita[],int contadorcliente
     return contadorclientes;
 }
 
-void atenderClientes(caja cajita[])///!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void atenderClientes(caja cajita[])///calcula los tiempos de espera y ejecucion
 {
     int i=0;
     char rr[]= {"RR"};
-    while (i<12)///!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    while (i<12)
     {
-        if (strcmp(cajita[i].algoritmoPlanificacion,rr)==0)///dividimos entre las que son round robin y las que no
+        if (strcmp(cajita[i].algoritmoPlanificacion,rr)!=0)///las que no son round robin
         {
-            tiempo_de_espera_fila_RR(&cajita[i].filita);
-        }
-        else
-        {
-            tiempo_de_espera_fila(&cajita[i].filita);///esto carga los tiempos de espera
+            tiempo_de_espera_fila(&cajita[i].filita);///el round robin se calcula en el momento de mostrar la fila
         }
         i++;
     }

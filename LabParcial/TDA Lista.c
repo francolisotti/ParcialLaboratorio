@@ -9,7 +9,7 @@ nodo * inicLista ()
 
 nodo * crearNodoLista (persona cliente)
 {
-    nodo * nuevo=(nodo*)malloc(sizeof(nodo));///-----------------------------
+    nodo * nuevo=(nodo*)malloc(sizeof(nodo));
 
     nuevo->cliente=cliente;///asignamos los datos pedidos
     nuevo->siguiente=NULL;
@@ -83,7 +83,7 @@ nodo * agregarEnOrdenTipoCliente (nodo * lista, nodo * nuevo)
             seg->anterior=nuevo;
         }
     }
-    return lista;///-------------------------------
+    return lista;///se retorna lista ya que se puede modificar el primero
 }
 
 nodo * agregarEnOrdenPorCant (nodo * lista, nodo * nuevo)

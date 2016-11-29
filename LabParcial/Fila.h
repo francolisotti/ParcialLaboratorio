@@ -19,7 +19,7 @@ int filaVacia(Fila * filita);
 void tiempo_de_espera_fila (Fila * filita);
 void tiempo_de_espera_fila_RR (Fila * filita);
 Fila  mostrar_RR(Fila  filita);
-
+void extraer (Fila * filita);
 
 
 #endif // FILA_H_INCLUDED

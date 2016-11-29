@@ -16,6 +16,7 @@ void agregar (Fila * filita, persona a)
     if (filita->primero==NULL)
     {
         filita->primero=nuevo;///si estaba vacia lo agrega al principio
+        filita->ultimo=nuevo;///y al final
     }
     else
     {
@@ -38,7 +39,7 @@ void quitar (Fila * filita)
             mostrarLista(aux);///mostramos como va la fila
             printf("\nPresione cualquier tecla para continuar\n");///esto es para poder ver paso a paso como va quedando
             getch();
-            if (sig!=NULL)///!!!!!!!!!!!!!!!!!!!!!!ASASAFSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+            if (sig!=NULL)///pregunta si sig no es null ya que en caso de serlo y acceder a sus atributos, el programa se rompe
             {
                 sig->anterior=NULL;
             }
@@ -47,6 +48,27 @@ void quitar (Fila * filita)
         }
     }
 }
+
+void extraer (Fila * filita)
+{
+    if (filaVacia(filita)==1)
+    {
+        nodo * aux=filita->primero;
+        nodo * sig=aux->siguiente;
+        if (filita->primero!=filita->ultimo)
+        {
+            sig->anterior=NULL;
+            filita->primero=sig;
+        }
+        else
+        {
+            filita->primero=NULL;
+            filita->ultimo=NULL;
+        }
+        free(aux);
+    }
+}
+
 
 void mostrar(Fila * filita)
 {
@@ -87,63 +109,8 @@ void tiempo_de_espera_fila (Fila * filita)
                 aux->cliente.tiempoDeEspera=espera;///la segunda persona recivira por espera la cantidad de articulos del cliente ya atendido
                 espera=espera+aux->cliente.cantArticulos;///los demas recibiran estos tiempos de espera sumados a la cantidad de articulos
                 aux->cliente.tiempoProcesado=aux->cliente.cantArticulos;
-///---------------------------------------------------------
                 aux=aux->siguiente;///nos movemos en la lista
             }
         }
     }
-}
-
-
-void tiempo_de_espera_fila_RR (Fila * filita)
-{
-    if (filaVacia(filita)==1)///lo mismo que en la anterior pero con las modificaciones necesarias para round robin
-    {
-        int espera=0;
-        int contador=1;
-        int quantum=6;
-        nodo * aux=filita->primero;
-        aux->cliente.tiempoDeEspera=espera;
-        espera=aux->cliente.cantArticulos;
-        aux->cliente.tiempoProcesado=aux->cliente.cantArticulos;
-        if(aux->siguiente!=NULL)
-        {
-            aux=aux->siguiente;
-            while (aux!=NULL)
-            {
-                aux->cliente.tiempoDeEspera=contador*quantum;
-                contador++;
-                aux->cliente.tiempoProcesado=aux->cliente.cantArticulos;
-
-                aux=aux->siguiente;
-            }
-        }
-    }
-}
-
-Fila mostrar_RR(Fila filita)
-{
-    nodo * aux=filita.primero;
-    nodo * seg=aux->siguiente;
-    if (filaVacia(&filita)==0)
-    {
-        printf("\nFila vacia");
-    }
-   /* else
-    {
-        mostrarLista(aux);
-        aux->cliente.cantArticulos=(aux->cliente.cantArticulos)-6;
-        if (aux->cliente.cantArticulos>)
-        {
-            filita.primero=seg;
-            aux=borrarPrimero(aux);
-        }
-        else
-        {
-            filita.ultimo=aux;
-            agregar(&filita,aux->cliente);
-            aux=borrarPrimero(aux);
-        }
-    }*/
-    return filita;
 }
