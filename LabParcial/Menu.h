@@ -12,7 +12,7 @@
 
 void nombreArchivoPersona (char nombre[]);
 void nombreArchivoCaja (char nombre[]);
-void mostrar_todas_las_cajas (caja cajita[], int validos);
+void mostrar_todas_las_cajas (caja cajita[]);
 void Mostrar_Archivos (char archi_cliente[], char archi_caja[]);
 int menuGeneral ();
 int menu_archivo ();
@@ -22,9 +22,9 @@ int menu_arbol ();
 nodoArbol * subMenu_arbol_opcion1(char nombre_archi[], nodoArbol * arbol);
 void subMenu_arbol_opcion2(nodoArbol * arbol);
 int menu_cajas();
-int subMenu_caja_opcion1(caja cajita[]);
-int subMenu_caja_opcion2(caja cajita[]);
-int subMenu_caja_opcion3(caja cajita[], nodoArbol * arbol);
+int subMenu_caja_opcion1(caja cajita[], int cantidadDeCajas);
+int subMenu_caja_opcion2(caja cajita[],int cantidadDeCajas);
+int subMenu_caja_opcion3(caja cajita[], nodoArbol * arbol,int cantidadDeCajas);
 void subMenu_caja_opcion4(caja cajita[]);
 void subMenu_caja_opcion5(caja cajita[]);
 void subMenu_caja_opcion6(caja cajita[], int cantidadDeCajas);

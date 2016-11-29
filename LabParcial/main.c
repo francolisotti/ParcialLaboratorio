@@ -18,16 +18,16 @@ int main()
     scanf("%d",&control);
     while ((control<1) || (control>2))
     {
-        printf("\nERROR\nIngrese una opcion valida");
+        printf("\nERROR\nIngrese una opcion valida");///verificamos que ingrese una opcion valida
         scanf("%d",&control);
     }
-    if(control==1)
+    if(control==1)///si usamos los archivos locales estos son sus nombres
     {
         strcpy(archi_cliente,"cliente.bin");
         strcpy(archi_caja,"caja.bin");
 
     }
-    else if (control==2)
+    else if (control==2)///sino debemos obtenerlos
     {
         nombreArchivoCaja(archi_caja);
         nombreArchivoPersona(archi_cliente);
@@ -71,7 +71,7 @@ int main()
             {
                 if (opcionArbol==1)
                 {
-                    if (flagArbol==0)
+                    if (flagArbol==0)///esto es para comprobar que el arbol no se cargue de mas
                     {
                         arbol=subMenu_arbol_opcion1(archi_cliente,arbol);
                         printf("\nArbol cargado exitosamente");
@@ -84,13 +84,12 @@ int main()
                         printf("\nERROR, el arbol ya ha sido cargado");
                         printf("\nPresione cualquier tecla para continuar");
                         getch();
-
                     }
 
                 }
                 else if (opcionArbol==2)
                 {
-                    if (flagArbol==1)
+                    if (flagArbol==1)///nos sirce para comprobar que primero haya pasado al arbol los clientes del archivo
                     {
                         subMenu_arbol_opcion2(arbol);
                         printf("\nPresione cualquier tecla para continuar");
@@ -115,19 +114,19 @@ int main()
             {
                 if (opcionCaja==1)
                 {
-                    controlOpcion1Caja=subMenu_caja_opcion1(cajita);
+                    controlOpcion1Caja=subMenu_caja_opcion1(cajita,cantidadDeCajas);
                     while (controlOpcion1Caja>0)
                     {
-                        controlOpcion1Caja=subMenu_caja_opcion1(cajita);
+                        controlOpcion1Caja=subMenu_caja_opcion1(cajita,cantidadDeCajas);
                     }
 
                 }
                 else if (opcionCaja==2)
                 {
-                    controlOpcion2Caja=subMenu_caja_opcion2(cajita);
+                    controlOpcion2Caja=subMenu_caja_opcion2(cajita,cantidadDeCajas);
                     while (controlOpcion2Caja>0)
                     {
-                        controlOpcion2Caja=subMenu_caja_opcion2(cajita);
+                        controlOpcion2Caja=subMenu_caja_opcion2(cajita,cantidadDeCajas);
                     }
                 }
                 else if (opcionCaja==3)
@@ -136,7 +135,7 @@ int main()
                     {
                         if (flagCajaConClientes==0)
                         {
-                            subMenu_caja_opcion3(cajita,arbol);
+                            subMenu_caja_opcion3(cajita,arbol,cantidadDeCajas);
                             flagCajaConClientes=1;
                         }
                         else
@@ -159,7 +158,6 @@ int main()
                 {
                     if (flagCajaConClientes==1)
                     {
-
                         subMenu_caja_opcion4(cajita);
                         printf("\nClientes atendidos correctamente");
                         printf("\nPresione cualquier tecla para continuar");
@@ -168,22 +166,54 @@ int main()
                     else
                     {
                         printf("\nLas cajas estan vacias");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
                     }
                 }
                 else if (opcionCaja==5)
                 {
-                    subMenu_caja_opcion5(cajita);
-                    printf("\nPresione cualquier tecla para continuar");
-                    getch();
+                    if (flagCajaConClientes==1)
+                    {
+                        subMenu_caja_opcion5(cajita);
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                    }
+                    else
+                    {
+                        printf("\nPimero deberia cargar las cajas");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                    }
+
                 }
                 else if (opcionCaja==6)
                 {
-                    subMenu_caja_opcion6(cajita,cantidadDeCajas);
-                    flagCajaConClientes=0;
+                    if (flagCajaConClientes==1)
+                    {
+                        subMenu_caja_opcion6(cajita,cantidadDeCajas);
+                        flagCajaConClientes=0;
+                    }
+                    else
+                    {
+                        printf("\nPrimero debe cargar las cajas");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                    }
+
                 }
                 else if (opcionCaja==7)
                 {
-                    subMenu_caja_opcion7(cajita,cantidadDeCajas);
+                    if (flagCajaConClientes==1)
+                    {
+                        subMenu_caja_opcion7(cajita,cantidadDeCajas);
+                    }
+                    else
+                    {
+                        printf("\nPrimero debe cargar las cajas");
+                        printf("\nPresione cualquier tecla para continuar");
+                        getch();
+                    }
+
                 }
                 opcionCaja=menu_cajas();
             }

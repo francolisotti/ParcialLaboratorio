@@ -36,11 +36,12 @@ void quitar (Fila * filita)
         {
             sig=aux->siguiente;
             free(aux);///eliminamos el nodo de la fila
-            mostrarLista(aux);///mostramos como va la fila
-            printf("\nPresione cualquier tecla para continuar\n");///esto es para poder ver paso a paso como va quedando
-            getch();
             if (sig!=NULL)///pregunta si sig no es null ya que en caso de serlo y acceder a sus atributos, el programa se rompe
             {
+                system("cls");
+                mostrarLista(sig);///mostramos como va la fila
+                printf("\nPresione cualquier tecla para continuar\n");///esto es para poder ver paso a paso como va quedando
+                getch();
                 sig->anterior=NULL;
             }
             filita->primero=sig;
@@ -49,7 +50,7 @@ void quitar (Fila * filita)
     }
 }
 
-void extraer (Fila * filita)
+void extraer (Fila * filita)///hace lo mismo que quitar pero extrae solo un nodo
 {
     if (filaVacia(filita)==1)
     {

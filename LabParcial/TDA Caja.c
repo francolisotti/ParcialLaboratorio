@@ -51,7 +51,7 @@ void mostrarArchiCaja (char archi_Caja[])
 }
 
 
-void mostrarCaja(caja cajita)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void mostrarCaja(caja cajita)
 {
     char rr[]= {"RR"}; ///esto lo necesitaremos ya que las de tipo round robin se muestran de forma diferente
     if((cajita.nro_de_caja>0) && (cajita.nro_de_caja<=12))
@@ -319,7 +319,7 @@ int agregarClientePreorden(nodoArbol * arbol, caja cajita[],int contadorclientes
     int tipoPago;
     int pos_menor;
     persona aux;
-    if (arbol==NULL)///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if (arbol==NULL)
     {
     }
     else
@@ -387,7 +387,7 @@ int agregarClientePostorden(nodoArbol * arbol, caja cajita[],int contadorcliente
     return contadorclientes;
 }
 
-void atenderClientes(caja cajita[])///calcula los tiempos de espera y ejecucion
+void atenderClientes(caja cajita[])///calcula los tiempos de espera y procesado
 {
     int i=0;
     char rr[]= {"RR"};
