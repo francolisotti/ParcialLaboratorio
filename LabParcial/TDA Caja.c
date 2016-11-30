@@ -319,10 +319,10 @@ int agregarClientePreorden(nodoArbol * arbol, caja cajita[],int contadorclientes
     int tipoPago;
     int pos_menor;
     persona aux;
-    if (arbol==NULL)
+    /*if (arbol==NULL)
     {
-    }
-    else
+    }*/
+    if (arbol!=NULL)
     {
         aux=arbol->p;
         tipoPago=aux.tipo_pago;
@@ -343,10 +343,10 @@ int agregarClienteInorden(nodoArbol * arbol, caja cajita[],int contadorclientes)
     int tipoPago;
     int pos_menor;
     persona aux;
-    if (arbol==NULL)
+    /*if (arbol==NULL)
     {
-    }
-    else
+    }*/
+    if (arbol!=NULL)
     {
 
         contadorclientes=agregarClienteInorden(arbol->izq,cajita,contadorclientes);
@@ -368,10 +368,10 @@ int agregarClientePostorden(nodoArbol * arbol, caja cajita[],int contadorcliente
     int tipoPago;
     int pos_menor;
     persona aux;
-    if (arbol==NULL)
+    /*if (arbol==NULL)
     {
-    }
-    else
+    }*/
+    if (arbol!=NULL)
     {
         contadorclientes=agregarClientePreorden(arbol->izq,cajita,contadorclientes);
         contadorclientes=agregarClientePreorden(arbol->der,cajita,contadorclientes);
@@ -404,37 +404,101 @@ void atenderClientes(caja cajita[])///calcula los tiempos de espera y procesado
 int agregarClienteACajaEnTiempoDeterminado(caja cajita[], int tiempo)
 {
     persona cliente;
-    cliente=nuevo_Persona();
+    cliente=nuevo_Persona();///cargamos los datos de la nueva persona
     int tipodepago=cliente.tipo_pago;
     int posicion;
 
-    posicion=evaluar_caja_con_menos_clientes(cajita,tipodepago);
+    posicion=evaluar_caja_con_menos_clientes(cajita,tipodepago);///vemos cual es la caja con menos clientes y dicho tipo de pago
     char algoritmo[20];
     strcpy(algoritmo,cajita[posicion].algoritmoPlanificacion);
-    agregarSegunAlgoritmoEnTiempo(&cajita[posicion].filita,cliente,algoritmo, tiempo);
+
+
+    agregar_en_tiempo(&cajita[posicion].filita,cliente,tiempo,algoritmo);
+
+    //agregarSegunAlgoritmoEnTiempo(&cajita[posicion].filita,cliente,algoritmo, tiempo);///agregamos a la nueva persona
+
+
     return posicion;
 }
 
+
+void agregar_en_tiempo (Fila * filita,persona a, int tiempo,char algoritmo[])
+{
+    char fifo[]= {"FIFO"};
+    char prioridadesa[]= {"PRIORIDADES A"};
+    char prioridadesna[]= {"PRIORIDADES NA"};
+    char srtf[]= {"SRTF"};
+    char sjf[]= {"SJF"};
+    char rr[]= {"RR"};
+    nodo * aux;
+    aux=filita->primero;
+    while (0<tiempo)///mientras no se llegue al tiempo solicitado
+    {
+        if (aux->cliente.cantArticulos<=tiempo)
+        {///se continuara de forma normal
+            tiempo=tiempo-aux->cliente.cantArticulos;
+            filita->primero=borrarPrimero(filita->primero);
+        }
+        else///cuando alcanzemos el tiempo solicitado
+        {
+            aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
+            tiempo=0;
+        }
+    }
+
+    if (strcmp(algoritmo,fifo)==0)
+    {
+        agregar(filita,a);
+    }
+    else if (strcmp(algoritmo,prioridadesa)==0)
+    {
+        agregarPrioridadesA(filita,a);
+    }
+    else if (strcmp(algoritmo,prioridadesna)==0)
+    {
+        agregarSJF(&aux->siguiente,a);
+    }
+    else if (strcmp(algoritmo,srtf)==0)
+    {
+        agregarSRTF(filita,a);
+    }
+    else if (strcmp(algoritmo,sjf)==0)
+    {
+        agregarSJF(&aux->siguiente,a);
+    }
+    else if (strcmp(algoritmo,rr)==0)
+    {
+        agregarSJF(&aux->siguiente,a);
+    }
+
+
+    tiempo_de_espera_fila(filita);///se calculan los tiempos nuevamente
+}
+
+
+/*
 void agregarPrioridadesAEnTiempo(Fila * filita,persona a,int tiempo)
 {
     nodo * aux;
     aux=filita->primero;
     while (0<tiempo)
     {
-        if (aux->cliente.cantArticulos<=tiempo)
-        {
+        if (aux->cliente.cantArticulos<=tiempo)///mientras no se llegue al tiempo solicitado
+        {///se continuara de forma normal
             tiempo=tiempo-aux->cliente.cantArticulos;
             filita->primero=borrarPrimero(filita->primero);
         }
-        else
+        else///cuando alcanzemos el tiempo solicitado
         {
             aux->cliente.cantArticulos=aux->cliente.cantArticulos-tiempo;
             tiempo=0;
         }
     }
-    agregarPrioridadesA(filita,a);
-    tiempo_de_espera_fila(filita);
+    agregarPrioridadesA(filita,a);///se agrega
+    tiempo_de_espera_fila(filita);///se calculan los tiempos nuevamente
 }
+
+
 
 
 void agregarPrioridadesNAEnTiempo(Fila * filita,persona a,int tiempo)
@@ -541,9 +605,9 @@ void agregarRREnTiempo(Fila * filita,persona a,int tiempo)
     agregarSJF(&aux->siguiente,a);
     tiempo_de_espera_fila(filita);
 }
+*/
 
-
-void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int tiempo)
+/*void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], int tiempo)
 {
     char fifo[]= {"FIFO"};
     char prioridadesa[]= {"PRIORIDADES A"};
@@ -574,41 +638,34 @@ void agregarSegunAlgoritmoEnTiempo(Fila * filita, persona a, char algoritmo[], i
     }
     else if (strcmp(algoritmo,rr)==0)
     {
-        /// no se agregarRREnTiempo(filita,a,tiempo);
+        /// no se agrega porque se calcula al momento de mostrarlo
     }
-
-
-}
-
-void vaciar_cajas (caja cajita[], int validos)
-{
-    quitar(&cajita[validos-1].filita);
-}
+}*/
 
 void promedioCajas (caja cajita[],int validos, float promediosE[], float promediosR[])
 {
     float cant=0;
     float sumaE=0;
     float sumaR=0;
-    atenderClientes(cajita);
+    atenderClientes(cajita);///se guardan los tiempos de espera y procesado
     Fila * filita;
     nodo * aux;
     int i=0;
 
-    while (i<validos)
+    while (i<validos)///recorreremos todas las cajas
     {
-        if (cajita[i].abiertaOcerrada==1)
+        if (cajita[i].abiertaOcerrada==1)///si la caja esta abierta
         {
             filita=&cajita[i].filita;
             aux=filita->primero;
             while (aux!=NULL)
             {
-                sumaR=sumaR+aux->cliente.tiempoProcesado;
-                sumaE=sumaE+aux->cliente.tiempoDeEspera;
+                sumaR=sumaR+aux->cliente.tiempoProcesado;///sumamos todos los tiempos de procesado
+                sumaE=sumaE+aux->cliente.tiempoDeEspera;///y espera de la fila
                 cant++;
-                aux=aux->siguiente;
+                aux=aux->siguiente;///avanzamos en la fila
             }
-            promediosE[i]=sumaE/cant;
+            promediosE[i]=sumaE/cant;///sacamos el promedio
             promediosR[i]=sumaR/cant;
         }
         i++;

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Menu.h"
 
-///A LAS CAJAS. EN MOSTRAR RR MOSTRAR QUANTUM A QUANTUM.
+
 int main()
 {
     system("color 3");///cambio a color amigable de fondo y fuente
